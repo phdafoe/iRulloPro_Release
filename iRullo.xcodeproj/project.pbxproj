@@ -8,17 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		78D46DC42B51C62000A450AD /* iRulloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D46DC32B51C62000A450AD /* iRulloApp.swift */; };
-		78D46DC62B51C62000A450AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D46DC52B51C62000A450AD /* ContentView.swift */; };
+		78D46DC62B51C62000A450AD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D46DC52B51C62000A450AD /* MainView.swift */; };
 		78D46DC82B51C62100A450AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78D46DC72B51C62100A450AD /* Assets.xcassets */; };
 		78D46DCB2B51C62100A450AD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78D46DCA2B51C62100A450AD /* Preview Assets.xcassets */; };
+		78D46DD42B51C88A00A450AD /* MyCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D46DD32B51C88A00A450AD /* MyCalendar.swift */; };
+		78D46DD62B51C8CC00A450AD /* DayPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D46DD52B51C8CC00A450AD /* DayPlanner.swift */; };
+		78D46DD82B52F93300A450AD /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D46DD72B52F93300A450AD /* CreateView.swift */; };
+		78D46DDA2B53006700A450AD /* MyPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D46DD92B53006700A450AD /* MyPlanner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		78D46DC02B51C62000A450AD /* iRullo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iRullo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78D46DC32B51C62000A450AD /* iRulloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iRulloApp.swift; sourceTree = "<group>"; };
-		78D46DC52B51C62000A450AD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		78D46DC52B51C62000A450AD /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		78D46DC72B51C62100A450AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78D46DCA2B51C62100A450AD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		78D46DD32B51C88A00A450AD /* MyCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalendar.swift; sourceTree = "<group>"; };
+		78D46DD52B51C8CC00A450AD /* DayPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPlanner.swift; sourceTree = "<group>"; };
+		78D46DD72B52F93300A450AD /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
+		78D46DD92B53006700A450AD /* MyPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlanner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,9 +60,13 @@
 			isa = PBXGroup;
 			children = (
 				78D46DC32B51C62000A450AD /* iRulloApp.swift */,
-				78D46DC52B51C62000A450AD /* ContentView.swift */,
+				78D46DC52B51C62000A450AD /* MainView.swift */,
+				78D46DD72B52F93300A450AD /* CreateView.swift */,
 				78D46DC72B51C62100A450AD /* Assets.xcassets */,
 				78D46DC92B51C62100A450AD /* Preview Content */,
+				78D46DD32B51C88A00A450AD /* MyCalendar.swift */,
+				78D46DD52B51C8CC00A450AD /* DayPlanner.swift */,
+				78D46DD92B53006700A450AD /* MyPlanner.swift */,
 			);
 			path = iRullo;
 			sourceTree = "<group>";
@@ -137,8 +149,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78D46DC62B51C62000A450AD /* ContentView.swift in Sources */,
+				78D46DDA2B53006700A450AD /* MyPlanner.swift in Sources */,
+				78D46DC62B51C62000A450AD /* MainView.swift in Sources */,
+				78D46DD62B51C8CC00A450AD /* DayPlanner.swift in Sources */,
+				78D46DD42B51C88A00A450AD /* MyCalendar.swift in Sources */,
 				78D46DC42B51C62000A450AD /* iRulloApp.swift in Sources */,
+				78D46DD82B52F93300A450AD /* CreateView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
