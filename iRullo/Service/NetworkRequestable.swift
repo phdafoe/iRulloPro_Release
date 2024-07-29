@@ -6,63 +6,75 @@
 //
 
 import Foundation
-import Combine
+
 
 public protocol Requestable {
     var requestTimeout: Float { get }
-    func request<T: Decodable>(_ req: RequestModel, model: T.Type) -> AnyPublisher<T,NetworkError>
+    func request(_ req: RequestModel, completionHandler: @escaping ([String: Any]?, NetworkError?) -> ())
 }
 
 public class NetworkRequestable: Requestable {
     public var requestTimeout: Float = 30
     
-    public func request<T>(_ req: RequestModel, model: T.Type) ->  AnyPublisher<T,NetworkError> where T: Decodable {
+    public func request(_ req: RequestModel, completionHandler: @escaping ([String: Any]?, NetworkError?) -> ()){
+        
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.timeoutIntervalForRequest = TimeInterval(req.requestTimeout ?? requestTimeout)
-        
+
         guard let urlRequest = req.getUrlRequest() else {
-            return Fail(error: NetworkError.apiError(code: 0, error: "Error encoding http body")).eraseToAnyPublisher()
+            completionHandler(nil, NetworkError.apiError(code: 0, error: "Error encoding http body"))
+            return
         }
-        
+//        
         appLog(tag: .debug, "Request = \(urlRequest)")
         
-        return URLSession.shared.dataTaskPublisher(for: urlRequest)
-            .mapError({ error in
-            return NetworkError.transportError(code: error.errorCode, error: error.localizedDescription)
-        })
-            .tryMap { output in
-                guard
-                    output.response is HTTPURLResponse,
-                    let response = output.response as? HTTPURLResponse
-                else {
-                    throw NetworkError.noResponse("Invalid Response")
-                }
-                
-                if (200..<300) ~= response.statusCode {
-                    appLog(tag: .debug, "Request Succesfull: code = \(response.statusCode)")
-                    
-                    if let dataStr = String(data: output.data, encoding: .utf8) {
-                        appLog(tag: .debug, "Request Succesfull: data = \(dataStr)")
-                    }
-                    
-                } else if (300..<400) ~= response.statusCode {
-                    throw NetworkError.redirection(code: response.statusCode, error: "Redirection")
-                } else if (400..<500) ~= response.statusCode {
-                    appLog(tag: .warning, "CLIENT ERROR: code = \(response.statusCode)")
-                    throw NetworkError.clientError(code: response.statusCode, error: "Client error")
-                } else if (500..<600) ~= response.statusCode {
-                    appLog(tag: .error, "SERVER ERROR: code = \(response.statusCode)")
-                    throw NetworkError.serverError(code: response.statusCode, error: "Server error")
-                }
-                
-                return output.data
+        
+        let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            
+            guard response is HTTPURLResponse, let response = response as? HTTPURLResponse else {
+                completionHandler(nil, NetworkError.noResponse("Invalid Response"))
+                return
             }
-            .decode(type: T.self, decoder: JSONDecoder())
-            .mapError { error in
-                appLog(tag: .error, "Decoding JSON Error: \(error.localizedDescription)")
-                return NetworkError.invalidJSON(error.localizedDescription)
+            
+            guard let dataUnw = data else {
+                print(String(describing: error))
+                return
             }
-            .eraseToAnyPublisher()
+            
+            if (200..<300) ~= response.statusCode {
+                appLog(tag: .debug, "Request Succesfull: code = \(response.statusCode)")
+                if let dataStr = String(data: dataUnw, encoding: .utf8) {
+                    appLog(tag: .debug, "Request Succesfull: data = \(dataStr)")
+                    print("Dictionary format: \(dataStr)")
+                    let dict = self.convertToDictionary(text: dataStr)
+                    completionHandler(dict, nil)
+                }
+            } else if (300..<400) ~= response.statusCode {
+                completionHandler(nil, NetworkError.redirection(code: response.statusCode, error: "Redirection"))
+                return
+            } else if (400..<500) ~= response.statusCode {
+                appLog(tag: .warning, "CLIENT ERROR: code = \(response.statusCode)")
+                completionHandler(nil, NetworkError.clientError(code: response.statusCode, error: "Client error"))
+                return
+            } else if (500..<600) ~= response.statusCode {
+                appLog(tag: .error, "SERVER ERROR: code = \(response.statusCode)")
+                completionHandler(nil, NetworkError.serverError(code: response.statusCode, error: "Server error"))
+                return
+            }
+            
+        }
+        task.resume()
+    }
+    
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
     }
 }
 

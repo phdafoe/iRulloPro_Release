@@ -6,26 +6,34 @@
 //
 
 import Foundation
-import Combine
+
+// Output
+protocol PortadaPresenterProtocol: BaseProviderOutputProtocol {
+    func setPortadasHome(completion: Result<[AreaPortadas]?, NetworkError>)
+}
 
 
-final class PortadaViewModel: ObservableObject {
-    
-    
-    let customService: Requestable = NetworkRequestable()
-    var cancellable: Set<AnyCancellable> = []
-    
-    @Published var portada: Portada?
-    @Published var videosPortada: VideosPortada?
-    
-    func fetchPortada() {
-        customService.request(RequestModel(service: <#T##any Service#>), model: Portada.self)
+final class PortadaPresenter: BaseViewModel, ObservableObject {
+        
+    var provider: PortadaProviderInputProtocol? {
+        super.baseProvider as? PortadaProviderInputProtocol
     }
+    
+    @Published var areasPortadas: [AreaPortadas]?
     
     @MainActor
-    func fetchVideosPortada() async -> VideosPortada? {
-        videosPortada = await customService.requestGeneric(model: VideosPortada.self, customUrl: Helpers.customUrl().apiHost+Helpers.customUrl().videosPortada)
-        return videosPortada
+    func fetchData () async {
+        self.provider?.fetchDataPortadas()
     }
-    
+}
+
+extension PortadaPresenter: PortadaPresenterProtocol {
+    func setPortadasHome(completion: Result<[AreaPortadas]?, NetworkError>) {
+        switch completion{
+        case .success(let data):
+            areasPortadas = data
+        case .failure(let error):
+            debugPrint(error)
+        }
+    }
 }

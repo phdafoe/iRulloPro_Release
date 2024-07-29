@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct ContentVideosCarrouselModel: Identifiable {
+    var id = UUID()
+    let contentVideoModel: [ContentVideosModel]?
+}
+
+struct ContentVideosModel {
+    let headlines: HeadLines?
+    let elementosModel: [ElementosModel]?
+}

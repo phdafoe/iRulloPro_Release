@@ -1,8 +1,16 @@
+// This file was generated from JSON Schema using quicktype, do not modify it directly.
+// To parse the JSON, add this file to your project and do:
 //
-//  PortadaModel.swift
-//  iRullo
-//
-//  Created by Andres Felipe Ocampo Eljaiek on 18/7/24.
-//
+//   let portada = try? JSONDecoder().decode(Portada.self, from: jsonData)
 
 import Foundation
+
+
+struct AreaPortadas: Identifiable {
+    let id = UUID()
+    let name: String?
+    let groups: [GroupPortadas]?
+    let additionalProperties: AdditionalPropertiesModel?
+}
+
+
