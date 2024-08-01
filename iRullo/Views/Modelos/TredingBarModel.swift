@@ -14,15 +14,15 @@ struct AdditionalPropertiesModel {
 struct GroupPortadas {
     var id = UUID()
     let type: String?
-    let contents: [ContentModel]?
+    var contents: [ContentModel]?
 }
 
 struct ContentModel: Identifiable {
     var id = UUID()
     let resourceURL: ResourceURL?
-    let resourcePhotos: [ResourcePhotoModel]
+    let resourcePhotos: [ResourcePhotoModel]?
     let genero: String?
-    let elementosModel: [ElementosModel]?
+    var elementosModel: [ElementosModel]?
     let headlines: HeadLines?
 }
 
@@ -65,6 +65,7 @@ struct AdditionalPropertiesImage {
 struct ElementosModel {
     let videoModel: VideoModel?
     let elementType: String?
+    let photo: PhotoModel?
 }
 
 struct VideoModel {
@@ -75,6 +76,11 @@ struct HeadLines {
     let kickerPortada: String?
     let titlePortada: String?
     let subtitlePortada: String?
+    let uriKicker: String?
+}
+
+struct PhotoModel {
+    let versions: [ImageModel]?
 }
 
 

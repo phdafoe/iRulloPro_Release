@@ -31,9 +31,9 @@ struct HomeView: View {
     func tabView(for tabItemType: TabItemViewModel.TabItemType) -> some View {
         switch tabItemType{
         case .homePage:
-            PortadaCoordinator.view()
-        case .arts:
-            PortadaCoordinator.view()
+            PortadaFutbolCoordinator.view()
+        case .videos:
+            VideosCoordinator.view()
         case .business:
             PortadaCoordinator.view()
         case .movies:

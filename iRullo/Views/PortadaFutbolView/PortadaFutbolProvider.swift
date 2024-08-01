@@ -1,36 +1,37 @@
 //
-//  PortadaProvider.swift
+//  PortadaFutbolProvider.swift
 //  iRullo
 //
-//  Created by Andres Felipe Ocampo Eljaiek on 19/7/24.
+//  Created by Andres Felipe Ocampo Eljaiek on 1/8/24.
 //
 
 import Foundation
 
 // Input
-protocol PortadaProviderInputProtocol: BaseProviderInputProtocol {
-    func fetchDataPortadas()
+protocol PortadaFutbolProviderInputProtocol: BaseProviderInputProtocol {
+    func fecthDataPortadaFutbol()
 }
 
-final class PortadaProvider: BaseProvider {
+
+final class PortadaFutbolProvider: BaseProvider {
     
-    weak var viewModel: PortadaPresenterProtocol? {
-        super.baseViewModel as? PortadaPresenterProtocol
+    weak var viewModel: PortadaFutbolPresenterProtocol? {
+        super.baseViewModel as? PortadaFutbolPresenterProtocol
     }
     let networkService: Requestable = NetworkRequestable()
     
-    func callBackAreas(dictionary: [[String: Any]]?) -> [AreaPortadas]? {
-        let arrayAreas: [AreaPortadas]? = dictionary?.compactMap {
-            AreaPortadas(id: $0["id"] as? String, 
-                         name: $0["name"] as? String,
-                         groups: callBackGroups(dictionary: $0["groups"] as? [[String: Any]] ?? []),
-                         additionalProperties: callBackAdditionalProperties(dictionary: $0["additionalProperties"] as? [String: Any]))
+    
+    func callBackPortadasFutbol(dictionary: [[String: Any]]?) -> [PortadaFutbolModel]? {
+        let arrayPortadaFutbol: [PortadaFutbolModel]? = dictionary?.compactMap {
+            PortadaFutbolModel(name: $0["name"] as? String,
+                               groups: callBackGroups(dictionary: $0["groups"] as? [[String: Any]] ?? []),
+                               additionalProperties: callBackAdditionalProperties(dictionary: $0["additionalProperties"] as? [String : Any]))
         }
-        return arrayAreas
+        return arrayPortadaFutbol
     }
     
     func callBackAdditionalProperties(dictionary: [String: Any]?) -> AdditionalPropertiesModel? {
-        var additionalProperties: AdditionalPropertiesModel?    
+        var additionalProperties: AdditionalPropertiesModel?
         if let myDictionary = dictionary {
             let model = AdditionalPropertiesModel(blockName: myDictionary["block"] as? String)
             additionalProperties = model
@@ -48,10 +49,10 @@ final class PortadaProvider: BaseProvider {
     
     func callBackContents(dictionary: [[String: Any]]?) -> [ContentModel]? {
         let arrayContents: [ContentModel]? = dictionary?.compactMap {
-            ContentModel(resourceURL: callBackResourceUrl(dictionary: $0["resourceURL"] as? [String : Any]),
+            ContentModel(resourceURL: callBackResourceUrl(dictionary: $0["uri"] as? [String : Any]),
                          resourcePhotos: callBackResourcePhoto(dictionary: $0["resourcePhotos"] as? [[String : Any]]) ?? [],
                          genero: $0["genre"] as? String,
-                         elementosModel: callBackElementosModel(dictionary: $0["elements"] as? [[String : Any]]), 
+                         elementosModel: callBackElementosModel(dictionary: $0["elements"] as? [[String : Any]]),
                          headlines: callBackHeadlines(dictionary: $0["headlines"] as? [String : Any]))
         }
         return arrayContents
@@ -95,10 +96,30 @@ final class PortadaProvider: BaseProvider {
         return additionalPropertiesImage
     }
     
+    
+    func callBackHeadlines(dictionary: [String: Any]?) -> HeadLines? {
+        var headlines: HeadLines?
+        if let myDictionary = dictionary {
+            let model = HeadLines(kickerPortada: myDictionary["kicker"] as? String,
+                                  titlePortada: myDictionary["title"] as? String,
+                                  subtitlePortada: myDictionary["subtitle"] as? String,
+                                  uriKicker: myDictionary["urikicker"] as? String)
+            headlines = model
+        }
+        return headlines
+    }
+    
+    func callBackContentModel(dictionary: [[String: Any]]?) -> [ContentVideoData]? {
+        let arrayContentModel: [ContentVideoData]? = dictionary?.compactMap {
+            ContentVideoData(elementosModel: callBackElementosModel(dictionary: $0["elements"] as? [[String : Any]]))
+        }
+        return arrayContentModel
+    }
+    
     func callBackElementosModel(dictionary: [[String: Any]]?) -> [ElementosModel]? {
         let arrayElementosModel: [ElementosModel]? = dictionary?.compactMap {
             ElementosModel(videoModel: callBackVideoModel(dictionary: $0["video"] as? [String: Any]),
-                           elementType: $0["elementType"] as? String, 
+                           elementType: $0["elementType"] as? String,
                            photo: callBackPhoto(dictionary: $0["photo"] as? [String: Any]))
         }
         return arrayElementosModel
@@ -120,18 +141,6 @@ final class PortadaProvider: BaseProvider {
         return arrayImageModel
     }
     
-    func callBackHeadlines(dictionary: [String: Any]?) -> HeadLines? {
-        var headlines: HeadLines?
-        if let myDictionary = dictionary {
-            let model = HeadLines(kickerPortada: myDictionary["kicker"] as? String,
-                                  titlePortada: myDictionary["title"] as? String,
-                                  subtitlePortada: myDictionary["subtitle"] as? String, 
-                                  uriKicker: myDictionary["uriKicker"] as? String)
-            headlines = model
-        }
-        return headlines
-    }
-    
     func callBackPhoto(dictionary: [String: Any]?) -> PhotoModel? {
         var photoModel: PhotoModel?
         if let myDictionary = dictionary {
@@ -141,41 +150,38 @@ final class PortadaProvider: BaseProvider {
         return photoModel
     }
     
-    
 }
 
-
-extension PortadaProvider: PortadaProviderInputProtocol {
+extension PortadaFutbolProvider: PortadaFutbolProviderInputProtocol {
     
-    func fetchDataPortadas() {
+    func fecthDataPortadaFutbol() {
         
-        
-        self.networkService.request(RequestModel(service: PortadaProviderService.portada)) { myDictionary, error in
+        self.networkService.request(RequestModel(service: PortadaFutbolProviderService.portadaFutbol)) { myFutbolDictionary, error in
             if let errorUnw = error  {
                 print(errorUnw)
-                self.viewModel?.setPortadasHome(completion: .failure(errorUnw))
+                self.viewModel?.setPortadaFutbol(completion: .failure(errorUnw))
             }else {
                 DispatchQueue.main.async {
-                    self.viewModel?.setPortadasHome(completion: .success(self.callBackAreas(dictionary: myDictionary?["areas"] as? [[String: Any]])))
+                    self.viewModel?.setPortadaFutbol(completion: .success(self.callBackPortadasFutbol(dictionary: myFutbolDictionary?["areas"] as? [[String: Any]])))
                 }
             }
         }
+        
     }
-    
-
 }
 
-enum PortadaProviderService {
-    case portada
+enum PortadaFutbolProviderService {
+    case portadaFutbol
 }
 
-extension PortadaProviderService: Service {
+extension PortadaFutbolProviderService: Service {
     var baseURL: String {
         return Helpers.customUrl().apiHost
     }
     
     var path: String {
-        return Helpers.customUrl().portada
+        return Helpers.customUrl().portadaFutbol
+        
     }
     
     var parameter: [URLQueryItem]{
@@ -198,5 +204,3 @@ extension PortadaProviderService: Service {
         return .get
     }
 }
-
-

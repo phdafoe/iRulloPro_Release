@@ -10,20 +10,28 @@ import SwiftUI
 struct PortadaVideoGenericoView: View {
     
     @ObservedObject var imageLoaderVM = ImageLoader()
-//    private var modelData: MoviesShowsModel
+    private var modelData: ContentVideosModel
+    private var kickerPortada: String?
+    private var titlePortada: String?
+    private var subtitlePortada: String?
 
     
-//    init(model: MoviesShowsModel, isPoster: Bool? = true) {
-//        self.modelData = model
-//        self.isPoster = isPoster ?? false
-//        let y = Double(round(1000 * (self.modelData.voteAverage ?? 0.0) / 1000))
-//        self.progressValue = y/10
-//        if isPoster ?? false {
-//            self.imageLoaderVM.loadImage(whit: model.posterUrl)
-//        } else {
-//            self.imageLoaderVM.loadImage(whit: model.backdropUrl)
-//        }
-//    }
+    init(model: ContentVideosModel) {
+        self.modelData = model
+        
+        self.kickerPortada = model.headlines?.kickerPortada
+        self.titlePortada = model.headlines?.titlePortada
+        self.subtitlePortada = model.headlines?.subtitlePortada
+        
+        model.contentData?.forEach { data in
+            data.elementosModel?.forEach { data in
+                if let aux = data.videoModel?.stillsVersions?.last {
+                    self.imageLoaderVM.loadImage(whit: aux.uriPathURL)
+                }
+                
+            }
+        }
+    }
     
     var body: some View {
         VStack{
@@ -32,26 +40,6 @@ struct PortadaVideoGenericoView: View {
                     Image(uiImage: self.imageLoaderVM.image!)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .cornerRadius(8)
-                        .shadow(radius: 10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.red, lineWidth: 1)
-                        )
-                    
-                    Rectangle()
-                        .fill(LinearGradient(gradient: Gradient(colors: [Color.black, Color.clear]),
-                                             startPoint: .bottom,
-                                             endPoint: .top))
-                        .cornerRadius(8)
-                        .padding(-10)
-                    
-                    
-                    VStack {
-                        Spacer()
-                            .frame(width: 30.0, height: 30.0)
-                            .padding([.bottom, .trailing], 10.0)
-                    }
                     
                 } else {
                     Rectangle()
@@ -63,16 +51,21 @@ struct PortadaVideoGenericoView: View {
             }
             .frame(width: 306, height: 150)
             
-//            if !self.isPoster {
-//                Text(self.modelData.name ?? "")
-//                    .fontWeight(.semibold)
-//                    .padding(.top, 15)
-//                    .lineLimit(1)
-//            }
+            VStack(alignment: .leading){
+                Text(self.kickerPortada ?? "")
+                    .foregroundStyle(.white)
+                    .padding(.horizontal)
+                    .bold()
+                Text(self.titlePortada ?? "")
+                    .foregroundStyle(.white)
+                    .padding(.horizontal)
+                Text(self.subtitlePortada ?? "")
+                    .font(.subheadline)
+                    .bold()
+                    .foregroundStyle(.white)
+                    .padding([.top,.bottom], 5)
+            }
         }
     }
 }
 
-#Preview {
-    PortadaVideoGenericoView()
-}

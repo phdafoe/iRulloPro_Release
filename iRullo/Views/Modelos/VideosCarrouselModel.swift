@@ -12,7 +12,12 @@ struct ContentVideosCarrouselModel: Identifiable {
     let contentVideoModel: [ContentVideosModel]?
 }
 
-struct ContentVideosModel {
+struct ContentVideosModel: Identifiable {
+    var id = UUID()
     let headlines: HeadLines?
+    let contentData: [ContentVideoData]?
+}
+
+struct ContentVideoData {
     let elementosModel: [ElementosModel]?
 }

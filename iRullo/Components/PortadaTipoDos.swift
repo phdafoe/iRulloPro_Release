@@ -9,31 +9,32 @@ import SwiftUI
 
 struct PortadaTipoDos: View {
     
-    let contentData: AreaPortadas?
+    let contentData: PortadaFutbolModel?
+    
     private var kickerPortada: String?
     private var titlePortada: String?
     private var subtitlePortada: String?
     
     @ObservedObject var imageLoader = ImageLoader()
 
-    init(contentData: AreaPortadas?, urlwebView: URL? = nil) {
+    init(contentData: PortadaFutbolModel?, urlwebView: URL? = nil) {
         self.contentData = contentData
-        contentData?.groups?.forEach { data in
+
+        contentData?.groups?.forEach{ data in
             data.contents?.forEach { data in
-                data.elementosModel?.filter {
-                    let isVideo = $0.elementType == "elementVideo"
-                    let isPhoto = $0.elementType == "elementPhoto"
-                    return isVideo || isPhoto
-                }.forEach { data in
-                    if let aux = data.videoModel?.stillsVersions?.last {
-                        self.imageLoader.loadImage(whit: aux.uriPathURL)
-                    }
-                }
                 self.kickerPortada = data.headlines?.kickerPortada
                 self.titlePortada = data.headlines?.titlePortada
                 self.subtitlePortada = data.headlines?.subtitlePortada
+                data.elementosModel?.forEach{ data in
+                    if let aux = data.photo?.versions?.last {
+                        if data.photo?.versions != nil{
+                            self.imageLoader.loadImage(whit: aux.uriPathURL)
+                        }
+                    }
+                }
             }
         }
+ 
     }
     
     var body: some View {

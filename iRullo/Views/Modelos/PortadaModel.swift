@@ -7,7 +7,7 @@ import Foundation
 
 
 struct AreaPortadas: Identifiable {
-    let id = UUID()
+    let id: String?
     let name: String?
     let groups: [GroupPortadas]?
     let additionalProperties: AdditionalPropertiesModel?

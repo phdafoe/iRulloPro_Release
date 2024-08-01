@@ -13,7 +13,7 @@ final class HomePresenter: ObservableObject {
     
     let tabItemViewModels = [
         TabItemViewModel(imageName: "house.circle.fill", title: "Portadas", type: .homePage),
-        TabItemViewModel(imageName: "photo.artframe", title: "Arts", type: .arts),
+        TabItemViewModel(imageName: "photo.artframe", title: "Videos", type: .videos),
         TabItemViewModel(imageName: "bahtsign.circle", title: "Business", type: .business),
         TabItemViewModel(imageName: "gear", title: "Technology", type: .movies),
         TabItemViewModel(imageName: "info.circle", title: "More", type: .technology)
@@ -29,7 +29,7 @@ struct TabItemViewModel: Hashable {
     
     enum TabItemType{
         case homePage
-        case arts
+        case videos
         case business
         case movies
         case technology

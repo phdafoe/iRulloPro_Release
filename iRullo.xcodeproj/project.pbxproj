@@ -25,6 +25,15 @@
 		78ABA2DE2C57FFA600155FC9 /* PortadaVideoGenericoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABA2DD2C57FFA600155FC9 /* PortadaVideoGenericoView.swift */; };
 		78ABA2E02C5800D500155FC9 /* PortadaCarrouselVideos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABA2DF2C5800D500155FC9 /* PortadaCarrouselVideos.swift */; };
 		78ABA2E22C58023200155FC9 /* VideosCarrouselModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABA2E12C58023200155FC9 /* VideosCarrouselModel.swift */; };
+		78ABA2E52C580ACF00155FC9 /* VideosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABA2E42C580ACF00155FC9 /* VideosView.swift */; };
+		78ABA2E72C580AE700155FC9 /* VideosPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABA2E62C580AE700155FC9 /* VideosPresenter.swift */; };
+		78ABA2E92C580BC900155FC9 /* VideosProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABA2E82C580BC900155FC9 /* VideosProvider.swift */; };
+		78ABA2EB2C580CB100155FC9 /* VideosCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABA2EA2C580CB100155FC9 /* VideosCoordinator.swift */; };
+		78ABA2EE2C5BE7D500155FC9 /* PortadaFutbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABA2ED2C5BE7D500155FC9 /* PortadaFutbolView.swift */; };
+		78ABA2F02C5BE7EF00155FC9 /* PortadaFutbolPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABA2EF2C5BE7EF00155FC9 /* PortadaFutbolPresenter.swift */; };
+		78ABA2F22C5BE7F900155FC9 /* PortadaFutbolProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABA2F12C5BE7F900155FC9 /* PortadaFutbolProvider.swift */; };
+		78ABA2F42C5BE80100155FC9 /* PortadaFutbolCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABA2F32C5BE80100155FC9 /* PortadaFutbolCoordinator.swift */; };
+		78ABA2F62C5BE9CF00155FC9 /* PortadaFutbolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABA2F52C5BE9CF00155FC9 /* PortadaFutbolModel.swift */; };
 		78D46DC42B51C62000A450AD /* iRulloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D46DC32B51C62000A450AD /* iRulloApp.swift */; };
 		78D46DC82B51C62100A450AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78D46DC72B51C62100A450AD /* Assets.xcassets */; };
 		78D46DCB2B51C62100A450AD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78D46DCA2B51C62100A450AD /* Preview Assets.xcassets */; };
@@ -55,6 +64,15 @@
 		78ABA2DD2C57FFA600155FC9 /* PortadaVideoGenericoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaVideoGenericoView.swift; sourceTree = "<group>"; };
 		78ABA2DF2C5800D500155FC9 /* PortadaCarrouselVideos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaCarrouselVideos.swift; sourceTree = "<group>"; };
 		78ABA2E12C58023200155FC9 /* VideosCarrouselModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosCarrouselModel.swift; sourceTree = "<group>"; };
+		78ABA2E42C580ACF00155FC9 /* VideosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosView.swift; sourceTree = "<group>"; };
+		78ABA2E62C580AE700155FC9 /* VideosPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosPresenter.swift; sourceTree = "<group>"; };
+		78ABA2E82C580BC900155FC9 /* VideosProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosProvider.swift; sourceTree = "<group>"; };
+		78ABA2EA2C580CB100155FC9 /* VideosCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosCoordinator.swift; sourceTree = "<group>"; };
+		78ABA2ED2C5BE7D500155FC9 /* PortadaFutbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaFutbolView.swift; sourceTree = "<group>"; };
+		78ABA2EF2C5BE7EF00155FC9 /* PortadaFutbolPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaFutbolPresenter.swift; sourceTree = "<group>"; };
+		78ABA2F12C5BE7F900155FC9 /* PortadaFutbolProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaFutbolProvider.swift; sourceTree = "<group>"; };
+		78ABA2F32C5BE80100155FC9 /* PortadaFutbolCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaFutbolCoordinator.swift; sourceTree = "<group>"; };
+		78ABA2F52C5BE9CF00155FC9 /* PortadaFutbolModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaFutbolModel.swift; sourceTree = "<group>"; };
 		78D46DC02B51C62000A450AD /* iRullo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iRullo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78D46DC32B51C62000A450AD /* iRulloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iRulloApp.swift; sourceTree = "<group>"; };
 		78D46DC72B51C62100A450AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,6 +124,28 @@
 				78ABA2DB2C57E69A00155FC9 /* MainHeaderView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		78ABA2E32C580AB900155FC9 /* VideosView */ = {
+			isa = PBXGroup;
+			children = (
+				78ABA2E42C580ACF00155FC9 /* VideosView.swift */,
+				78ABA2E62C580AE700155FC9 /* VideosPresenter.swift */,
+				78ABA2E82C580BC900155FC9 /* VideosProvider.swift */,
+				78ABA2EA2C580CB100155FC9 /* VideosCoordinator.swift */,
+			);
+			path = VideosView;
+			sourceTree = "<group>";
+		};
+		78ABA2EC2C5BE7BB00155FC9 /* PortadaFutbolView */ = {
+			isa = PBXGroup;
+			children = (
+				78ABA2ED2C5BE7D500155FC9 /* PortadaFutbolView.swift */,
+				78ABA2EF2C5BE7EF00155FC9 /* PortadaFutbolPresenter.swift */,
+				78ABA2F12C5BE7F900155FC9 /* PortadaFutbolProvider.swift */,
+				78ABA2F32C5BE80100155FC9 /* PortadaFutbolCoordinator.swift */,
+			);
+			path = PortadaFutbolView;
 			sourceTree = "<group>";
 		};
 		78D46DB72B51C62000A450AD = {
@@ -180,6 +220,8 @@
 		78F815772C496B0900EFF38B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				78ABA2EC2C5BE7BB00155FC9 /* PortadaFutbolView */,
+				78ABA2E32C580AB900155FC9 /* VideosView */,
 				787471A72C4A7329008ACBBD /* HomeView */,
 				78F8157D2C496BAB00EFF38B /* Modelos */,
 				78F815782C496B1100EFF38B /* PortadaView */,
@@ -204,6 +246,7 @@
 				78F8157E2C496BBD00EFF38B /* PortadaModel.swift */,
 				78ABA2D72C53A14E00155FC9 /* TredingBarModel.swift */,
 				78ABA2E12C58023200155FC9 /* VideosCarrouselModel.swift */,
+				78ABA2F52C5BE9CF00155FC9 /* PortadaFutbolModel.swift */,
 			);
 			path = Modelos;
 			sourceTree = "<group>";
@@ -278,8 +321,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78ABA2E52C580ACF00155FC9 /* VideosView.swift in Sources */,
+				78ABA2E72C580AE700155FC9 /* VideosPresenter.swift in Sources */,
 				78F8157F2C496BBD00EFF38B /* PortadaModel.swift in Sources */,
 				78F8157C2C496B2E00EFF38B /* PortadaPresenter.swift in Sources */,
+				78ABA2F42C5BE80100155FC9 /* PortadaFutbolCoordinator.swift in Sources */,
 				78ABA2D82C53A14E00155FC9 /* TredingBarModel.swift in Sources */,
 				78F8156F2C4968AC00EFF38B /* MainView.swift in Sources */,
 				78ABA2E02C5800D500155FC9 /* PortadaCarrouselVideos.swift in Sources */,
@@ -291,15 +337,21 @@
 				78F815732C49693C00EFF38B /* NetworkRequestable.swift in Sources */,
 				787471A42C4A6F18008ACBBD /* PortadaCoordinator.swift in Sources */,
 				787471B22C4AD551008ACBBD /* ImageLoader.swift in Sources */,
+				78ABA2EB2C580CB100155FC9 /* VideosCoordinator.swift in Sources */,
 				787471992C4A6BBA008ACBBD /* RequestModel.swift in Sources */,
 				78D46DC42B51C62000A450AD /* iRulloApp.swift in Sources */,
 				7874719F2C4A6C39008ACBBD /* Logger.swift in Sources */,
 				78ABA2DA2C57DE4700155FC9 /* CustomWebView.swift in Sources */,
 				7874719B2C4A6BF5008ACBBD /* Service.swift in Sources */,
+				78ABA2F02C5BE7EF00155FC9 /* PortadaFutbolPresenter.swift in Sources */,
+				78ABA2E92C580BC900155FC9 /* VideosProvider.swift in Sources */,
 				78F815752C4969AA00EFF38B /* Helpers.swift in Sources */,
+				78ABA2F22C5BE7F900155FC9 /* PortadaFutbolProvider.swift in Sources */,
 				78ABA2E22C58023200155FC9 /* VideosCarrouselModel.swift in Sources */,
 				78ABA2DC2C57E69A00155FC9 /* MainHeaderView.swift in Sources */,
 				7874719D2C4A6C13008ACBBD /* NetworkError.swift in Sources */,
+				78ABA2F62C5BE9CF00155FC9 /* PortadaFutbolModel.swift in Sources */,
+				78ABA2EE2C5BE7D500155FC9 /* PortadaFutbolView.swift in Sources */,
 				787471B42C4AEDF2008ACBBD /* PortadaTipoDos.swift in Sources */,
 				787471B02C4AD2BB008ACBBD /* PortadaTipoUno.swift in Sources */,
 				787471A92C4A7348008ACBBD /* HomePresenter.swift in Sources */,

@@ -15,6 +15,7 @@ struct Helpers {
         let apiHost = "https://cntapiapp.prisasd.com/app/"
         let portada = "pages/as/site/as.com/portada"
         let videosPortada = "list/as/site/as.com/section/videos/subsection/top-de-astv/"
+        let portadaFutbol = "pages/as/site/as.com/section/futbol/portada"
     }
     
     struct customKeys {
