@@ -15,16 +15,20 @@ struct PortadaTipoDos: View {
     private var titlePortada: String?
     private var subtitlePortada: String?
     
+   
+    
     @ObservedObject var imageLoader = ImageLoader()
 
     init(contentData: PortadaFutbolModel?, urlwebView: URL? = nil) {
         self.contentData = contentData
 
         contentData?.groups?.forEach{ data in
+                        
             data.contents?.forEach { data in
                 self.kickerPortada = data.headlines?.kickerPortada
                 self.titlePortada = data.headlines?.titlePortada
                 self.subtitlePortada = data.headlines?.subtitlePortada
+                
                 data.elementosModel?.forEach{ data in
                     if let aux = data.photo?.versions?.last {
                         if data.photo?.versions != nil{
@@ -51,17 +55,18 @@ struct PortadaTipoDos: View {
                                          startPoint: .bottom,
                                          endPoint: .top))
             }
+            
             VStack(alignment: .leading){
                 Text(self.kickerPortada ?? "")
                     .foregroundStyle(.white)
                     .padding(.horizontal)
                     .bold()
                 Text(self.titlePortada ?? "")
+                    .font(.title3)
                     .foregroundStyle(.white)
                     .padding(.horizontal)
                 Text(self.subtitlePortada ?? "")
                     .font(.subheadline)
-                    .bold()
                     .foregroundStyle(.white)
                     .padding([.top,.bottom], 5)
             }

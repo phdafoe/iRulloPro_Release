@@ -20,13 +20,15 @@ struct VideosView: View {
     }
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false){
-            MainHeaderView()
-            videosView()
-        }
-        .onAppear{
-            Task {
-                await self.viewModel.fetchData()
+        NavigationView{
+            ScrollView(.vertical, showsIndicators: false){
+                MainHeaderView()
+                videosView()
+            }
+            .onAppear{
+                Task {
+                    await self.viewModel.fetchData()
+                }
             }
         }
     }

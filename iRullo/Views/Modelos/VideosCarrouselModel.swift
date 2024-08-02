@@ -16,6 +16,11 @@ struct ContentVideosModel: Identifiable {
     var id = UUID()
     let headlines: HeadLines?
     let contentData: [ContentVideoData]?
+    let uri: String?
+    
+    var uriPathURL: URL {
+        return URL(string: "\(uri ?? "")")!
+    }
 }
 
 struct ContentVideoData {

@@ -13,3 +13,4 @@ struct PortadaFutbolModel: Identifiable {
     var groups: [GroupPortadas]?
     let additionalProperties: AdditionalPropertiesModel?
 }
+

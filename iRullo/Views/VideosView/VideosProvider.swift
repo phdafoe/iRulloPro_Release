@@ -24,7 +24,8 @@ final class VideosProvider: BaseProvider {
     func callBackVideos(dictionary: [[String: Any]]?) -> [ContentVideosModel]? {
         let arrayVideos: [ContentVideosModel]? = dictionary?.compactMap {
             ContentVideosModel(headlines: callBackHeadlines(dictionary: $0["headlines"] as? [String : Any]),
-                               contentData: callBackContentModel(dictionary: $0["content"] as? [[String : Any]]))
+                               contentData: callBackContentModel(dictionary: $0["content"] as? [[String : Any]]), 
+                               uri: $0["uri"] as? String)
         }
         return arrayVideos
     }
@@ -34,7 +35,7 @@ final class VideosProvider: BaseProvider {
         if let myDictionary = dictionary {
             let model = HeadLines(kickerPortada: myDictionary["kicker"] as? String,
                                   titlePortada: myDictionary["title"] as? String,
-                                  subtitlePortada: myDictionary["subtitle"] as? String, 
+                                  subtitlePortada: myDictionary["subTitle"] as? String, 
                                   uriKicker: myDictionary["urikicker"] as? String)
             headlines = model
         }

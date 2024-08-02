@@ -46,3 +46,13 @@ struct Helpers {
     }()
     
 }
+
+
+extension Bundle {
+    func loadAndDecodeJSON<D: Decodable>(filename: String) throws -> D? {
+        guard let url = self.url(forResource: filename, withExtension: ".json") else { return nil }
+        let data = try Data(contentsOf: url)
+        let decodeModel = try JSONDecoder().decode(D.self, from: data)
+        return decodeModel
+    }
+}
