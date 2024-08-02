@@ -54,6 +54,7 @@ struct PortadaVideoGenericoView: View {
                             .cornerRadius(8)
                     }
                     HStack(alignment: .top){
+                        
                         Rectangle()
                             .frame(width: 5, height: 150)
                             .foregroundColor(.red)
@@ -66,7 +67,7 @@ struct PortadaVideoGenericoView: View {
                             
                             Rectangle()
                                 .frame(maxWidth: .infinity, maxHeight: 1)
-                                .foregroundColor(.red)
+                                .foregroundColor(.gray)
                                 .padding(.horizontal, 5)
                             
                             Text(self.titlePortada ?? "")
@@ -80,6 +81,11 @@ struct PortadaVideoGenericoView: View {
                         }
                         
                     }
+                    
+                    Rectangle()
+                        .frame(maxWidth: .infinity, maxHeight: 1)
+                        .foregroundColor(.red)
+                        .padding(.horizontal, 5)
                 }
             }
         }

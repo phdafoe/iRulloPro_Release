@@ -22,9 +22,11 @@ struct PortadaFutbolView: View {
     
     var body: some View {
         NavigationView{
-            ScrollView(.vertical, showsIndicators: false){
+            VStack{
                 MainHeaderView()
-                portadaView()
+                ScrollView(.vertical, showsIndicators: false){
+                    portadaView()
+                }
             }
             .onAppear{
                 Task {

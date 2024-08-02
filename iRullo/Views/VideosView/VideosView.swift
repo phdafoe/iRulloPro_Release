@@ -21,11 +21,12 @@ struct VideosView: View {
     
     var body: some View {
         NavigationView{
-            ScrollView(.vertical, showsIndicators: false){
+            VStack{
                 MainHeaderView()
-                videosView()
-            }
-            .onAppear{
+                ScrollView(.vertical, showsIndicators: false){
+                    videosView()
+                }
+            }.onAppear{
                 Task {
                     await self.viewModel.fetchData()
                 }
