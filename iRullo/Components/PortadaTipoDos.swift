@@ -38,38 +38,59 @@ struct PortadaTipoDos: View {
                 }
             }
         }
- 
     }
     
     var body: some View {
-        HStack(alignment: .top) {
-            if self.imageLoader.image != nil {
-                VStack{
-                    Image(uiImage: self.imageLoader.image!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+        VStack{
+            HStack(alignment: .top) {
+                if self.imageLoader.image != nil {
+                    VStack{
+                        Image(uiImage: self.imageLoader.image!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .loader(state: .ok)
+                    }
+                } else {
+                    ZStack{
+                        Rectangle()
+                            .fill(LinearGradient(gradient: Gradient(colors: [Color.red, Color.red]),
+                                                 startPoint: .bottom,
+                                                 endPoint: .top))
+                            .cornerRadius(8)
+                            .loader(state: .loading)
+                    }
+                    
                 }
-            } else {
-                Rectangle()
-                    .fill(LinearGradient(gradient: Gradient(colors: [Color.red, Color.clear]),
-                                         startPoint: .bottom,
-                                         endPoint: .top))
+                
+                VStack(alignment: .leading){
+                    Text(self.kickerPortada ?? "iRULLO")
+                        .foregroundStyle(.white)
+                        .padding(.horizontal)
+                        .bold()
+                    
+                    Rectangle()
+                        .frame(maxWidth: .infinity, maxHeight: 1)
+                        .foregroundColor(.gray)
+                        .padding(.horizontal, 5)
+                    
+                    Text(self.titlePortada ?? "Actualmente tenemos algún problema con esta noticia, disculpa las molestias!!")
+                        .font(.subheadline)
+                        .foregroundStyle(.gray)
+                        .padding(.horizontal)
+                        .lineLimit(3)
+                    
+                    Text(self.subtitlePortada ?? "")
+                        .font(.caption)
+                        .foregroundStyle(.gray)
+                        .padding([.top,.bottom], 5)
+                        .lineLimit(3)
+                }
+                
             }
-            
-            VStack(alignment: .leading){
-                Text(self.kickerPortada ?? "")
-                    .foregroundStyle(.white)
-                    .padding(.horizontal)
-                    .bold()
-                Text(self.titlePortada ?? "")
-                    .font(.title3)
-                    .foregroundStyle(.white)
-                    .padding(.horizontal)
-                Text(self.subtitlePortada ?? "")
-                    .font(.subheadline)
-                    .foregroundStyle(.white)
-                    .padding([.top,.bottom], 5)
-            }
+            Rectangle()
+                .frame(maxWidth: .infinity, maxHeight: 1)
+                .foregroundColor(.red)
+                .padding(.horizontal, 5)
         }
         .background(.black)
     }

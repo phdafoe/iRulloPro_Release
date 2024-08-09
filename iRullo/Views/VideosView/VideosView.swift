@@ -10,6 +10,7 @@ import SwiftUI
 struct VideosView: View {
     
     @StateObject var viewModel = VideosPresenter()
+    @State var showProfileView = false
     
     fileprivate func videosView() -> some View {
         return VStack {
@@ -22,7 +23,7 @@ struct VideosView: View {
     var body: some View {
         NavigationView{
             VStack{
-                MainHeaderView()
+                MainHeaderView(showProfileView: $showProfileView, tituloVista: "Videos")
                 ScrollView(.vertical, showsIndicators: false){
                     videosView()
                 }

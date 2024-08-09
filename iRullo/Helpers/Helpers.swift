@@ -13,9 +13,18 @@ struct Helpers {
     struct customUrl {
         let host = "cntapiapp.prisasd.com"
         let apiHost = "https://cntapiapp.prisasd.com/app/"
+        
+        
         let portada = "pages/as/site/as.com/portada"
         let videosPortada = "list/as/site/as.com/section/videos/subsection/top-de-astv/"
         let portadaFutbol = "pages/as/site/as.com/section/futbol/portada"
+        let portadasBaloncesto = "pages/as/site/as.com/section/baloncesto/portada"
+        let portadasMotor = "pages/as/site/as.com/section/motor/portada"
+        let portadasTenis = "pages/as/site/as.com/section/tenis/portada"
+        let portadasCiclismo = "pages/as/site/as.com/section/ciclismo/portada"
+        let portadasMasDeporte = "pages/as/site/as.com/section/masdeporte/portada"
+        
+        let portadasMasDeporteSubsectionAtletismo = "pages/as/site/as.com/section/masdeporte/subsection/atletismo"
     }
     
     struct customKeys {

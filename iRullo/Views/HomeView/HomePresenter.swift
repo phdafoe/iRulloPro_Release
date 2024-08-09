@@ -12,11 +12,11 @@ final class HomePresenter: ObservableObject {
     @Published var selectedTabItem: TabItemViewModel.TabItemType = .homePage
     
     let tabItemViewModels = [
-        TabItemViewModel(imageName: "house.circle.fill", title: "Portadas", type: .homePage),
-        TabItemViewModel(imageName: "photo.artframe", title: "Videos", type: .videos),
-        TabItemViewModel(imageName: "bahtsign.circle", title: "Business", type: .business),
-        TabItemViewModel(imageName: "gear", title: "Technology", type: .movies),
-        TabItemViewModel(imageName: "info.circle", title: "More", type: .technology)
+        TabItemViewModel(imageName: "house", title: "Portadas", type: .homePage),
+        TabItemViewModel(imageName: "play.rectangle", title: "Videos", type: .videos),
+        TabItemViewModel(imageName: "basketball", title: "Baloncesto", type: .baloncesto),
+        TabItemViewModel(imageName: "car", title: "Motor", type: .motor),
+        TabItemViewModel(imageName: "trophy", title: "Mas Deporte", type: .masdeporte)
         
     ]
 }
@@ -30,8 +30,8 @@ struct TabItemViewModel: Hashable {
     enum TabItemType{
         case homePage
         case videos
-        case business
-        case movies
-        case technology
+        case baloncesto
+        case motor
+        case masdeporte
     }
 }

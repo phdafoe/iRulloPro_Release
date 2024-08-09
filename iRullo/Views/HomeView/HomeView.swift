@@ -16,13 +16,13 @@ struct HomeView: View {
             ForEach(viewModel.tabItemViewModels, id: \.self) { item in
                 tabView(for: item.type)
                     .tabItem {
-                        Image(systemName: item.imageName)
+                        Image(systemName: item.imageName).fontWeight(.light)
                         Text(item.title)
                     }
                     .tag(item.type)
             }
         }
-        .accentColor(.yellow)
+        .accentColor(.red)
         .environment(\.colorScheme, .dark)
     }
     
@@ -34,12 +34,12 @@ struct HomeView: View {
             PortadaFutbolCoordinator.view()
         case .videos:
             VideosCoordinator.view()
-        case .business:
-            PortadaCoordinator.view()
-        case .movies:
-            PortadaCoordinator.view()
-        case .technology:
-            PortadaCoordinator.view()
+        case .baloncesto:
+            PortadaBaloncestoCoordinator.view()
+        case .motor:
+            PortadaMotorCoordinator.view()
+        case .masdeporte:
+            PortadaMasDeporteCoordinator.view()
         }
     }
 }

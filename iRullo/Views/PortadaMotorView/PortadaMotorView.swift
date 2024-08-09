@@ -1,30 +1,30 @@
 //
-//  PortadaFutbolView.swift
+//  PortadaModorView.swift
 //  iRullo
 //
-//  Created by Andres Felipe Ocampo Eljaiek on 1/8/24.
+//  Created by Andres Felipe Ocampo Eljaiek on 8/8/24.
 //
 
 import SwiftUI
 
-struct PortadaFutbolView: View {
+struct PortadaMotorView: View {
     
-    @StateObject var viewModel = PortadaFutbolPresenter()
+    @StateObject var viewModel = PortadaMotorPresenter()
     @State var showProfileView = false
+    
     
     fileprivate func portadaView() -> some View {
         return VStack {
-            ForEach(viewModel.portadasFutbol ?? []) { index in
-                PortadaTipoDos(contentData: index)
+            ForEach(viewModel.portadasMotor ?? []) { index in
+                PortadaMotorTipoUnoView(contentData: index)
             }
         }
     }
     
-    
     var body: some View {
         NavigationView{
             VStack{
-                MainHeaderView(showProfileView: $showProfileView, tituloVista: "Fútbol")
+                MainHeaderView(showProfileView: $showProfileView, tituloVista: "Motor")
                 ScrollView(.vertical, showsIndicators: false){
                     portadaView()
                 }
@@ -42,5 +42,5 @@ struct PortadaFutbolView: View {
 }
 
 #Preview {
-    PortadaFutbolView()
+    PortadaMotorView()
 }

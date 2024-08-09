@@ -10,6 +10,7 @@ import SwiftUI
 struct PortadaView: View {
     
     @StateObject var viewModel = PortadaPresenter()
+    @State var showProfileView = false
     
     fileprivate func portadaView() -> some View {
         return VStack {
@@ -23,7 +24,7 @@ struct PortadaView: View {
     var body: some View {
         NavigationView{
             ScrollView(.vertical, showsIndicators: false){
-                MainHeaderView()
+                MainHeaderView(showProfileView: $showProfileView, tituloVista: "Portadas")
                 portadaView()
             }
             .onAppear{

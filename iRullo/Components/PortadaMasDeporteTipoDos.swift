@@ -1,38 +1,44 @@
 //
-//  PortadaVideoGnericoView.swift
+//  PortadaMasDeporteTipoDos.swift
 //  iRullo
 //
-//  Created by Andres Felipe Ocampo Eljaiek on 29/7/24.
+//  Created by Andres Felipe Ocampo Eljaiek on 8/8/24.
 //
 
 import SwiftUI
 
-struct PortadaVideoGenericoView: View {
+struct PortadaMasDeporteTipoDos: View {
     
     @ObservedObject var imageLoaderVM = ImageLoader()
     
-    private var modelData: ContentVideosModel?
+    private var contentData: PortadaMasDeporteModel?
     
     private var kickerPortada: String?
     private var titlePortada: String?
     private var subtitlePortada: String?
     
     var urlwebView: URL?
-
     
-    init(model: ContentVideosModel?, urlwebView: URL? = nil) {
-        self.modelData = model
+    init(contentData: PortadaMasDeporteModel?, urlwebView: URL? = nil) {
         
-        self.kickerPortada = model?.headlines?.kickerPortada
-        self.titlePortada = model?.headlines?.titlePortada
-        self.subtitlePortada = model?.headlines?.subtitlePortada
+        self.contentData = contentData
         
-        self.urlwebView = model?.uriPathURL
-        
-        model?.contentData?.forEach { data in
-            data.elementosModel?.forEach { data in
-                if let aux = data.videoModel?.stillsVersions?.first {
-                    self.imageLoaderVM.loadImage(whit: aux.uriPathURL)
+        contentData?.groups?.forEach{ data in
+                        
+            data.contents?.forEach { data in
+                
+                self.kickerPortada = data.headlines?.kickerPortada
+                self.titlePortada = data.headlines?.titlePortada
+                self.subtitlePortada = data.headlines?.subtitlePortada
+                
+                self.urlwebView = data.resourceURL?.uriPathURL
+                
+                data.elementosModel?.forEach{ data in
+                    if let aux = data.photo?.versions?.first {
+                        if data.photo?.versions != nil{
+                            self.imageLoaderVM.loadImage(whit: aux.uriPathURL)
+                        }
+                    }
                 }
             }
         }
@@ -41,7 +47,7 @@ struct PortadaVideoGenericoView: View {
     var body: some View {
         if self.urlwebView != nil {
             NavigationLink(destination: WebView(url: self.urlwebView!)) {
-                VStack{
+                VStack(alignment: .leading){
                     if self.imageLoaderVM.image != nil {
                         Image(uiImage: self.imageLoaderVM.image!)
                             .resizable()
@@ -59,7 +65,7 @@ struct PortadaVideoGenericoView: View {
                     HStack(alignment: .top){
                         
                         Rectangle()
-                            .frame(width: 5, height: 150)
+                            .frame(width: 5, height: 50)
                             .foregroundColor(.red)
                         
                         VStack(alignment: .leading){
@@ -72,7 +78,7 @@ struct PortadaVideoGenericoView: View {
                                 .font(.title3)
                                 .foregroundStyle(.white)
                             
-                            Text(self.subtitlePortada ?? "")
+                            Text(self.titlePortada ?? "")
                                 .font(.subheadline)
                                 .fontWeight(.light)
                                 .foregroundStyle(.gray)
@@ -90,4 +96,3 @@ struct PortadaVideoGenericoView: View {
         }
     }
 }
-
