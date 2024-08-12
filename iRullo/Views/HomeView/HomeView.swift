@@ -26,7 +26,6 @@ struct HomeView: View {
         .environment(\.colorScheme, .dark)
     }
     
-    
     @ViewBuilder
     func tabView(for tabItemType: TabItemViewModel.TabItemType) -> some View {
         switch tabItemType{

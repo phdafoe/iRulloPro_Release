@@ -33,6 +33,13 @@
 		787193902C65F8440085DD10 /* PortadaTenisCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7871938F2C65F8440085DD10 /* PortadaTenisCoordinator.swift */; };
 		787193922C66217D0085DD10 /* PortadaTenisModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787193912C66217D0085DD10 /* PortadaTenisModel.swift */; };
 		787193942C6624A70085DD10 /* PortadaTenisTipoUno.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787193932C6624A70085DD10 /* PortadaTenisTipoUno.swift */; };
+		787193962C6638F50085DD10 /* PortadaCiclismoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787193952C6638F50085DD10 /* PortadaCiclismoView.swift */; };
+		787193982C6639020085DD10 /* PortadaCiclismoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787193972C6639020085DD10 /* PortadaCiclismoPresenter.swift */; };
+		7871939A2C66390C0085DD10 /* PortadaCiclismoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787193992C66390C0085DD10 /* PortadaCiclismoProvider.swift */; };
+		7871939C2C6639170085DD10 /* PortadaCiclismoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7871939B2C6639170085DD10 /* PortadaCiclismoCoordinator.swift */; };
+		7871939E2C6639740085DD10 /* PortadaCiclismoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7871939D2C6639740085DD10 /* PortadaCiclismoModel.swift */; };
+		787193A02C663B5A0085DD10 /* PortadaCiclismoTipoUno.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7871939F2C663B5A0085DD10 /* PortadaCiclismoTipoUno.swift */; };
+		787193A32C6641DA0085DD10 /* PerfilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787193A22C6641DA0085DD10 /* PerfilView.swift */; };
 		787471992C4A6BBA008ACBBD /* RequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787471982C4A6BBA008ACBBD /* RequestModel.swift */; };
 		7874719B2C4A6BF5008ACBBD /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7874719A2C4A6BF5008ACBBD /* Service.swift */; };
 		7874719D2C4A6C13008ACBBD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7874719C2C4A6C13008ACBBD /* NetworkError.swift */; };
@@ -98,6 +105,14 @@
 		7871938F2C65F8440085DD10 /* PortadaTenisCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaTenisCoordinator.swift; sourceTree = "<group>"; };
 		787193912C66217D0085DD10 /* PortadaTenisModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaTenisModel.swift; sourceTree = "<group>"; };
 		787193932C6624A70085DD10 /* PortadaTenisTipoUno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaTenisTipoUno.swift; sourceTree = "<group>"; };
+		787193952C6638F50085DD10 /* PortadaCiclismoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaCiclismoView.swift; sourceTree = "<group>"; };
+		787193972C6639020085DD10 /* PortadaCiclismoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaCiclismoPresenter.swift; sourceTree = "<group>"; };
+		787193992C66390C0085DD10 /* PortadaCiclismoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaCiclismoProvider.swift; sourceTree = "<group>"; };
+		7871939B2C6639170085DD10 /* PortadaCiclismoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaCiclismoCoordinator.swift; sourceTree = "<group>"; };
+		7871939D2C6639740085DD10 /* PortadaCiclismoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaCiclismoModel.swift; sourceTree = "<group>"; };
+		7871939F2C663B5A0085DD10 /* PortadaCiclismoTipoUno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaCiclismoTipoUno.swift; sourceTree = "<group>"; };
+		787193A22C6641DA0085DD10 /* PerfilView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilView.swift; sourceTree = "<group>"; };
+		787193AB2C690CF60085DD10 /* iRullo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iRullo.entitlements; sourceTree = "<group>"; };
 		787471982C4A6BBA008ACBBD /* RequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestModel.swift; sourceTree = "<group>"; };
 		7874719A2C4A6BF5008ACBBD /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		7874719C2C4A6C13008ACBBD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -203,8 +218,20 @@
 		787193882C6524BB0085DD10 /* PortadaCiclismoView */ = {
 			isa = PBXGroup;
 			children = (
+				787193952C6638F50085DD10 /* PortadaCiclismoView.swift */,
+				787193972C6639020085DD10 /* PortadaCiclismoPresenter.swift */,
+				787193992C66390C0085DD10 /* PortadaCiclismoProvider.swift */,
+				7871939B2C6639170085DD10 /* PortadaCiclismoCoordinator.swift */,
 			);
 			path = PortadaCiclismoView;
+			sourceTree = "<group>";
+		};
+		787193A12C66407A0085DD10 /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				787193A22C6641DA0085DD10 /* PerfilView.swift */,
+			);
+			path = ProfileView;
 			sourceTree = "<group>";
 		};
 		787471A02C4A6EC0008ACBBD /* BaseMVVM */ = {
@@ -238,6 +265,7 @@
 				7871937A2C6518CA0085DD10 /* PortadaMasDeporteTipoDos.swift */,
 				787193852C651F720085DD10 /* PortadaMotorTipoUnoView.swift */,
 				787193932C6624A70085DD10 /* PortadaTenisTipoUno.swift */,
+				7871939F2C663B5A0085DD10 /* PortadaCiclismoTipoUno.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -283,6 +311,7 @@
 		78D46DC22B51C62000A450AD /* iRullo */ = {
 			isa = PBXGroup;
 			children = (
+				787193AB2C690CF60085DD10 /* iRullo.entitlements */,
 				7871935D2C64A23E0085DD10 /* Modifiers */,
 				787471AE2C4AD2A3008ACBBD /* Components */,
 				787471A02C4A6EC0008ACBBD /* BaseMVVM */,
@@ -337,6 +366,7 @@
 		78F815772C496B0900EFF38B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				787193A12C66407A0085DD10 /* ProfileView */,
 				787193882C6524BB0085DD10 /* PortadaCiclismoView */,
 				787193872C6524AF0085DD10 /* PortadaTenisView */,
 				7871937C2C651CA60085DD10 /* PortadaMotorView */,
@@ -373,6 +403,7 @@
 				7871936D2C6516410085DD10 /* PortadaMotorModel.swift */,
 				7871936F2C65167D0085DD10 /* PortadaMasDeporteModel.swift */,
 				787193912C66217D0085DD10 /* PortadaTenisModel.swift */,
+				7871939D2C6639740085DD10 /* PortadaCiclismoModel.swift */,
 			);
 			path = Modelos;
 			sourceTree = "<group>";
@@ -393,6 +424,8 @@
 			dependencies = (
 			);
 			name = iRullo;
+			packageProductDependencies = (
+			);
 			productName = iRullo;
 			productReference = 78D46DC02B51C62000A450AD /* iRullo.app */;
 			productType = "com.apple.product-type.application";
@@ -421,6 +454,8 @@
 				Base,
 			);
 			mainGroup = 78D46DB72B51C62000A450AD;
+			packageReferences = (
+			);
 			productRefGroup = 78D46DC12B51C62000A450AD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -453,6 +488,8 @@
 				78F8157F2C496BBD00EFF38B /* PortadaModel.swift in Sources */,
 				78F8157C2C496B2E00EFF38B /* PortadaPresenter.swift in Sources */,
 				78ABA2F42C5BE80100155FC9 /* PortadaFutbolCoordinator.swift in Sources */,
+				787193A32C6641DA0085DD10 /* PerfilView.swift in Sources */,
+				787193962C6638F50085DD10 /* PortadaCiclismoView.swift in Sources */,
 				787193802C651CE50085DD10 /* PortadaMotorPresenter.swift in Sources */,
 				7871936A2C64F0590085DD10 /* PortadaBaloncestoCoordinator.swift in Sources */,
 				78ABA2D82C53A14E00155FC9 /* TredingBarModel.swift in Sources */,
@@ -469,6 +506,7 @@
 				787471A42C4A6F18008ACBBD /* PortadaCoordinator.swift in Sources */,
 				787471B22C4AD551008ACBBD /* ImageLoader.swift in Sources */,
 				787193922C66217D0085DD10 /* PortadaTenisModel.swift in Sources */,
+				787193982C6639020085DD10 /* PortadaCiclismoPresenter.swift in Sources */,
 				78ABA2EB2C580CB100155FC9 /* VideosCoordinator.swift in Sources */,
 				7871935C2C64A2090085DD10 /* LoaderView.swift in Sources */,
 				787471992C4A6BBA008ACBBD /* RequestModel.swift in Sources */,
@@ -484,11 +522,14 @@
 				78ABA2F02C5BE7EF00155FC9 /* PortadaFutbolPresenter.swift in Sources */,
 				78ABA2E92C580BC900155FC9 /* VideosProvider.swift in Sources */,
 				78F815752C4969AA00EFF38B /* Helpers.swift in Sources */,
+				787193A02C663B5A0085DD10 /* PortadaCiclismoTipoUno.swift in Sources */,
+				7871939A2C66390C0085DD10 /* PortadaCiclismoProvider.swift in Sources */,
 				787193732C6516D80085DD10 /* PortadaMasDeporteView.swift in Sources */,
 				78ABA2F22C5BE7F900155FC9 /* PortadaFutbolProvider.swift in Sources */,
 				787193792C6516F80085DD10 /* PortadaMasDeporteCoordinator.swift in Sources */,
 				787193942C6624A70085DD10 /* PortadaTenisTipoUno.swift in Sources */,
 				78ABA2E22C58023200155FC9 /* VideosCarrouselModel.swift in Sources */,
+				7871939E2C6639740085DD10 /* PortadaCiclismoModel.swift in Sources */,
 				787193842C651CF70085DD10 /* PortadaMotorCoordinator.swift in Sources */,
 				78ABA2DC2C57E69A00155FC9 /* MainHeaderView.swift in Sources */,
 				787193612C64AA080085DD10 /* PortadaBaloncestoModel.swift in Sources */,
@@ -502,6 +543,7 @@
 				78ABA2EE2C5BE7D500155FC9 /* PortadaFutbolView.swift in Sources */,
 				787471B42C4AEDF2008ACBBD /* PortadaTipoDos.swift in Sources */,
 				787471B02C4AD2BB008ACBBD /* PortadaTipoUno.swift in Sources */,
+				7871939C2C6639170085DD10 /* PortadaCiclismoCoordinator.swift in Sources */,
 				787193642C64F02B0085DD10 /* PortadaBaloncestoView.swift in Sources */,
 				787193822C651CEE0085DD10 /* PortadaMotorProvider.swift in Sources */,
 				7871936C2C6512860085DD10 /* PortadaBaloncestoTipoUno.swift in Sources */,
@@ -637,6 +679,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iRullo/iRullo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iRullo/Preview Content\"";
@@ -648,16 +691,19 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.icologic.iRullo.iRullo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.icologic.iRullo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -666,6 +712,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iRullo/iRullo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iRullo/Preview Content\"";
@@ -677,16 +724,19 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.icologic.iRullo.iRullo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.icologic.iRullo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

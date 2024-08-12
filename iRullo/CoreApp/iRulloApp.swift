@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct iRulloApp: App {
+    
     var body: some Scene {
         WindowGroup {
             MainView()
