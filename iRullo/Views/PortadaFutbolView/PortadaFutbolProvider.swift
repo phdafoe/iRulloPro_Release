@@ -182,7 +182,10 @@ extension PortadaFutbolProviderService: Service {
     }
     
     var path: String {
-        return Helpers.customUrl().portadaFutbol
+        switch self {
+        case PortadaFutbolProviderService.portadaFutbol:
+            return Helpers.customUrl().portadaFutbol
+        }
     }
     
     var parameter: [URLQueryItem]{

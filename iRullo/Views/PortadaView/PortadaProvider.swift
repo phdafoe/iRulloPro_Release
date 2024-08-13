@@ -175,7 +175,10 @@ extension PortadaProviderService: Service {
     }
     
     var path: String {
-        return Helpers.customUrl().portada
+        switch self {
+        case PortadaProviderService.portada:
+            return Helpers.customUrl().portada
+        }
     }
     
     var parameter: [URLQueryItem]{

@@ -64,6 +64,11 @@ playground.xcworkspace
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
 # Carthage/Checkouts
 
+# GOOGLE
+#
+# Add this line if you want to avoid checking in source code from Carthage dependencies.
+GoogleService-Info.plist
+
 Carthage/Build/
 
 # Accio dependency management
