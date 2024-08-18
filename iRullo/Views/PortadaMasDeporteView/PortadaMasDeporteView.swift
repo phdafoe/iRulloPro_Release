@@ -108,6 +108,11 @@ struct PortadaMasDeporteView: View {
                     await self.viewModel.fetchData()
                 }
             }
+            
+            // Muestra el spinner si `isLoading` es true
+            if self.viewModel.isLoading {
+                LoaderView()
+            }
         }
     }
 }

@@ -20,6 +20,7 @@ final class PortadaBaloncestoPresenter: BaseViewModel, ObservableObject {
     }
     
     @Published var portadasBaloncesto: [PortadaBaloncestoModel]?
+    @Published var isLoading: Bool = false
     
     @MainActor
     func fetchData () async {
@@ -30,9 +31,11 @@ final class PortadaBaloncestoPresenter: BaseViewModel, ObservableObject {
 extension PortadaBaloncestoPresenter: PortadaBaloncestoPresenterProtocol {
     
     func setPortadaBaloncesto(completion: Result<[PortadaBaloncestoModel]?, NetworkError>) {
+        isLoading = true
         switch completion{
         case .success(let data):
             portadasBaloncesto = data
+            self.isLoading = false
         case .failure(let error):
             debugPrint(error)
         }

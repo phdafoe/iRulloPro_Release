@@ -11,14 +11,14 @@ struct PortadaTipoDos: View {
     
     let contentData: PortadaFutbolModel?
     
+    @ObservedObject var imageLoader = ImageLoader()
+    
     private var kickerPortada: String?
     private var titlePortada: String?
     private var subtitlePortada: String?
     
-   
+    var urlwebView: URL?
     
-    @ObservedObject var imageLoader = ImageLoader()
-
     init(contentData: PortadaFutbolModel?, urlwebView: URL? = nil) {
         self.contentData = contentData
 
@@ -28,6 +28,8 @@ struct PortadaTipoDos: View {
                 self.kickerPortada = data.headlines?.kickerPortada
                 self.titlePortada = data.headlines?.titlePortada
                 self.subtitlePortada = data.headlines?.subtitlePortada
+                
+                self.urlwebView = data.resourceURL?.uriPathURL
                 
                 data.elementosModel?.forEach{ data in
                     if let aux = data.photo?.versions?.last {
@@ -41,58 +43,64 @@ struct PortadaTipoDos: View {
     }
     
     var body: some View {
-        VStack{
-            HStack(alignment: .top) {
-                if self.imageLoader.image != nil {
-                    VStack{
-                        Image(uiImage: self.imageLoader.image!)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .loader(state: .ok)
+        if self.urlwebView != nil {
+            NavigationLink(destination: WebView(url: self.urlwebView!)) {
+                VStack{
+                    HStack(alignment: .top) {
+                        if self.imageLoader.image != nil {
+                            VStack{
+                                Image(uiImage: self.imageLoader.image!)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .loader(state: .ok)
+                            }
+                        } else {
+                            ZStack{
+                                Rectangle()
+                                    .fill(LinearGradient(gradient: Gradient(colors: [Color.red, Color.red]),
+                                                         startPoint: .bottom,
+                                                         endPoint: .top))
+                                    .cornerRadius(8)
+                                    .loader(state: .loading)
+                            }
+                            
+                        }
+                        
+                        VStack(alignment: .leading){
+                            Text(self.kickerPortada ?? "iRULLO")
+                                .foregroundStyle(.white)
+                                .padding(.horizontal)
+                                .bold()
+                            
+                            Rectangle()
+                                .frame(maxWidth: .infinity, maxHeight: 1)
+                                .foregroundColor(.gray)
+                                .padding(.horizontal, 5)
+                            
+                            Text(self.titlePortada ?? "Actualmente tenemos algún problema con esta noticia, disculpa las molestias!!")
+                                .font(.subheadline)
+                                .foregroundStyle(.gray)
+                                .padding(.horizontal)
+                                .lineLimit(3)
+                            
+                            Text(self.subtitlePortada ?? "")
+                                .font(.caption)
+                                .foregroundStyle(.gray)
+                                .padding([.top,.bottom], 5)
+                                .lineLimit(3)
+                        }
+                        
                     }
-                } else {
-                    ZStack{
-                        Rectangle()
-                            .fill(LinearGradient(gradient: Gradient(colors: [Color.red, Color.red]),
-                                                 startPoint: .bottom,
-                                                 endPoint: .top))
-                            .cornerRadius(8)
-                            .loader(state: .loading)
-                    }
-                    
-                }
-                
-                VStack(alignment: .leading){
-                    Text(self.kickerPortada ?? "iRULLO")
-                        .foregroundStyle(.white)
-                        .padding(.horizontal)
-                        .bold()
-                    
                     Rectangle()
                         .frame(maxWidth: .infinity, maxHeight: 1)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.red)
                         .padding(.horizontal, 5)
-                    
-                    Text(self.titlePortada ?? "Actualmente tenemos algún problema con esta noticia, disculpa las molestias!!")
-                        .font(.subheadline)
-                        .foregroundStyle(.gray)
-                        .padding(.horizontal)
-                        .lineLimit(3)
-                    
-                    Text(self.subtitlePortada ?? "")
-                        .font(.caption)
-                        .foregroundStyle(.gray)
-                        .padding([.top,.bottom], 5)
-                        .lineLimit(3)
                 }
-                
+                .background(.black)
             }
-            Rectangle()
-                .frame(maxWidth: .infinity, maxHeight: 1)
-                .foregroundColor(.red)
-                .padding(.horizontal, 5)
+            .buttonStyle(PlainButtonStyle())
         }
-        .background(.black)
+        
     }
 }
 

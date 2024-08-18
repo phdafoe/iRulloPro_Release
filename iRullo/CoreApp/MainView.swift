@@ -8,9 +8,17 @@
 import SwiftUI
 
 struct MainView: View {
+    
+    @AppStorage("currentPage") var currentPage = 1
+    
     var body: some View {
-        WalkthroughtView()
-            .environment(\.colorScheme, .dark)
+        
+        if currentPage > totalPages {
+            HomeView()
+        } else {
+            WalkthroughtView()
+                .environment(\.colorScheme, .dark)
+        }
     }
 }
 

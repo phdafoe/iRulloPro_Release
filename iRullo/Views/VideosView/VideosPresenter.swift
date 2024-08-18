@@ -19,6 +19,7 @@ final class VideosPresenter: BaseViewModel, ObservableObject {
     }
     
     @Published var videosPortadas: [ContentVideosModel]?
+    @Published var isLoading: Bool = false
     
     @MainActor
     func fetchData () async {
@@ -28,9 +29,11 @@ final class VideosPresenter: BaseViewModel, ObservableObject {
 
 extension VideosPresenter: VideosPresenterProtocol {
     func setVideosHome(completion: Result<[ContentVideosModel]?, NetworkError>) {
+        isLoading = true
         switch completion{
         case .success(let data):
             videosPortadas = data
+            self.isLoading = false
         case .failure(let error):
             debugPrint(error)
         }

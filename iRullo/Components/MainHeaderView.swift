@@ -38,7 +38,7 @@ struct MainHeaderView: View {
                         .fontWeight(.light)
                 }
                 .sheet(isPresented: $showProfileView) {
-                    PerfilView()
+                    PerfilView(tipoAutentication: .signup)
                 }
                 
             }

@@ -7,9 +7,12 @@
 
 import SwiftUI
 
+var totalPages = 4
+
 struct WalkthroughtView: View {
     
     @State private var activePage: Page = .page1
+    @AppStorage("currentPage") var currentPage = 1
     
     var body: some View {
         GeometryReader {
@@ -54,8 +57,9 @@ struct WalkthroughtView: View {
             HStack(alignment: .top, spacing: 0) {
                 ForEach(Page.allCases, id: \.rawValue) { page in
                     Text(page.title)
-                        .lineLimit(1)
+                        .lineLimit(2)
                         .font(.title2)
+                        .multilineTextAlignment(.center)
                         .foregroundStyle(.white)
                         .fontWeight(.semibold)
                         .kerning(1.1)
@@ -112,6 +116,7 @@ struct WalkthroughtView: View {
             
             Button("Avanzar"){
                 activePage = .page4
+                currentPage = 4
             }
             .fontWeight(.semibold)
             .opacity(activePage != .page4 ? 1 : 0)
@@ -126,8 +131,13 @@ struct WalkthroughtView: View {
     func ContinueButton() -> some View {
         Button{
             activePage = activePage.nextPage
+            if currentPage <= totalPages {
+                currentPage += 1
+            } else {
+                currentPage = 1
+            }
         } label: {
-            Text(activePage == .page4 ? "Login en la App" : "Continuar")
+            Text(activePage == .page4 ? "Bienvenidos A iRullo" : "Continuar")
                 .contentTransition(.identity)
                 .foregroundStyle(.black)
                 .padding(.vertical, 15)

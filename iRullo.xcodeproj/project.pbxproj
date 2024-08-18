@@ -17,6 +17,8 @@
 		7867FC7B2C6BBCB600338DAA /* WalkthroughtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867FC7A2C6BBCB600338DAA /* WalkthroughtView.swift */; };
 		7867FC7E2C6BBCDF00338DAA /* PageWalkThrought.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867FC7D2C6BBCDF00338DAA /* PageWalkThrought.swift */; };
 		7867FC802C6BC07A00338DAA /* MorphingSystView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867FC7F2C6BC07A00338DAA /* MorphingSystView.swift */; };
+		7867FC822C6CB01000338DAA /* LoadingCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867FC812C6CB01000338DAA /* LoadingCustomView.swift */; };
+		7867FC842C6CB44500338DAA /* PerfilViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867FC832C6CB44500338DAA /* PerfilViewPresenter.swift */; };
 		7871935C2C64A2090085DD10 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7871935B2C64A2090085DD10 /* LoaderView.swift */; };
 		7871935F2C64A24D0085DD10 /* LoaderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7871935E2C64A24D0085DD10 /* LoaderModifier.swift */; };
 		787193612C64AA080085DD10 /* PortadaBaloncestoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787193602C64AA080085DD10 /* PortadaBaloncestoModel.swift */; };
@@ -94,6 +96,9 @@
 		7867FC7A2C6BBCB600338DAA /* WalkthroughtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughtView.swift; sourceTree = "<group>"; };
 		7867FC7D2C6BBCDF00338DAA /* PageWalkThrought.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageWalkThrought.swift; sourceTree = "<group>"; };
 		7867FC7F2C6BC07A00338DAA /* MorphingSystView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorphingSystView.swift; sourceTree = "<group>"; };
+		7867FC812C6CB01000338DAA /* LoadingCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCustomView.swift; sourceTree = "<group>"; };
+		7867FC832C6CB44500338DAA /* PerfilViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilViewPresenter.swift; sourceTree = "<group>"; };
+		7867FC852C6E289400338DAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7871935B2C64A2090085DD10 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		7871935E2C64A24D0085DD10 /* LoaderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderModifier.swift; sourceTree = "<group>"; };
 		787193602C64AA080085DD10 /* PortadaBaloncestoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaBaloncestoModel.swift; sourceTree = "<group>"; };
@@ -260,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				787193A22C6641DA0085DD10 /* PerfilView.swift */,
+				7867FC832C6CB44500338DAA /* PerfilViewPresenter.swift */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -296,6 +302,7 @@
 				787193852C651F720085DD10 /* PortadaMotorTipoUnoView.swift */,
 				787193932C6624A70085DD10 /* PortadaTenisTipoUno.swift */,
 				7871939F2C663B5A0085DD10 /* PortadaCiclismoTipoUno.swift */,
+				7867FC812C6CB01000338DAA /* LoadingCustomView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -341,6 +348,7 @@
 		78D46DC22B51C62000A450AD /* iRullo */ = {
 			isa = PBXGroup;
 			children = (
+				7867FC852C6E289400338DAA /* Info.plist */,
 				7867FC782C6BBC4F00338DAA /* GoogleService-Info.plist */,
 				787193AB2C690CF60085DD10 /* iRullo.entitlements */,
 				7871935D2C64A23E0085DD10 /* Modifiers */,
@@ -568,6 +576,7 @@
 				787193732C6516D80085DD10 /* PortadaMasDeporteView.swift in Sources */,
 				78ABA2F22C5BE7F900155FC9 /* PortadaFutbolProvider.swift in Sources */,
 				787193792C6516F80085DD10 /* PortadaMasDeporteCoordinator.swift in Sources */,
+				7867FC822C6CB01000338DAA /* LoadingCustomView.swift in Sources */,
 				7867FC7B2C6BBCB600338DAA /* WalkthroughtView.swift in Sources */,
 				787193942C6624A70085DD10 /* PortadaTenisTipoUno.swift in Sources */,
 				78ABA2E22C58023200155FC9 /* VideosCarrouselModel.swift in Sources */,
@@ -589,6 +598,7 @@
 				787471B02C4AD2BB008ACBBD /* PortadaTipoUno.swift in Sources */,
 				7871939C2C6639170085DD10 /* PortadaCiclismoCoordinator.swift in Sources */,
 				787193642C64F02B0085DD10 /* PortadaBaloncestoView.swift in Sources */,
+				7867FC842C6CB44500338DAA /* PerfilViewPresenter.swift in Sources */,
 				787193822C651CEE0085DD10 /* PortadaMotorProvider.swift in Sources */,
 				7871936C2C6512860085DD10 /* PortadaBaloncestoTipoUno.swift in Sources */,
 				787193772C6516F10085DD10 /* PortadaMasDeporteProvider.swift in Sources */,
@@ -730,6 +740,7 @@
 				DEVELOPMENT_TEAM = 2C7W4RF846;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iRullo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -763,6 +774,7 @@
 				DEVELOPMENT_TEAM = 2C7W4RF846;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iRullo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

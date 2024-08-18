@@ -22,14 +22,24 @@ struct VideosView: View {
     
     var body: some View {
         NavigationView{
-            VStack{
-                MainHeaderView(showProfileView: $showProfileView, tituloVista: "Videos")
-                ScrollView(.vertical, showsIndicators: false){
-                    videosView()
+            ZStack{
+                VStack{
+                    MainHeaderView(showProfileView: $showProfileView, tituloVista: "Videos")
+                    ScrollView(.vertical, showsIndicators: false){
+                        videosView()
+                    }
+                    .refreshable {
+                        await self.viewModel.fetchData()
+                    }
+                }.onAppear{
+                    Task {
+                        await self.viewModel.fetchData()
+                    }
                 }
-            }.onAppear{
-                Task {
-                    await self.viewModel.fetchData()
+                
+                // Muestra el spinner si `isLoading` es true
+                if self.viewModel.isLoading {
+                    LoaderView()
                 }
             }
         }

@@ -21,6 +21,7 @@ final class PortadaMotorPresenter: BaseViewModel, ObservableObject {
     }
     
     @Published var portadasMotor: [PortadaMotorModel]?
+    @Published var isLoading: Bool = false
     
     @MainActor
     func fetchData () async {
@@ -31,9 +32,11 @@ final class PortadaMotorPresenter: BaseViewModel, ObservableObject {
 extension PortadaMotorPresenter: PortadaMotorPresenterProtocol {
     
     func setPortadaMotor(completion: Result<[PortadaMotorModel]?, NetworkError>) {
+        isLoading = true
         switch completion{
         case .success(let data):
             portadasMotor = data
+            self.isLoading = false
         case .failure(let error):
             debugPrint(error)
         }

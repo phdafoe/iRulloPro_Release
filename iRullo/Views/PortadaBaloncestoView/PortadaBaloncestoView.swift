@@ -23,20 +23,28 @@ struct PortadaBaloncestoView: View {
     
     var body: some View {
         NavigationView{
-            VStack{
-                MainHeaderView(showProfileView: $showProfileView, tituloVista: "Baloncesto")
-                ScrollView(.vertical, showsIndicators: false){
-                    portadaView()
+            ZStack{
+                VStack{
+                    MainHeaderView(showProfileView: $showProfileView, tituloVista: "Baloncesto")
+                    ScrollView(.vertical, showsIndicators: false){
+                        portadaView()
+                    }
+                    .refreshable {
+                        await self.viewModel.fetchData()
+                    }
                 }
-                .refreshable {
-                    await self.viewModel.fetchData()
+                .onAppear{
+                    Task {
+                        await self.viewModel.fetchData()
+                    }
+                }
+                
+                // Muestra el spinner si `isLoading` es true
+                if self.viewModel.isLoading {
+                    LoaderView()
                 }
             }
-            .onAppear{
-                Task {
-                    await self.viewModel.fetchData()
-                }
-            }
+            
         }
     }
 }
