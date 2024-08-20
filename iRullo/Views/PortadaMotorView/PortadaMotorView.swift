@@ -22,10 +22,9 @@ struct PortadaMotorView: View {
     }
     
     var body: some View {
-        NavigationView{
             ZStack{
                 VStack{
-                    MainHeaderView(showProfileView: $showProfileView, tituloVista: "Motor")
+                    MainHeaderView(showProfileView: $showProfileView, tituloVista: "Motor", isFullScreen: .constant(false))
                     ScrollView(.vertical, showsIndicators: false){
                         portadaView()
                     }
@@ -43,7 +42,6 @@ struct PortadaMotorView: View {
                     LoaderView()
                 }
             }
-        }
     }
 }
 

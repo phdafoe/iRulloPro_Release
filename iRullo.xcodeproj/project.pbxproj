@@ -19,6 +19,12 @@
 		7867FC802C6BC07A00338DAA /* MorphingSystView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867FC7F2C6BC07A00338DAA /* MorphingSystView.swift */; };
 		7867FC822C6CB01000338DAA /* LoadingCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867FC812C6CB01000338DAA /* LoadingCustomView.swift */; };
 		7867FC842C6CB44500338DAA /* PerfilViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867FC832C6CB44500338DAA /* PerfilViewPresenter.swift */; };
+		786866022C71FFBB008051D3 /* NoticiasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786866012C71FFBB008051D3 /* NoticiasView.swift */; };
+		786866042C71FFCB008051D3 /* NoticiasPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786866032C71FFCB008051D3 /* NoticiasPresenter.swift */; };
+		786866062C71FFD5008051D3 /* NoticiasProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786866052C71FFD5008051D3 /* NoticiasProvider.swift */; };
+		786866082C71FFE0008051D3 /* NoticiasCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786866072C71FFE0008051D3 /* NoticiasCoordinator.swift */; };
+		7868660A2C72008F008051D3 /* NoticiasModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786866092C72008F008051D3 /* NoticiasModel.swift */; };
+		7868660C2C7207C6008051D3 /* PortadaNoticiasTipoDosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7868660B2C7207C5008051D3 /* PortadaNoticiasTipoDosView.swift */; };
 		7871935C2C64A2090085DD10 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7871935B2C64A2090085DD10 /* LoaderView.swift */; };
 		7871935F2C64A24D0085DD10 /* LoaderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7871935E2C64A24D0085DD10 /* LoaderModifier.swift */; };
 		787193612C64AA080085DD10 /* PortadaBaloncestoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787193602C64AA080085DD10 /* PortadaBaloncestoModel.swift */; };
@@ -64,6 +70,7 @@
 		787471B02C4AD2BB008ACBBD /* PortadaTipoUno.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787471AF2C4AD2BB008ACBBD /* PortadaTipoUno.swift */; };
 		787471B22C4AD551008ACBBD /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787471B12C4AD551008ACBBD /* ImageLoader.swift */; };
 		787471B42C4AEDF2008ACBBD /* PortadaTipoDos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787471B32C4AEDF2008ACBBD /* PortadaTipoDos.swift */; };
+		7888EB242C74E3BC007D2600 /* DetalleNativoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7888EB232C74E3BC007D2600 /* DetalleNativoView.swift */; };
 		78ABA2D82C53A14E00155FC9 /* TredingBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABA2D72C53A14E00155FC9 /* TredingBarModel.swift */; };
 		78ABA2DA2C57DE4700155FC9 /* CustomWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABA2D92C57DE4700155FC9 /* CustomWebView.swift */; };
 		78ABA2DC2C57E69A00155FC9 /* MainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABA2DB2C57E69A00155FC9 /* MainHeaderView.swift */; };
@@ -99,6 +106,12 @@
 		7867FC812C6CB01000338DAA /* LoadingCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCustomView.swift; sourceTree = "<group>"; };
 		7867FC832C6CB44500338DAA /* PerfilViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilViewPresenter.swift; sourceTree = "<group>"; };
 		7867FC852C6E289400338DAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		786866012C71FFBB008051D3 /* NoticiasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticiasView.swift; sourceTree = "<group>"; };
+		786866032C71FFCB008051D3 /* NoticiasPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticiasPresenter.swift; sourceTree = "<group>"; };
+		786866052C71FFD5008051D3 /* NoticiasProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticiasProvider.swift; sourceTree = "<group>"; };
+		786866072C71FFE0008051D3 /* NoticiasCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticiasCoordinator.swift; sourceTree = "<group>"; };
+		786866092C72008F008051D3 /* NoticiasModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticiasModel.swift; sourceTree = "<group>"; };
+		7868660B2C7207C5008051D3 /* PortadaNoticiasTipoDosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaNoticiasTipoDosView.swift; sourceTree = "<group>"; };
 		7871935B2C64A2090085DD10 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		7871935E2C64A24D0085DD10 /* LoaderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderModifier.swift; sourceTree = "<group>"; };
 		787193602C64AA080085DD10 /* PortadaBaloncestoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaBaloncestoModel.swift; sourceTree = "<group>"; };
@@ -145,6 +158,7 @@
 		787471AF2C4AD2BB008ACBBD /* PortadaTipoUno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaTipoUno.swift; sourceTree = "<group>"; };
 		787471B12C4AD551008ACBBD /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		787471B32C4AEDF2008ACBBD /* PortadaTipoDos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaTipoDos.swift; sourceTree = "<group>"; };
+		7888EB232C74E3BC007D2600 /* DetalleNativoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalleNativoView.swift; sourceTree = "<group>"; };
 		78ABA2D72C53A14E00155FC9 /* TredingBarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TredingBarModel.swift; sourceTree = "<group>"; };
 		78ABA2D92C57DE4700155FC9 /* CustomWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWebView.swift; sourceTree = "<group>"; };
 		78ABA2DB2C57E69A00155FC9 /* MainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderView.swift; sourceTree = "<group>"; };
@@ -196,6 +210,17 @@
 				7867FC7F2C6BC07A00338DAA /* MorphingSystView.swift */,
 			);
 			path = WalkthroughtView;
+			sourceTree = "<group>";
+		};
+		786866002C71FFA5008051D3 /* NoticiasView */ = {
+			isa = PBXGroup;
+			children = (
+				786866012C71FFBB008051D3 /* NoticiasView.swift */,
+				786866032C71FFCB008051D3 /* NoticiasPresenter.swift */,
+				786866052C71FFD5008051D3 /* NoticiasProvider.swift */,
+				786866072C71FFE0008051D3 /* NoticiasCoordinator.swift */,
+			);
+			path = NoticiasView;
 			sourceTree = "<group>";
 		};
 		7871935D2C64A23E0085DD10 /* Modifiers */ = {
@@ -303,8 +328,17 @@
 				787193932C6624A70085DD10 /* PortadaTenisTipoUno.swift */,
 				7871939F2C663B5A0085DD10 /* PortadaCiclismoTipoUno.swift */,
 				7867FC812C6CB01000338DAA /* LoadingCustomView.swift */,
+				7868660B2C7207C5008051D3 /* PortadaNoticiasTipoDosView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		7888EB222C74E39F007D2600 /* DetalleNativoView */ = {
+			isa = PBXGroup;
+			children = (
+				7888EB232C74E3BC007D2600 /* DetalleNativoView.swift */,
+			);
+			path = DetalleNativoView;
 			sourceTree = "<group>";
 		};
 		78ABA2E32C580AB900155FC9 /* VideosView */ = {
@@ -406,6 +440,8 @@
 		78F815772C496B0900EFF38B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7888EB222C74E39F007D2600 /* DetalleNativoView */,
+				786866002C71FFA5008051D3 /* NoticiasView */,
 				7867FC7C2C6BBCBD00338DAA /* WalkthroughtView */,
 				787193A12C66407A0085DD10 /* ProfileView */,
 				787193882C6524BB0085DD10 /* PortadaCiclismoView */,
@@ -445,6 +481,7 @@
 				7871936F2C65167D0085DD10 /* PortadaMasDeporteModel.swift */,
 				787193912C66217D0085DD10 /* PortadaTenisModel.swift */,
 				7871939D2C6639740085DD10 /* PortadaCiclismoModel.swift */,
+				786866092C72008F008051D3 /* NoticiasModel.swift */,
 			);
 			path = Modelos;
 			sourceTree = "<group>";
@@ -555,6 +592,7 @@
 				787471B22C4AD551008ACBBD /* ImageLoader.swift in Sources */,
 				787193922C66217D0085DD10 /* PortadaTenisModel.swift in Sources */,
 				787193982C6639020085DD10 /* PortadaCiclismoPresenter.swift in Sources */,
+				7868660A2C72008F008051D3 /* NoticiasModel.swift in Sources */,
 				78ABA2EB2C580CB100155FC9 /* VideosCoordinator.swift in Sources */,
 				7871935C2C64A2090085DD10 /* LoaderView.swift in Sources */,
 				787471992C4A6BBA008ACBBD /* RequestModel.swift in Sources */,
@@ -566,6 +604,7 @@
 				787193702C65167D0085DD10 /* PortadaMasDeporteModel.swift in Sources */,
 				7871938C2C65F8330085DD10 /* PortadaTenisPresenter.swift in Sources */,
 				78ABA2DA2C57DE4700155FC9 /* CustomWebView.swift in Sources */,
+				786866042C71FFCB008051D3 /* NoticiasPresenter.swift in Sources */,
 				7874719B2C4A6BF5008ACBBD /* Service.swift in Sources */,
 				787193862C651F720085DD10 /* PortadaMotorTipoUnoView.swift in Sources */,
 				78ABA2F02C5BE7EF00155FC9 /* PortadaFutbolPresenter.swift in Sources */,
@@ -578,6 +617,7 @@
 				787193792C6516F80085DD10 /* PortadaMasDeporteCoordinator.swift in Sources */,
 				7867FC822C6CB01000338DAA /* LoadingCustomView.swift in Sources */,
 				7867FC7B2C6BBCB600338DAA /* WalkthroughtView.swift in Sources */,
+				786866082C71FFE0008051D3 /* NoticiasCoordinator.swift in Sources */,
 				787193942C6624A70085DD10 /* PortadaTenisTipoUno.swift in Sources */,
 				78ABA2E22C58023200155FC9 /* VideosCarrouselModel.swift in Sources */,
 				7871939E2C6639740085DD10 /* PortadaCiclismoModel.swift in Sources */,
@@ -585,6 +625,7 @@
 				787193842C651CF70085DD10 /* PortadaMotorCoordinator.swift in Sources */,
 				78ABA2DC2C57E69A00155FC9 /* MainHeaderView.swift in Sources */,
 				787193612C64AA080085DD10 /* PortadaBaloncestoModel.swift in Sources */,
+				7868660C2C7207C6008051D3 /* PortadaNoticiasTipoDosView.swift in Sources */,
 				7871938E2C65F83C0085DD10 /* PortadaTenisProvider.swift in Sources */,
 				7871935F2C64A24D0085DD10 /* LoaderModifier.swift in Sources */,
 				7874719D2C4A6C13008ACBBD /* NetworkError.swift in Sources */,
@@ -595,13 +636,16 @@
 				787193682C64F04F0085DD10 /* PortadaBaloncestoProvider.swift in Sources */,
 				78ABA2EE2C5BE7D500155FC9 /* PortadaFutbolView.swift in Sources */,
 				787471B42C4AEDF2008ACBBD /* PortadaTipoDos.swift in Sources */,
+				786866062C71FFD5008051D3 /* NoticiasProvider.swift in Sources */,
 				787471B02C4AD2BB008ACBBD /* PortadaTipoUno.swift in Sources */,
 				7871939C2C6639170085DD10 /* PortadaCiclismoCoordinator.swift in Sources */,
 				787193642C64F02B0085DD10 /* PortadaBaloncestoView.swift in Sources */,
+				7888EB242C74E3BC007D2600 /* DetalleNativoView.swift in Sources */,
 				7867FC842C6CB44500338DAA /* PerfilViewPresenter.swift in Sources */,
 				787193822C651CEE0085DD10 /* PortadaMotorProvider.swift in Sources */,
 				7871936C2C6512860085DD10 /* PortadaBaloncestoTipoUno.swift in Sources */,
 				787193772C6516F10085DD10 /* PortadaMasDeporteProvider.swift in Sources */,
+				786866022C71FFBB008051D3 /* NoticiasView.swift in Sources */,
 				787471A92C4A7348008ACBBD /* HomePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

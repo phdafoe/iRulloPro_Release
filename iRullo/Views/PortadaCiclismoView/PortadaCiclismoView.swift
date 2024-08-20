@@ -25,7 +25,7 @@ struct PortadaCiclismoView: View {
         NavigationView{
             ZStack{
                 VStack{
-                    MainHeaderView(showProfileView: $showProfileView, tituloVista: "Ciclismo")
+                    MainHeaderView(showProfileView: $showProfileView, tituloVista: "Ciclismo", isFullScreen: .constant(false))
                     ScrollView(.vertical, showsIndicators: false){
                         portadaView()
                     }

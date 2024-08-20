@@ -30,15 +30,15 @@ struct HomeView: View {
     func tabView(for tabItemType: TabItemViewModel.TabItemType) -> some View {
         switch tabItemType{
         case .homePage:
-            PortadaFutbolCoordinator.view().environmentObject(PerfilViewPresenter())
+            PortadaFutbolCoordinator.navigation().environmentObject(PerfilViewPresenter())
         case .videos:
-            VideosCoordinator.view().environmentObject(PerfilViewPresenter())
+            VideosCoordinator.navigation().environmentObject(PerfilViewPresenter())
         case .baloncesto:
-            PortadaBaloncestoCoordinator.view().environmentObject(PerfilViewPresenter())
+            PortadaBaloncestoCoordinator.navigation().environmentObject(PerfilViewPresenter())
         case .motor:
-            PortadaMotorCoordinator.view().environmentObject(PerfilViewPresenter())
+            PortadaMotorCoordinator.navigation().environmentObject(PerfilViewPresenter())
         case .masdeporte:
-            PortadaMasDeporteCoordinator.view().environmentObject(PerfilViewPresenter())
+            PortadaMasDeporteCoordinator.navigation().environmentObject(PerfilViewPresenter())
         }
     }
 }

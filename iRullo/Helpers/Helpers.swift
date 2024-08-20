@@ -12,7 +12,9 @@ struct Helpers {
     
     struct customUrl {
         let host = "cntapiapp.prisasd.com"
+        let hostNoticias = "api.elconfidencial.com"
         let apiHost = "https://cntapiapp.prisasd.com/app/"
+        let apiHostNoticias = "https://api.elconfidencial.com/service/"
         
         
         let portada = "pages/as/site/as.com/portada"
@@ -25,6 +27,8 @@ struct Helpers {
         let portadasMasDeporte = "pages/as/site/as.com/section/masdeporte/portada"
         
         let portadasMasDeporteSubsectionAtletismo = "pages/as/site/as.com/section/masdeporte/subsection/atletismo"
+        
+        let portadaNoticiasHome = "home/frontp/1/0/"
     }
     
     struct customKeys {

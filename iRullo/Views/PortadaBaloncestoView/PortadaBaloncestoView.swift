@@ -22,10 +22,9 @@ struct PortadaBaloncestoView: View {
     }
     
     var body: some View {
-        NavigationView{
             ZStack{
                 VStack{
-                    MainHeaderView(showProfileView: $showProfileView, tituloVista: "Baloncesto")
+                    MainHeaderView(showProfileView: $showProfileView, tituloVista: "Baloncesto", isFullScreen: .constant(false))
                     ScrollView(.vertical, showsIndicators: false){
                         portadaView()
                     }
@@ -45,7 +44,6 @@ struct PortadaBaloncestoView: View {
                 }
             }
             
-        }
     }
 }
 

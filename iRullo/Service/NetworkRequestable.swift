@@ -25,11 +25,10 @@ public class NetworkRequestable: Requestable {
             completionHandler(nil, NetworkError.apiError(code: 0, error: "Error encoding http body"))
             return
         }
-//        
         appLog(tag: .debug, "Request = \(urlRequest)")
         
         
-        let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+        let task = URLSession.shared.dataTask(with: urlRequest) { [weak self] data, response, error in
             
             guard response is HTTPURLResponse, let response = response as? HTTPURLResponse else {
                 completionHandler(nil, NetworkError.noResponse("Invalid Response"))
@@ -46,7 +45,7 @@ public class NetworkRequestable: Requestable {
                 if let dataStr = String(data: dataUnw, encoding: .utf8) {
                     appLog(tag: .debug, "Request Succesfull: data = \(dataStr)")
                     print("Dictionary format: \(dataStr)")
-                    let dict = self.convertToDictionary(text: dataStr)
+                    let dict = self?.convertToDictionary(text: dataStr)
                     completionHandler(dict, nil)
                 }
             } else if (300..<400) ~= response.statusCode {

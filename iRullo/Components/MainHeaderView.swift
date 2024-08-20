@@ -11,6 +11,10 @@ struct MainHeaderView: View {
     
     @Binding var showProfileView: Bool
     var tituloVista: String
+    @Binding var isFullScreen: Bool?
+    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
+
     
     var body: some View {
         VStack {
@@ -28,19 +32,28 @@ struct MainHeaderView: View {
                     .foregroundStyle(.white)
                 
                 Spacer()
-                
-                Button(action: {
-                    showProfileView.toggle()
-                }) {
-                    Image(systemName: "person.circle")
-                        .foregroundStyle(.white)
-                        .font(.title2)
-                        .fontWeight(.light)
+                if isFullScreen ?? false{
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Image(systemName: "chevron.down")
+                            .foregroundStyle(.white)
+                            .font(.title2)
+                            .fontWeight(.light)
+                    }
+                } else {
+                    Button(action: {
+                        showProfileView.toggle()
+                    }) {
+                        Image(systemName: "person.circle")
+                            .foregroundStyle(.white)
+                            .font(.title2)
+                            .fontWeight(.light)
+                    }
+                    .sheet(isPresented: $showProfileView) {
+                        PerfilView(tipoAutentication: .signup)
+                    }
                 }
-                .sheet(isPresented: $showProfileView) {
-                    PerfilView(tipoAutentication: .signup)
-                }
-                
             }
             .padding(EdgeInsets(top: 10, leading: 10, bottom: 5, trailing: 10))
         }

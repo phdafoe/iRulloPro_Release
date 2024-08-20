@@ -37,7 +37,11 @@ struct PerfilView: View {
         ZStack{
             if logado {
                 VStack(spacing: 20) {
+                    Image(systemName: "flag.pattern.checkered")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
                     Text("Ya eres miembro de iRullo")
+                    
                 }
             } else if !viewModelSession.usuarioAutenticado && !login {
                 VStack(spacing: 20) {
@@ -200,7 +204,10 @@ struct PerfilView: View {
                 
             }
             
-        }.onAppear {
+        }
+        .accentColor(.red)
+        .environment(\.colorScheme, .dark)
+        .onAppear {
             checkAppleSignInStatus()
         }
         

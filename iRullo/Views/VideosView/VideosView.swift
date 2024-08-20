@@ -21,10 +21,9 @@ struct VideosView: View {
     }
     
     var body: some View {
-        NavigationView{
             ZStack{
                 VStack{
-                    MainHeaderView(showProfileView: $showProfileView, tituloVista: "Videos")
+                    MainHeaderView(showProfileView: $showProfileView, tituloVista: "Videos", isFullScreen: .constant(false))
                     ScrollView(.vertical, showsIndicators: false){
                         videosView()
                     }
@@ -42,7 +41,6 @@ struct VideosView: View {
                     LoaderView()
                 }
             }
-        }
     }
 }
 

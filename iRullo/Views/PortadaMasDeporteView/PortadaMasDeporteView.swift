@@ -27,10 +27,9 @@ struct PortadaMasDeporteView: View {
     
     
     var body: some View {
-        NavigationView{
             ZStack{
                 VStack{
-                    MainHeaderView(showProfileView: $showProfileView, tituloVista: "Más Deporte")
+                    MainHeaderView(showProfileView: $showProfileView, tituloVista: "Más Deporte", isFullScreen: .constant(false))
                     ScrollView(.vertical, showsIndicators: false){
                         portadaView()
                     }
@@ -113,7 +112,6 @@ struct PortadaMasDeporteView: View {
             if self.viewModel.isLoading {
                 LoaderView()
             }
-        }
     }
 }
 
