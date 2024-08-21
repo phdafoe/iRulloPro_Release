@@ -71,6 +71,9 @@
 		787471B22C4AD551008ACBBD /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787471B12C4AD551008ACBBD /* ImageLoader.swift */; };
 		787471B42C4AEDF2008ACBBD /* PortadaTipoDos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787471B32C4AEDF2008ACBBD /* PortadaTipoDos.swift */; };
 		7888EB242C74E3BC007D2600 /* DetalleNativoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7888EB232C74E3BC007D2600 /* DetalleNativoView.swift */; };
+		788C944F2C76116200104B86 /* NoticiasNotificacionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788C944E2C76116200104B86 /* NoticiasNotificacionModel.swift */; };
+		788C94522C761E0100104B86 /* DetalleNativoDosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788C94512C761E0100104B86 /* DetalleNativoDosView.swift */; };
+		788C94552C76203C00104B86 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 788C94542C76203C00104B86 /* SwiftSoup */; };
 		78ABA2D82C53A14E00155FC9 /* TredingBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABA2D72C53A14E00155FC9 /* TredingBarModel.swift */; };
 		78ABA2DA2C57DE4700155FC9 /* CustomWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABA2D92C57DE4700155FC9 /* CustomWebView.swift */; };
 		78ABA2DC2C57E69A00155FC9 /* MainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABA2DB2C57E69A00155FC9 /* MainHeaderView.swift */; };
@@ -159,6 +162,8 @@
 		787471B12C4AD551008ACBBD /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		787471B32C4AEDF2008ACBBD /* PortadaTipoDos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaTipoDos.swift; sourceTree = "<group>"; };
 		7888EB232C74E3BC007D2600 /* DetalleNativoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalleNativoView.swift; sourceTree = "<group>"; };
+		788C944E2C76116200104B86 /* NoticiasNotificacionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticiasNotificacionModel.swift; sourceTree = "<group>"; };
+		788C94512C761E0100104B86 /* DetalleNativoDosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalleNativoDosView.swift; sourceTree = "<group>"; };
 		78ABA2D72C53A14E00155FC9 /* TredingBarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TredingBarModel.swift; sourceTree = "<group>"; };
 		78ABA2D92C57DE4700155FC9 /* CustomWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWebView.swift; sourceTree = "<group>"; };
 		78ABA2DB2C57E69A00155FC9 /* MainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderView.swift; sourceTree = "<group>"; };
@@ -196,6 +201,7 @@
 				7867FC772C6BBBA300338DAA /* FirebaseMessaging in Frameworks */,
 				7867FC732C6BBBA300338DAA /* FirebaseFirestore in Frameworks */,
 				7867FC752C6BBBA300338DAA /* FirebaseFunctions in Frameworks */,
+				788C94552C76203C00104B86 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +347,14 @@
 			path = DetalleNativoView;
 			sourceTree = "<group>";
 		};
+		788C94502C761DE800104B86 /* DetalleNativoDosView */ = {
+			isa = PBXGroup;
+			children = (
+				788C94512C761E0100104B86 /* DetalleNativoDosView.swift */,
+			);
+			path = DetalleNativoDosView;
+			sourceTree = "<group>";
+		};
 		78ABA2E32C580AB900155FC9 /* VideosView */ = {
 			isa = PBXGroup;
 			children = (
@@ -440,6 +454,7 @@
 		78F815772C496B0900EFF38B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				788C94502C761DE800104B86 /* DetalleNativoDosView */,
 				7888EB222C74E39F007D2600 /* DetalleNativoView */,
 				786866002C71FFA5008051D3 /* NoticiasView */,
 				7867FC7C2C6BBCBD00338DAA /* WalkthroughtView */,
@@ -482,6 +497,7 @@
 				787193912C66217D0085DD10 /* PortadaTenisModel.swift */,
 				7871939D2C6639740085DD10 /* PortadaCiclismoModel.swift */,
 				786866092C72008F008051D3 /* NoticiasModel.swift */,
+				788C944E2C76116200104B86 /* NoticiasNotificacionModel.swift */,
 			);
 			path = Modelos;
 			sourceTree = "<group>";
@@ -508,6 +524,7 @@
 				7867FC722C6BBBA300338DAA /* FirebaseFirestore */,
 				7867FC742C6BBBA300338DAA /* FirebaseFunctions */,
 				7867FC762C6BBBA300338DAA /* FirebaseMessaging */,
+				788C94542C76203C00104B86 /* SwiftSoup */,
 			);
 			productName = iRullo;
 			productReference = 78D46DC02B51C62000A450AD /* iRullo.app */;
@@ -539,6 +556,7 @@
 			mainGroup = 78D46DB72B51C62000A450AD;
 			packageReferences = (
 				7867FC6D2C6BBBA300338DAA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				788C94532C76203B00104B86 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = 78D46DC12B51C62000A450AD /* Products */;
 			projectDirPath = "";
@@ -593,6 +611,7 @@
 				787193922C66217D0085DD10 /* PortadaTenisModel.swift in Sources */,
 				787193982C6639020085DD10 /* PortadaCiclismoPresenter.swift in Sources */,
 				7868660A2C72008F008051D3 /* NoticiasModel.swift in Sources */,
+				788C944F2C76116200104B86 /* NoticiasNotificacionModel.swift in Sources */,
 				78ABA2EB2C580CB100155FC9 /* VideosCoordinator.swift in Sources */,
 				7871935C2C64A2090085DD10 /* LoaderView.swift in Sources */,
 				787471992C4A6BBA008ACBBD /* RequestModel.swift in Sources */,
@@ -616,6 +635,7 @@
 				78ABA2F22C5BE7F900155FC9 /* PortadaFutbolProvider.swift in Sources */,
 				787193792C6516F80085DD10 /* PortadaMasDeporteCoordinator.swift in Sources */,
 				7867FC822C6CB01000338DAA /* LoadingCustomView.swift in Sources */,
+				788C94522C761E0100104B86 /* DetalleNativoDosView.swift in Sources */,
 				7867FC7B2C6BBCB600338DAA /* WalkthroughtView.swift in Sources */,
 				786866082C71FFE0008051D3 /* NoticiasCoordinator.swift in Sources */,
 				787193942C6624A70085DD10 /* PortadaTenisTipoUno.swift in Sources */,
@@ -872,6 +892,14 @@
 				minimumVersion = 11.0.0;
 			};
 		};
+		788C94532C76203B00104B86 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.5;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -899,6 +927,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7867FC6D2C6BBBA300338DAA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		788C94542C76203C00104B86 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 788C94532C76203B00104B86 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

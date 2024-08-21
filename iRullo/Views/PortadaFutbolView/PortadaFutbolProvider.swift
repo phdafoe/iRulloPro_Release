@@ -10,6 +10,7 @@ import Foundation
 // Input
 protocol PortadaFutbolProviderInputProtocol: BaseProviderInputProtocol {
     func fecthDataPortadaFutbol()
+    func fecthDataPortadaNoticiasNotificacion()
 }
 
 
@@ -152,6 +153,25 @@ final class PortadaFutbolProvider: BaseProvider {
         return photoModel
     }
     
+    
+    func callBackNoticiaDestacada(dictionary: [String: Any]?) -> NoticiasNotificacionModel? {
+        var additionalProperties: NoticiasNotificacionModel?
+        if let myDictionary = dictionary {
+            let model = NoticiasNotificacionModel(data: callBackArrayNoticiaDestacado(dictionary: myDictionary["data"] as? [[String : Any]]))
+            additionalProperties = model
+        }
+        return additionalProperties
+    }
+    
+    func callBackArrayNoticiaDestacado(dictionary: [[String: Any]]?) -> [DataDestacado]? {
+        let arrayDestacadoModel: [DataDestacado]? = dictionary?.compactMap {
+            DataDestacado(titleDestacado: $0["title"] as? String,
+                          urlDestacado: $0["url"] as? String,
+                          caoptionDestacado: $0["caption"] as? String)
+        }
+        return arrayDestacadoModel
+    }
+    
 }
 
 extension PortadaFutbolProvider: PortadaFutbolProviderInputProtocol {
@@ -168,23 +188,45 @@ extension PortadaFutbolProvider: PortadaFutbolProviderInputProtocol {
                 }
             }
         }
+    }
+    
+    func fecthDataPortadaNoticiasNotificacion() {
         
+        self.networkService.request(RequestModel(service: PortadaFutbolProviderService.portadaNoticiasHomeNotificacion)) { myNoticiasNotificacionDictionary, error in
+            if let errorUnw = error  {
+                print(errorUnw)
+                self.viewModel?.setPortadaNoticiasNotificacion(completion: .failure(errorUnw))
+            }else {
+                DispatchQueue.main.async {
+                    self.viewModel?.setPortadaNoticiasNotificacion(completion: .success(self.callBackNoticiaDestacada(dictionary: myNoticiasNotificacionDictionary)))
+                }
+            }
+        }
     }
 }
 
 enum PortadaFutbolProviderService {
     case portadaFutbol
+    case portadaNoticiasHomeNotificacion
 }
 
 extension PortadaFutbolProviderService: Service {
     var baseURL: String {
-        return Helpers.customUrl().apiHost
+        switch self {
+        case PortadaFutbolProviderService.portadaFutbol:
+            return Helpers.customUrl().apiHost
+        case PortadaFutbolProviderService.portadaNoticiasHomeNotificacion:
+            return Helpers.customUrl().apiHostNoticias
+        }
+        
     }
     
     var path: String {
         switch self {
         case PortadaFutbolProviderService.portadaFutbol:
             return Helpers.customUrl().portadaFutbol
+        case PortadaFutbolProviderService.portadaNoticiasHomeNotificacion:
+            return Helpers.customUrl().portadaNoticiasHomeNotificacion
         }
     }
     
@@ -193,15 +235,25 @@ extension PortadaFutbolProviderService: Service {
     }
     
     var headers: [String : String] {
-        let headerDict = [
-            "Host": Helpers.customUrl().host,
-            "Accept": "*/*",
-            "x-api-key": Helpers.customKeys().apiKey,
-            "device" : "iPhone9,3||iOS||\(Helpers.customDevice().systemVersion)",
-            "User-Agent": "AS/\(Helpers.customDevice().systemVersion)(iOS)",
-            "Accept-Language": "es"
-        ]
-        return headerDict
+        switch self {
+        case PortadaFutbolProviderService.portadaFutbol:
+            return [
+                "Host": Helpers.customUrl().host,
+                "Accept": "*/*",
+                "x-api-key": Helpers.customKeys().apiKey,
+                "device" : "iPhone9,3||iOS||\(Helpers.customDevice().systemVersion)",
+                "User-Agent": "AS/\(Helpers.customDevice().systemVersion)(iOS)",
+                "Accept-Language": "es"
+            ]
+        case PortadaFutbolProviderService.portadaNoticiasHomeNotificacion:
+            return [
+                "Host": Helpers.customUrl().hostNoticias,
+                "Accept": "*/*",
+                "device" : "iPhone9,3||iOS||\(Helpers.customDevice().systemVersion)",
+                "User-Agent": "AS/\(Helpers.customDevice().systemVersion)(iOS)",
+                "Accept-Language": "es"
+            ]
+        }
     }
     
     var method: HTTPMethod {

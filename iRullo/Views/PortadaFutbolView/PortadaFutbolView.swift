@@ -17,6 +17,8 @@ struct PortadaFutbolView: View {
     @AppStorage("LOGADO") private var logado: Bool = false
     @EnvironmentObject var viewModelSession: PerfilViewPresenter
     
+    var urlwebView: URL?
+    
     fileprivate func portadaView() -> some View {
         return VStack {
             ForEach(viewModel.portadasFutbol ?? []) { index in
@@ -25,15 +27,33 @@ struct PortadaFutbolView: View {
         }
     }
     
-    
+    fileprivate func portadaDestacado() -> some View {
+        return VStack{
+            if let urlUnw = self.viewModel.portadasNoticiaDestacada?.data?.first?.urlPathDestacado {
+                NavigationLink {
+                    DetalleNativoDosView(data: self.viewModel.portadasNoticiaDestacadaHtmlString)
+                } label: {
+                    VStack(alignment: .leading){
+                        Text(self.viewModel.portadasNoticiaDestacada?.data?.first?.caoptionDestacado ?? "")
+                            .font(.title)
+                        Text(self.viewModel.portadasNoticiaDestacada?.data?.first?.titleDestacado ?? "")
+                            .font(.caption)
+                    }
+                    .padding()
+                    .foregroundColor(.black)
+                    .background(Color.yellow)
+                    .cornerRadius(10)
+                }
+                .buttonStyle(PlainButtonStyle())
+            }
+        }.padding(.bottom)
+    }
+
     var body: some View {
         ZStack {
-            // Tu vista principal
             VStack{
-                MainHeaderView(showProfileView: $showProfileView,
-                               tituloVista: "Fútbol",
-                               isFullScreen: .constant(false))
                 ScrollView(.vertical, showsIndicators: false){
+                    portadaDestacado()
                     portadaView()
                 }
                 .refreshable {
@@ -46,65 +66,11 @@ struct PortadaFutbolView: View {
                 }
             }
             
-            // Muestra el spinner si `isLoading` es true
             if self.viewModel.isLoading {
                 LoaderView()
             }
-            
-            if self.logado {
-                
-                            
-                // Botón flotante y opciones
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        
-                        // Opción 1
-                        if showOptions {
-                            Button(action: {
-                                isPresentingNoticias.toggle()
-                            }) {
-                                Image(systemName: "newspaper.circle")
-                                    .font(.system(size: 20))
-                                    .foregroundColor(.white)
-                                    .padding()
-                                    .background(Color.red)
-                                    .clipShape(Circle())
-                            }
-                            .transition(.move(edge: .trailing)) // Animación al aparecer
-                            .padding(.bottom, 70) // Espaciado entre botones
-                            .fullScreenCover(isPresented: self.$isPresentingNoticias) {
-                                //
-                            } content: {
-                                NoticiasCoordinator.view()
-                                    .accentColor(.red)
-                                    .environment(\.colorScheme, .dark)
-                            }
-                        }
-                        
-                        
-                        // Botón flotante principal
-                        Button(action: {
-                            withAnimation {
-                                showOptions.toggle()
-                            }
-                        }) {
-                            Image(systemName: "plus")
-                                .font(.system(size: 24))
-                                .foregroundColor(.white)
-                                .padding()
-                                .background(Color.red)
-                                .clipShape(Circle())
-                                .rotationEffect(.degrees(showOptions ? 45 : 0))
-                                .shadow(radius: 10)
-                        }
-                        .padding()
-                    }
-                }
-                
-            }
         }
+        .navigationTitle("Noticias destacadas")
     }
 }
 

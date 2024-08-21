@@ -29,6 +29,7 @@ struct Helpers {
         let portadasMasDeporteSubsectionAtletismo = "pages/as/site/as.com/section/masdeporte/subsection/atletismo"
         
         let portadaNoticiasHome = "home/frontp/1/0/"
+        let portadaNoticiasHomeNotificacion = "home/ticker/1"
     }
     
     struct customKeys {
