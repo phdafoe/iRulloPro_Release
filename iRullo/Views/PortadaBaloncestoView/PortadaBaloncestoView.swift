@@ -22,28 +22,28 @@ struct PortadaBaloncestoView: View {
     }
     
     var body: some View {
-            ZStack{
-                VStack{
-                    MainHeaderView(showProfileView: $showProfileView, tituloVista: "Baloncesto", isFullScreen: .constant(false))
-                    ScrollView(.vertical, showsIndicators: false){
-                        portadaView()
-                    }
-                    .refreshable {
-                        await self.viewModel.fetchData()
-                    }
+        ZStack{
+            VStack{
+                ScrollView(.vertical, showsIndicators: false){
+                    portadaView()
                 }
-                .onAppear{
-                    Task {
-                        await self.viewModel.fetchData()
-                    }
+                .refreshable {
+                    await self.viewModel.fetchData()
                 }
-                
-                // Muestra el spinner si `isLoading` es true
-                if self.viewModel.isLoading {
-                    LoaderView()
+            }
+            .onAppear{
+                Task {
+                    await self.viewModel.fetchData()
                 }
             }
             
+            // Muestra el spinner si `isLoading` es true
+            if self.viewModel.isLoading {
+                LoaderView()
+            }
+        }
+        .navigationTitle("Todo Baloncesto")
+        
     }
 }
 

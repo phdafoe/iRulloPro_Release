@@ -11,6 +11,7 @@ import Foundation
 protocol PortadaFutbolProviderInputProtocol: BaseProviderInputProtocol {
     func fecthDataPortadaFutbol()
     func fecthDataPortadaNoticiasNotificacion()
+    func fecthDataPortadaNoticiasMadrid()
 }
 
 
@@ -172,6 +173,40 @@ final class PortadaFutbolProvider: BaseProvider {
         return arrayDestacadoModel
     }
     
+    func callBackPortadasNoticiasMadrid(dictionary: [[String: Any]]?) -> [NoticiasData]? {
+        let nuevoArray = dictionary
+        let arrayPortadaNoticias: [NoticiasData]? = nuevoArray?.compactMap {
+            NoticiasData(typenameNoticia: $0["typename"] as? String,
+                         titleNoticia: $0["title"] as? String,
+                         subtitleNoticia: $0["subtitle"] as? String,
+                         leadingNoticia: $0["leadin"] as? String,
+                         urlNoticia: $0["url"] as? String,
+                         bodyNoticia: $0["body"] as? String,
+                         shotsNoticia: callBackShotNoticias(dictionary: $0["shots"] as? [String : Any]))
+        }
+        return arrayPortadaNoticias
+    }
+    
+    func callBackShotNoticias(dictionary: [String: Any]?) -> ShotNoticias? {
+        var shotNoticias: ShotNoticias?
+        if let myDictionary = dictionary {
+            let model = ShotNoticias(identificadorUno: myDictionary["1"] as? String)
+            shotNoticias = model
+        }
+        return shotNoticias
+    }
+    
+    func paginate(array: [Any], page: Int, pageSize: Int) -> [Any] {
+        let startIndex = (page - 1) * pageSize
+        let endIndex = min(startIndex + pageSize, array.count)
+        
+        guard startIndex < array.count else {
+            return []
+        }
+        
+        return Array(array[startIndex..<endIndex])
+    }
+    
 }
 
 extension PortadaFutbolProvider: PortadaFutbolProviderInputProtocol {
@@ -203,11 +238,26 @@ extension PortadaFutbolProvider: PortadaFutbolProviderInputProtocol {
             }
         }
     }
+    
+    func fecthDataPortadaNoticiasMadrid() {
+        
+        self.networkService.request(RequestModel(service: PortadaFutbolProviderService.portadaNoticiasHomeMadrid)) { myNoticiasMadridDictionary, error in
+            if let errorUnw = error  {
+                print(errorUnw)
+                self.viewModel?.setPortadaNoticiasMadrid(completion: .failure(errorUnw))
+            }else {
+                DispatchQueue.main.async {
+                    self.viewModel?.setPortadaNoticiasMadrid(completion: .success(self.callBackPortadasNoticiasMadrid(dictionary: myNoticiasMadridDictionary?["data"] as? [[String: Any]])))
+                }
+            }
+        }
+    }
 }
 
 enum PortadaFutbolProviderService {
     case portadaFutbol
     case portadaNoticiasHomeNotificacion
+    case portadaNoticiasHomeMadrid
 }
 
 extension PortadaFutbolProviderService: Service {
@@ -215,8 +265,9 @@ extension PortadaFutbolProviderService: Service {
         switch self {
         case PortadaFutbolProviderService.portadaFutbol:
             return Helpers.customUrl().apiHost
-        case PortadaFutbolProviderService.portadaNoticiasHomeNotificacion:
+        case PortadaFutbolProviderService.portadaNoticiasHomeNotificacion, .portadaNoticiasHomeMadrid:
             return Helpers.customUrl().apiHostNoticias
+
         }
         
     }
@@ -227,6 +278,8 @@ extension PortadaFutbolProviderService: Service {
             return Helpers.customUrl().portadaFutbol
         case PortadaFutbolProviderService.portadaNoticiasHomeNotificacion:
             return Helpers.customUrl().portadaNoticiasHomeNotificacion
+        case PortadaFutbolProviderService.portadaNoticiasHomeMadrid:
+            return Helpers.customUrl().portadaNoticiasMadrid
         }
     }
     
@@ -245,7 +298,7 @@ extension PortadaFutbolProviderService: Service {
                 "User-Agent": "AS/\(Helpers.customDevice().systemVersion)(iOS)",
                 "Accept-Language": "es"
             ]
-        case PortadaFutbolProviderService.portadaNoticiasHomeNotificacion:
+        case PortadaFutbolProviderService.portadaNoticiasHomeNotificacion, .portadaNoticiasHomeMadrid:
             return [
                 "Host": Helpers.customUrl().hostNoticias,
                 "Accept": "*/*",

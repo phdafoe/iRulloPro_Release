@@ -29,7 +29,6 @@ struct PortadaMasDeporteView: View {
     var body: some View {
             ZStack{
                 VStack{
-                    MainHeaderView(showProfileView: $showProfileView, tituloVista: "Más Deporte", isFullScreen: .constant(false))
                     ScrollView(.vertical, showsIndicators: false){
                         portadaView()
                     }
@@ -102,16 +101,13 @@ struct PortadaMasDeporteView: View {
                 }
                 
             }
+            .navigationTitle("Más Deportes")
             .onAppear{
                 Task {
                     await self.viewModel.fetchData()
                 }
             }
             
-            // Muestra el spinner si `isLoading` es true
-            if self.viewModel.isLoading {
-                LoaderView()
-            }
     }
 }
 

@@ -30,6 +30,7 @@ struct Helpers {
         
         let portadaNoticiasHome = "home/frontp/1/0/"
         let portadaNoticiasHomeNotificacion = "home/ticker/1"
+        let portadaNoticiasMadrid = "content/espana/madrid/1/0/20/"
     }
     
     struct customKeys {

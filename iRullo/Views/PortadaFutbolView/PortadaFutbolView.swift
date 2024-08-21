@@ -21,9 +21,26 @@ struct PortadaFutbolView: View {
     
     fileprivate func portadaView() -> some View {
         return VStack {
+            HStack {
+                Text("Destacados Fútbol")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .padding(.horizontal)
+                Rectangle()
+                    .fill(Color(UIColor.cyan).opacity(0.3))
+                    .frame(width: 50, height: 5)
+            }.padding(.bottom, 20)
             ForEach(viewModel.portadasFutbol ?? []) { index in
                 PortadaTipoDos(contentData: index)
             }
+        }
+    }
+    
+    fileprivate func portadaMadridView() -> some View {
+        return VStack {
+            PortadaCarrousel(title: "Destacados de Madrid",
+                             isPosterFromMoviesView: false,
+                             noticias: self.viewModel.portadasNoticiaMadrid ?? [])
         }
     }
     
@@ -55,6 +72,7 @@ struct PortadaFutbolView: View {
                 ScrollView(.vertical, showsIndicators: false){
                     portadaDestacado()
                     portadaView()
+                    portadaMadridView()
                 }
                 .refreshable {
                     await self.viewModel.fetchData()

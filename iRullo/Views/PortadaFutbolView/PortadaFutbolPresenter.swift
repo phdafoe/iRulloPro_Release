@@ -11,6 +11,7 @@ import Foundation
 protocol PortadaFutbolPresenterProtocol: BaseProviderOutputProtocol {
     func setPortadaFutbol(completion: Result<[PortadaFutbolModel]?, NetworkError>)
     func setPortadaNoticiasNotificacion(completion: Result<NoticiasNotificacionModel?, NetworkError>)
+    func setPortadaNoticiasMadrid(completion: Result<[NoticiasData]?, NetworkError>)
 }
 
 
@@ -22,6 +23,7 @@ final class PortadaFutbolPresenter: BaseViewModel, ObservableObject {
     
     @Published var portadasFutbol: [PortadaFutbolModel]?
     @Published var portadasNoticiaDestacada: NoticiasNotificacionModel?
+    @Published var portadasNoticiaMadrid: [NoticiasData]?
     @Published var portadasNoticiaDestacadaHtmlString: String?
     @Published var isLoading: Bool = false
     
@@ -29,6 +31,7 @@ final class PortadaFutbolPresenter: BaseViewModel, ObservableObject {
     func fetchData () async {
         self.provider?.fecthDataPortadaFutbol()
         self.provider?.fecthDataPortadaNoticiasNotificacion()
+        self.provider?.fecthDataPortadaNoticiasMadrid()
     }
 }
 
@@ -54,6 +57,17 @@ extension PortadaFutbolPresenter: PortadaFutbolPresenterProtocol {
                 debugPrint(myHtmlString ?? "AQUI ANDRES")
                 self.portadasNoticiaDestacadaHtmlString = myHtmlString
             })
+            self.isLoading = false
+        case .failure(let error):
+            debugPrint(error)
+        }
+    }
+    
+    func setPortadaNoticiasMadrid(completion: Result<[NoticiasData]?, NetworkError>) {
+        isLoading = true
+        switch completion{
+        case .success(let data):
+            portadasNoticiaMadrid = data
             self.isLoading = false
         case .failure(let error):
             debugPrint(error)

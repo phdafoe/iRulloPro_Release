@@ -21,26 +21,26 @@ struct VideosView: View {
     }
     
     var body: some View {
-            ZStack{
-                VStack{
-                    MainHeaderView(showProfileView: $showProfileView, tituloVista: "Videos", isFullScreen: .constant(false))
-                    ScrollView(.vertical, showsIndicators: false){
-                        videosView()
-                    }
-                    .refreshable {
-                        await self.viewModel.fetchData()
-                    }
-                }.onAppear{
-                    Task {
-                        await self.viewModel.fetchData()
-                    }
+        ZStack{
+            VStack{
+                ScrollView(.vertical, showsIndicators: false){
+                    videosView()
                 }
-                
-                // Muestra el spinner si `isLoading` es true
-                if self.viewModel.isLoading {
-                    LoaderView()
+                .refreshable {
+                    await self.viewModel.fetchData()
+                }
+            }.onAppear{
+                Task {
+                    await self.viewModel.fetchData()
                 }
             }
+            
+            // Muestra el spinner si `isLoading` es true
+            if self.viewModel.isLoading {
+                LoaderView()
+            }
+        }
+        .navigationTitle("Videos destacados")
     }
 }
 

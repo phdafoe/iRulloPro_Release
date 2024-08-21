@@ -22,7 +22,7 @@ struct DetalleNativoView: View {
                     HStack{
                         Text(data?.typenameNoticia ?? "iRullo")
                         Text("·")
-                        Text(data?.subtitleNoticia ?? "")
+                        Text(data?.subtitleNoticia?.uppercased() ?? "")
                             .bold()
                     }
                     
@@ -148,22 +148,22 @@ struct DetalleNativoView: View {
                                           trailing: 20))
             }
             
-            HStack{
-                Button(action: {
-                    dismiss()
-                }) {
-                    Image(systemName: "chevron.left")
-                }
-                .padding()
-                .background(Color.white.opacity(0.7))
-                .clipShape(Circle())
-                .padding(EdgeInsets(top: 40,
-                                    leading: 20,
-                                    bottom: 0,
-                                    trailing: 0))
-                
-            }
-            .foregroundColor(.red)
+//            HStack{
+//                Button(action: {
+//                    dismiss()
+//                }) {
+//                    Image(systemName: "chevron.left")
+//                }
+//                .padding()
+//                .background(Color.white.opacity(0.7))
+//                .clipShape(Circle())
+//                .padding(EdgeInsets(top: 40,
+//                                    leading: 20,
+//                                    bottom: 0,
+//                                    trailing: 0))
+//                
+//            }
+//            .foregroundColor(.red)
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  PortadaCarrouselVideos.swift
+//  PortadaCarrousel.swift
 //  iRullo
 //
 //  Created by Andres Felipe Ocampo Eljaiek on 29/7/24.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct PortadaCarrouselVideos: View {
+struct PortadaCarrousel: View {
     
     var title: String
     var isPosterFromMoviesView: Bool
-//    var moviesModel: [MoviesShowsModel]
+    var noticias: [NoticiasData]
     
     
     var body: some View {
@@ -28,15 +28,10 @@ struct PortadaCarrouselVideos: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 20) {
-//                    ForEach(self.moviesModel) { movie in
-////                        if movie.mediaType == "movie"{
-////                            NavigationLink(destination: DetailMovieCoordinator.view(dto: DetailMovieCoordinatorDTO(movieObject: movie))) {
-////                                MoviePosterCell(model: movie,
-////                                                isPoster: self.isPosterFromMoviesView)
-////                            }
-////                            .buttonStyle(PlainButtonStyle())
-////                        }
-//                    }
+                    ForEach(self.noticias) { noticia in
+                        PortadaNoticiasTipoDosView(contentData: noticia,
+                                                   urlwebView: noticia.urlPathURL)
+                    }
                 }
             }
         }

@@ -22,26 +22,26 @@ struct PortadaMotorView: View {
     }
     
     var body: some View {
-            ZStack{
-                VStack{
-                    MainHeaderView(showProfileView: $showProfileView, tituloVista: "Motor", isFullScreen: .constant(false))
-                    ScrollView(.vertical, showsIndicators: false){
-                        portadaView()
-                    }
-                    .refreshable {
-                        await self.viewModel.fetchData()
-                    }
+        ZStack{
+            VStack{
+                ScrollView(.vertical, showsIndicators: false){
+                    portadaView()
                 }
-                .onAppear{
-                    Task {
-                        await self.viewModel.fetchData()
-                    }
-                }
-                // Muestra el spinner si `isLoading` es true
-                if self.viewModel.isLoading {
-                    LoaderView()
+                .refreshable {
+                    await self.viewModel.fetchData()
                 }
             }
+            .onAppear{
+                Task {
+                    await self.viewModel.fetchData()
+                }
+            }
+            // Muestra el spinner si `isLoading` es true
+            if self.viewModel.isLoading {
+                LoaderView()
+            }
+        }
+        .navigationTitle("MotoGP | F1 | INDI ...")
     }
 }
 
