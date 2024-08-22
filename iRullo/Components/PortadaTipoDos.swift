@@ -52,7 +52,8 @@ struct PortadaTipoDos: View {
                                 Image(uiImage: self.imageLoader.image!)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                                    .loader(state: .ok)
+                                    .cornerRadius(8)
+//                                    .loader(state: .ok)
                             }
                         } else {
                             ZStack{
@@ -61,7 +62,7 @@ struct PortadaTipoDos: View {
                                                          startPoint: .bottom,
                                                          endPoint: .top))
                                     .cornerRadius(8)
-                                    .loader(state: .loading)
+//                                    .loader(state: .loading)
                             }
                             
                         }

@@ -37,7 +37,9 @@ struct DataDestacado {
                 if let data = data, let htmlContent = String(data: data, encoding: .utf8) {
                     // Aquí tienes el HTML como String
                     print(htmlContent)
-                    completionHandler(htmlContent)
+                    DispatchQueue.main.async {
+                        completionHandler(htmlContent)
+                    }
                 } else {
                     print("Error al convertir la data en un String")
                 }

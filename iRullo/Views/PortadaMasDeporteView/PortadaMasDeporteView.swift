@@ -57,9 +57,15 @@ struct PortadaMasDeporteView: View {
                             }
                             .transition(.move(edge: .trailing)) // Animación al aparecer
                             .padding(.bottom, 70) // Espaciado entre botones
-                            .sheet(isPresented: $isPresentingCycle) {
-                                PortadaCiclismoCoordinator.view()
+        
+                            
+                            NavigationLink(
+                                destination: PortadaCiclismoCoordinator.view(),
+                                isActive: $isPresentingCycle
+                            ) {
+                                EmptyView()
                             }
+
                         }
                         
                         // Opción 2

@@ -53,10 +53,11 @@ extension PortadaFutbolPresenter: PortadaFutbolPresenterProtocol {
         switch completion{
         case .success(let data):
             portadasNoticiaDestacada = data
-            data?.data?.first?.transformData(completionHandler: { myHtmlString in
-                debugPrint(myHtmlString ?? "AQUI ANDRES")
-                self.portadasNoticiaDestacadaHtmlString = myHtmlString
-            })
+            DispatchQueue.main.async {
+                data?.data?.first?.transformData(completionHandler: { myHtmlString in
+                    self.portadasNoticiaDestacadaHtmlString = myHtmlString
+                })
+            }
             self.isLoading = false
         case .failure(let error):
             debugPrint(error)

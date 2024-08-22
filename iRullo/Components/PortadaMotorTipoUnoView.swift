@@ -53,7 +53,8 @@ struct PortadaMotorTipoUnoView: View {
                         Image(uiImage: self.imageLoaderVM.image!)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .loader(state: .ok)
+                            .cornerRadius(8)
+//                            .loader(state: .ok)
                         
                     } else {
                         Rectangle()
@@ -61,7 +62,7 @@ struct PortadaMotorTipoUnoView: View {
                                                  startPoint: .bottom,
                                                  endPoint: .top))
                             .cornerRadius(8)
-                            .loader(state: .loading)
+//                            .loader(state: .loading)
                     }
                     HStack(alignment: .top){
                         

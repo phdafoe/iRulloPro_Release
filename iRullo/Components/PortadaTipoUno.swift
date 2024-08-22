@@ -36,6 +36,7 @@ struct PortadaTipoUno: View {
                             Image(uiImage: self.imageLoader.image!)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
+                                .cornerRadius(8)
                         }
                     } else {
                         Rectangle()

@@ -22,10 +22,10 @@ struct PortadaCiclismoView: View {
     }
     
     var body: some View {
-        NavigationView{
+//        NavigationView{
             ZStack{
                 VStack{
-                    MainHeaderView(showProfileView: $showProfileView, tituloVista: "Ciclismo", isFullScreen: .constant(false))
+//                    MainHeaderView(showProfileView: $showProfileView, tituloVista: "Ciclismo", isFullScreen: .constant(false))
                     ScrollView(.vertical, showsIndicators: false){
                         portadaView()
                     }
@@ -43,10 +43,11 @@ struct PortadaCiclismoView: View {
                     LoaderView()
                 }
             }
+            .accentColor(.red)
+            .environment(\.colorScheme, .dark)
             
-        }
-        .accentColor(.red)
-        .environment(\.colorScheme, .dark)
+        //}
+        
     }
 }
 
