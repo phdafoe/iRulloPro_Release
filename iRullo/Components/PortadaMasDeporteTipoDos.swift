@@ -53,7 +53,7 @@ struct PortadaMasDeporteTipoDos: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .cornerRadius(8)
-//                            .loader(state: .ok)
+                            .loader(state: .ok)
                         
                     } else {
                         Rectangle()
@@ -61,7 +61,7 @@ struct PortadaMasDeporteTipoDos: View {
                                                  startPoint: .bottom,
                                                  endPoint: .top))
                             .cornerRadius(8)
-//                            .loader(state: .loading)
+                            .loader(state: .loading)
                     }
                     HStack(alignment: .top){
                         

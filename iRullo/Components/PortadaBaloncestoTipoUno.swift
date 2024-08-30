@@ -55,7 +55,7 @@ struct PortadaBaloncestoTipoUno: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .cornerRadius(8)
-//                                    .loader(state: .ok)
+                                    .loader(state: .ok)
                             }
                         } else {
                             ZStack{
@@ -64,7 +64,7 @@ struct PortadaBaloncestoTipoUno: View {
                                                          startPoint: .bottom,
                                                          endPoint: .top))
                                     .cornerRadius(8)
-//                                    .loader(state: .loading)
+                                    .loader(state: .loading)
                             }
                             
                         }

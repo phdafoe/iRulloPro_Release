@@ -57,9 +57,11 @@ struct DetalleNativoDosView: View {
             let replacements: [String: String] = [
                 "TITANIA COMPAÑÍA EDITORIAL, S.L.": "",
                 "Es noticia cerrar Noticias Verticales Área de usuario Otros": "",
-                "Todos los derechos reservados Condiciones Política de privacidad Transparencia Auditado por GFK Canal Interno de Información Menú Últimas noticias Mundo": "",
+                "Todos los derechos reservados Condiciones Política de privacidad Transparencia Auditado por GFK Canal Interno de Información Menú Últimas noticias": "",
                 "Última hora Ver más Noticias de Italia El redactor recomienda © TITANIA COMPAÑÍA EDITORIAL, S.L. 2024. España. Todos los derechos reservados Condiciones Política de Privacidad Política de Cookies Configuración de Cookies Auditado por GFK Datos de mercado proporcionados por TradingView Canal Interno de Información": "",
-                "TE PUEDE INTERESAR": ""
+                "TE PUEDE INTERESAR": "",
+                "Todos los derechos reservados Condiciones Política de privacidad ": "",
+                "GFK Datos de mercado proporcionados por TradingView Canal Interno de Información": ""
             ]
             
             var modifiedText = cleanedHtml

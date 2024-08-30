@@ -21,7 +21,6 @@ struct NoticiasView: View {
     }
     
     var body: some View {
-        //NavigationView{
         VStack{
             MainHeaderView(showProfileView: $showProfileView,
                            tituloVista: "Noticias",
@@ -38,9 +37,6 @@ struct NoticiasView: View {
                 await self.viewModel.fetchData()
             }
         }
-        //}
-//        .accentColor(.red)
-//        .environment(\.colorScheme, .dark)
     }
 }
 

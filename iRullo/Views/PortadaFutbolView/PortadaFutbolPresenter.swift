@@ -27,10 +27,16 @@ final class PortadaFutbolPresenter: BaseViewModel, ObservableObject {
     @Published var portadasNoticiaDestacadaHtmlString: String?
     @Published var isLoading: Bool = false
     
-    @MainActor
-    func fetchData () async {
+//    @MainActor
+    func fetchDataPortadaFutbol () async {
         self.provider?.fecthDataPortadaFutbol()
+    }
+    
+    func fetchDataPortadaNoticiasNotificacion () async {
         self.provider?.fecthDataPortadaNoticiasNotificacion()
+    }
+    
+    func fetchDataPortadaNoticiasMadrid () async {
         self.provider?.fecthDataPortadaNoticiasMadrid()
     }
 }
@@ -41,7 +47,9 @@ extension PortadaFutbolPresenter: PortadaFutbolPresenterProtocol {
         isLoading = true
         switch completion{
         case .success(let data):
-            portadasFutbol = data
+            DispatchQueue.main.async {
+                self.portadasFutbol = data
+            }
             self.isLoading = false
         case .failure(let error):
             debugPrint(error)

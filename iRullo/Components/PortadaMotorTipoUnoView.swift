@@ -54,7 +54,7 @@ struct PortadaMotorTipoUnoView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .cornerRadius(8)
-//                            .loader(state: .ok)
+                            .loader(state: .ok)
                         
                     } else {
                         Rectangle()
@@ -62,7 +62,7 @@ struct PortadaMotorTipoUnoView: View {
                                                  startPoint: .bottom,
                                                  endPoint: .top))
                             .cornerRadius(8)
-//                            .loader(state: .loading)
+                            .loader(state: .loading)
                     }
                     HStack(alignment: .top){
                         

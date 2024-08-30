@@ -37,12 +37,14 @@ struct PortadaTipoUno: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .cornerRadius(8)
+                                .loader(state: .ok)
                         }
                     } else {
                         Rectangle()
                             .fill(LinearGradient(gradient: Gradient(colors: [Color.red, Color.clear]),
                                                  startPoint: .bottom,
                                                  endPoint: .top))
+                            .loader(state: .loading)
                     }
                 }
             }

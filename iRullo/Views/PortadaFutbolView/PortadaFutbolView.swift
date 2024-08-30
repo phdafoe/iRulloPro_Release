@@ -75,20 +75,40 @@ struct PortadaFutbolView: View {
                     portadaMadridView()
                 }
                 .refreshable {
-                    await self.viewModel.fetchData()
+                    await self.viewModel.fetchDataPortadaFutbol()
+                    await self.viewModel.fetchDataPortadaNoticiasNotificacion()
+                    await self.viewModel.fetchDataPortadaNoticiasMadrid()
                 }
             }
             .onAppear{
                 Task {
-                    await self.viewModel.fetchData()
+                    await self.viewModel.fetchDataPortadaFutbol()
+                    await self.viewModel.fetchDataPortadaNoticiasNotificacion()
+                    await self.viewModel.fetchDataPortadaNoticiasMadrid()
                 }
             }
             
-            if self.viewModel.isLoading {
-                LoaderView()
-            }
+//            if self.viewModel.isLoading {
+//                LoaderView()
+//            }
         }
         .navigationTitle("Noticias destacadas")
+        .navigationBarItems(trailing:
+                                HStack {
+            Button(action: {
+                print("Icono presionado")
+            }) {
+                Image(systemName: "bell.fill")
+                    .foregroundColor(.blue)
+            }
+            Button(action: {
+                print("Otro icono presionado")
+            }) {
+                Image(systemName: "gear")
+                    .foregroundColor(.blue)
+            }
+        }
+        )
     }
 }
 
