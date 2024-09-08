@@ -40,9 +40,11 @@ struct LoaderView: View {
                     .rotationEffect(self.rotationDegree)
             }.frame(width: 20, height: 20)
             .onAppear() {
-                self.animateLoader()
-                Timer.scheduledTimer(withTimeInterval: self.trackerRotation * self.animationDuration + (self.animationDuration), repeats: true) { (mainTimer) in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3){
                     self.animateLoader()
+                    Timer.scheduledTimer(withTimeInterval: self.trackerRotation * self.animationDuration + (self.animationDuration), repeats: true) { (mainTimer) in
+                        self.animateLoader()
+                    }
                 }
             }
         }.edgesIgnoringSafeArea(.all)

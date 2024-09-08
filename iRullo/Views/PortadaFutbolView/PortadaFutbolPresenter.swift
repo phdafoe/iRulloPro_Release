@@ -12,6 +12,7 @@ protocol PortadaFutbolPresenterProtocol: BaseProviderOutputProtocol {
     func setPortadaFutbol(completion: Result<[PortadaFutbolModel]?, NetworkError>)
     func setPortadaNoticiasNotificacion(completion: Result<NoticiasNotificacionModel?, NetworkError>)
     func setPortadaNoticiasMadrid(completion: Result<[NoticiasData]?, NetworkError>)
+    func setPortadaNoticiasAndalucia(completion: Result<[NoticiasData]?, NetworkError>)
 }
 
 
@@ -24,20 +25,25 @@ final class PortadaFutbolPresenter: BaseViewModel, ObservableObject {
     @Published var portadasFutbol: [PortadaFutbolModel]?
     @Published var portadasNoticiaDestacada: NoticiasNotificacionModel?
     @Published var portadasNoticiaMadrid: [NoticiasData]?
+    @Published var portadasNoticiaAndalucia: [NoticiasData]?
     @Published var portadasNoticiaDestacadaHtmlString: String?
     @Published var isLoading: Bool = false
     
 //    @MainActor
-    func fetchDataPortadaFutbol () async {
+    func fetchDataPortadaFutbol () {
         self.provider?.fecthDataPortadaFutbol()
     }
     
-    func fetchDataPortadaNoticiasNotificacion () async {
+    func fetchDataPortadaNoticiasNotificacion () {
         self.provider?.fecthDataPortadaNoticiasNotificacion()
     }
     
-    func fetchDataPortadaNoticiasMadrid () async {
+    func fetchDataPortadaNoticiasMadrid () {
         self.provider?.fecthDataPortadaNoticiasMadrid()
+    }
+    
+    func fetchDataPortadaNoticiasAndalucia () {
+        self.provider?.fecthDataPortadaNoticiasAndalucia()
     }
 }
 
@@ -77,6 +83,17 @@ extension PortadaFutbolPresenter: PortadaFutbolPresenterProtocol {
         switch completion{
         case .success(let data):
             portadasNoticiaMadrid = data
+            self.isLoading = false
+        case .failure(let error):
+            debugPrint(error)
+        }
+    }
+    
+    func setPortadaNoticiasAndalucia(completion: Result<[NoticiasData]?, NetworkError>) {
+        isLoading = true
+        switch completion{
+        case .success(let data):
+            portadasNoticiaAndalucia = data
             self.isLoading = false
         case .failure(let error):
             debugPrint(error)

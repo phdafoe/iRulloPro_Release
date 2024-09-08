@@ -13,6 +13,8 @@ struct PortadaMasDeporteView: View {
     @State private var showOptions = false
     @State private var isPresentingTennis = false
     @State private var isPresentingCycle = false
+    @State private var isPresentingBaloncesto = false
+    @State private var isPresentingMotor = false
     
     @State var showProfileView = false
     
@@ -55,9 +57,8 @@ struct PortadaMasDeporteView: View {
                                     .background(Color.red)
                                     .clipShape(Circle())
                             }
+                            .padding()
                             .transition(.move(edge: .trailing)) // Animación al aparecer
-                            .padding(.bottom, 70) // Espaciado entre botones
-        
                             
                             NavigationLink(
                                 destination: PortadaCiclismoCoordinator.view(),
@@ -80,10 +81,37 @@ struct PortadaMasDeporteView: View {
                                     .background(Color.red)
                                     .clipShape(Circle())
                             }
+                            .padding()
                             .transition(.move(edge: .trailing)) // Animación al aparecer
-                            .padding(.bottom, 140) // Espaciado entre botones
-                            .sheet(isPresented: $isPresentingTennis) {
-                                PortadaTenisCoordinator.view()
+                            
+                            NavigationLink(
+                                destination:  PortadaTenisCoordinator.view(),
+                                isActive: $isPresentingTennis
+                            ) {
+                                EmptyView()
+                            }
+                        }
+                        
+                        // Opción 3
+                        if showOptions {
+                            Button(action: {
+                                isPresentingBaloncesto.toggle()
+                            }) {
+                                Image(systemName: "basketball")
+                                    .font(.system(size: 20))
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .background(Color.red)
+                                    .clipShape(Circle())
+                            }
+                            .padding()
+                            .transition(.move(edge: .trailing)) // Animación al aparecer
+                            
+                            NavigationLink(
+                                destination:  PortadaBaloncestoCoordinator.view(),
+                                isActive: $isPresentingBaloncesto
+                            ) {
+                                EmptyView()
                             }
                         }
                         

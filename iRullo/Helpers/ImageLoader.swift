@@ -34,7 +34,8 @@ class ImageLoader: ObservableObject {
                 }
                 self.imageCache.setObject(image, forKey: urlString as AnyObject)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-                    self?.image = image
+                    guard let self = self else { return }
+                    self.image = image
                 }
             } catch {
                 print(error.localizedDescription)

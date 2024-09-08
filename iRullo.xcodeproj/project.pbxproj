@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		781618EF2C8DF6CD009E35D3 /* GenericaNoticiasDestacadasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781618EE2C8DF6CD009E35D3 /* GenericaNoticiasDestacadasView.swift */; };
+		781618F12C8DF6D8009E35D3 /* GenericaNoticiasDestacadasPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781618F02C8DF6D8009E35D3 /* GenericaNoticiasDestacadasPresenter.swift */; };
+		781618F32C8DF6E4009E35D3 /* GenericaNoticiasDestacadasProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781618F22C8DF6E4009E35D3 /* GenericaNoticiasDestacadasProvider.swift */; };
+		781618F52C8DF6F2009E35D3 /* GenericaNoticiasDestacadasCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781618F42C8DF6F2009E35D3 /* GenericaNoticiasDestacadasCoordinator.swift */; };
+		781618F72C8DFD55009E35D3 /* PortadaGenericaTipoDosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781618F62C8DFD55009E35D3 /* PortadaGenericaTipoDosView.swift */; };
 		781DA2B92C6BB95600D7C3A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781DA2B82C6BB95600D7C3A7 /* AppDelegate.swift */; };
 		7867FC6F2C6BBBA300338DAA /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7867FC6E2C6BBBA300338DAA /* FirebaseAnalytics */; };
 		7867FC712C6BBBA300338DAA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7867FC702C6BBBA300338DAA /* FirebaseAuth */; };
@@ -101,6 +106,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		781618EE2C8DF6CD009E35D3 /* GenericaNoticiasDestacadasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericaNoticiasDestacadasView.swift; sourceTree = "<group>"; };
+		781618F02C8DF6D8009E35D3 /* GenericaNoticiasDestacadasPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericaNoticiasDestacadasPresenter.swift; sourceTree = "<group>"; };
+		781618F22C8DF6E4009E35D3 /* GenericaNoticiasDestacadasProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericaNoticiasDestacadasProvider.swift; sourceTree = "<group>"; };
+		781618F42C8DF6F2009E35D3 /* GenericaNoticiasDestacadasCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericaNoticiasDestacadasCoordinator.swift; sourceTree = "<group>"; };
+		781618F62C8DFD55009E35D3 /* PortadaGenericaTipoDosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaGenericaTipoDosView.swift; sourceTree = "<group>"; };
 		781DA2B82C6BB95600D7C3A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7867FC782C6BBC4F00338DAA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7867FC7A2C6BBCB600338DAA /* WalkthroughtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughtView.swift; sourceTree = "<group>"; };
@@ -208,6 +218,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		781618ED2C8DF66C009E35D3 /* GenericNoticiasDestacadasView */ = {
+			isa = PBXGroup;
+			children = (
+				781618EE2C8DF6CD009E35D3 /* GenericaNoticiasDestacadasView.swift */,
+				781618F02C8DF6D8009E35D3 /* GenericaNoticiasDestacadasPresenter.swift */,
+				781618F22C8DF6E4009E35D3 /* GenericaNoticiasDestacadasProvider.swift */,
+				781618F42C8DF6F2009E35D3 /* GenericaNoticiasDestacadasCoordinator.swift */,
+			);
+			path = GenericNoticiasDestacadasView;
+			sourceTree = "<group>";
+		};
 		7867FC7C2C6BBCBD00338DAA /* WalkthroughtView */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,6 +356,7 @@
 				7871939F2C663B5A0085DD10 /* PortadaCiclismoTipoUno.swift */,
 				7867FC812C6CB01000338DAA /* LoadingCustomView.swift */,
 				7868660B2C7207C5008051D3 /* PortadaNoticiasTipoDosView.swift */,
+				781618F62C8DFD55009E35D3 /* PortadaGenericaTipoDosView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -454,6 +476,7 @@
 		78F815772C496B0900EFF38B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				781618ED2C8DF66C009E35D3 /* GenericNoticiasDestacadasView */,
 				788C94502C761DE800104B86 /* DetalleNativoDosView */,
 				7888EB222C74E39F007D2600 /* DetalleNativoView */,
 				786866002C71FFA5008051D3 /* NoticiasView */,
@@ -593,10 +616,12 @@
 				78ABA2F42C5BE80100155FC9 /* PortadaFutbolCoordinator.swift in Sources */,
 				787193A32C6641DA0085DD10 /* PerfilView.swift in Sources */,
 				787193962C6638F50085DD10 /* PortadaCiclismoView.swift in Sources */,
+				781618F32C8DF6E4009E35D3 /* GenericaNoticiasDestacadasProvider.swift in Sources */,
 				787193802C651CE50085DD10 /* PortadaMotorPresenter.swift in Sources */,
 				7871936A2C64F0590085DD10 /* PortadaBaloncestoCoordinator.swift in Sources */,
 				78ABA2D82C53A14E00155FC9 /* TredingBarModel.swift in Sources */,
 				78F8156F2C4968AC00EFF38B /* MainView.swift in Sources */,
+				781618EF2C8DF6CD009E35D3 /* GenericaNoticiasDestacadasView.swift in Sources */,
 				78ABA2E02C5800D500155FC9 /* PortadaCarrousel.swift in Sources */,
 				78ABA2DE2C57FFA600155FC9 /* PortadaVideoGenericoView.swift in Sources */,
 				78F8157A2C496B2300EFF38B /* PortadaView.swift in Sources */,
@@ -656,11 +681,14 @@
 				787193682C64F04F0085DD10 /* PortadaBaloncestoProvider.swift in Sources */,
 				78ABA2EE2C5BE7D500155FC9 /* PortadaFutbolView.swift in Sources */,
 				787471B42C4AEDF2008ACBBD /* PortadaTipoDos.swift in Sources */,
+				781618F52C8DF6F2009E35D3 /* GenericaNoticiasDestacadasCoordinator.swift in Sources */,
+				781618F72C8DFD55009E35D3 /* PortadaGenericaTipoDosView.swift in Sources */,
 				786866062C71FFD5008051D3 /* NoticiasProvider.swift in Sources */,
 				787471B02C4AD2BB008ACBBD /* PortadaTipoUno.swift in Sources */,
 				7871939C2C6639170085DD10 /* PortadaCiclismoCoordinator.swift in Sources */,
 				787193642C64F02B0085DD10 /* PortadaBaloncestoView.swift in Sources */,
 				7888EB242C74E3BC007D2600 /* DetalleNativoView.swift in Sources */,
+				781618F12C8DF6D8009E35D3 /* GenericaNoticiasDestacadasPresenter.swift in Sources */,
 				7867FC842C6CB44500338DAA /* PerfilViewPresenter.swift in Sources */,
 				787193822C651CEE0085DD10 /* PortadaMotorProvider.swift in Sources */,
 				7871936C2C6512860085DD10 /* PortadaBaloncestoTipoUno.swift in Sources */,

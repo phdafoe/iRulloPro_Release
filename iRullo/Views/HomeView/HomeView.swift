@@ -33,12 +33,14 @@ struct HomeView: View {
             PortadaFutbolCoordinator.navigation().environmentObject(PerfilViewPresenter())
         case .videos:
             VideosCoordinator.navigation().environmentObject(PerfilViewPresenter())
-        case .baloncesto:
-            PortadaBaloncestoCoordinator.navigation().environmentObject(PerfilViewPresenter())
-        case .motor:
-            PortadaMotorCoordinator.navigation().environmentObject(PerfilViewPresenter())
+        case .mercados:
+            PortadaMasDeporteCoordinator.navigation().environmentObject(PerfilViewPresenter())
         case .masdeporte:
             PortadaMasDeporteCoordinator.navigation().environmentObject(PerfilViewPresenter())
+        case .favoritos:
+            PortadaMasDeporteCoordinator.navigation().environmentObject(PerfilViewPresenter())
+        case .perfil:
+            PerfilView(tipoAutentication:.sigin).environmentObject(PerfilViewPresenter())
         }
     }
 }

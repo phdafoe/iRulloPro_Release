@@ -31,6 +31,17 @@ struct Helpers {
         let portadaNoticiasHome = "home/frontp/1/0/"
         let portadaNoticiasHomeNotificacion = "home/ticker/1"
         let portadaNoticiasMadrid = "content/espana/madrid/1/0/20/"
+        let portadaNoticiasAndalucia = "content/espana/andalucia/1/0/20"
+        
+        let portadaNoticiasCatalunia = "content/espana/cataluna/1/0/20/"
+        let portadaNoticiasValenciana = "content/espana/comunidad-valenciana/1/0/20/"
+        let portadaNoticiasAragon = "content/espana/aragon/1/0/20/"
+        let portadaNoticiasPaisVacsco = "content/espana/pais-vasco/1/0/20/"
+        let portadaNoticiasGalicia = "content/espana/galicia/1/0/20/"
+        
+        
+        
+        
     }
     
     struct customKeys {

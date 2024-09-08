@@ -17,6 +17,15 @@ struct PortadaFutbolView: View {
     @AppStorage("LOGADO") private var logado: Bool = false
     @EnvironmentObject var viewModelSession: PerfilViewPresenter
     
+    @State private var isMenuVisible = false
+    @State private var widthPercent: CGFloat = 0.9
+    @State private var horizontalPadding: CGFloat = 20.0
+    @State private var isPresentingCatalunya = false
+    @State private var isPresentingComunidadValenciana = false
+    @State private var isPresentingAragon = false
+    @State private var isPresentingVasco = false
+    @State private var isPresentingGalicia = false
+    
     var urlwebView: URL?
     
     fileprivate func portadaView() -> some View {
@@ -36,6 +45,14 @@ struct PortadaFutbolView: View {
         }
     }
     
+    fileprivate func portadaViewAndalucia() -> some View {
+        return VStack {
+            PortadaCarrousel(title: "Destacados de Andalucía",
+                             isPosterFromMoviesView: false,
+                             noticias: self.viewModel.portadasNoticiaAndalucia ?? [])
+        }
+    }
+    
     fileprivate func portadaMadridView() -> some View {
         return VStack {
             PortadaCarrousel(title: "Destacados de Madrid",
@@ -46,7 +63,7 @@ struct PortadaFutbolView: View {
     
     fileprivate func portadaDestacado() -> some View {
         return VStack{
-            if let urlUnw = self.viewModel.portadasNoticiaDestacada?.data?.first?.urlPathDestacado {
+            if (self.viewModel.portadasNoticiaDestacada?.data?.first?.urlPathDestacado) != nil {
                 NavigationLink {
                     DetalleNativoDosView(data: self.viewModel.portadasNoticiaDestacadaHtmlString)
                 } label: {
@@ -65,50 +82,183 @@ struct PortadaFutbolView: View {
             }
         }.padding(.bottom)
     }
-
+    
+    fileprivate func opcionesMenu() -> GeometryReader<some View> {
+        return GeometryReader { geo in
+            HStack{
+                VStack(alignment: .leading) {
+                    
+                    //Cataluña
+                    Button {
+                        isMenuVisible.toggle()
+                        isPresentingCatalunya.toggle()
+                    } label: {
+                        HStack{
+                            Text("Destacados Cataluña")
+                                .font(.headline)
+                                .bold()
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                        
+                    }.padding()
+                    
+                    NavigationLink(
+                        destination: GenericaNoticiasDestacadasCoordinator.view(dto: GenericaNoticiasDestacadasCoordinatorDTO.init(name: "Cataluna")),
+                        isActive: $isPresentingCatalunya
+                    ) {
+                        EmptyView()
+                    }
+                    
+                    //Valenciana
+                    Button {
+                        isMenuVisible.toggle()
+                        isPresentingComunidadValenciana.toggle()
+                    } label: {
+                        HStack{
+                            Text("Destacados Comunidad Valenciana")
+                                .font(.headline)
+                                .bold()
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                        
+                    }.padding()
+                    
+                    NavigationLink(
+                        destination: GenericaNoticiasDestacadasCoordinator.view(dto: GenericaNoticiasDestacadasCoordinatorDTO.init(name: "Valenciana")),
+                        isActive: $isPresentingComunidadValenciana
+                    ) {
+                        EmptyView()
+                    }
+                    
+                    //Aragon
+                    Button {
+                        isMenuVisible.toggle()
+                        isPresentingAragon.toggle()
+                    } label: {
+                        HStack{
+                            Text("Destacados Aragon")
+                                .font(.headline)
+                                .bold()
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                        
+                    }.padding()
+                    
+                    NavigationLink(
+                        destination: GenericaNoticiasDestacadasCoordinator.view(dto: GenericaNoticiasDestacadasCoordinatorDTO.init(name: "Aragon")),
+                        isActive: $isPresentingAragon
+                    ) {
+                        EmptyView()
+                    }
+                    
+                    //Vasco
+                    Button {
+                        isMenuVisible.toggle()
+                        isPresentingVasco.toggle()
+                    } label: {
+                        HStack{
+                            Text("Destacados Pais Vasco")
+                                .font(.headline)
+                                .bold()
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                        
+                    }.padding()
+                    
+                    NavigationLink(
+                        destination: GenericaNoticiasDestacadasCoordinator.view(dto: GenericaNoticiasDestacadasCoordinatorDTO.init(name: "Vasco")),
+                        isActive: $isPresentingVasco
+                    ) {
+                        EmptyView()
+                    }
+                    
+                    //Galicia
+                    Button {
+                        isMenuVisible.toggle()
+                        isPresentingGalicia.toggle()
+                    } label: {
+                        HStack{
+                            Text("Destacados Galicia")
+                                .font(.headline)
+                                .bold()
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                        
+                    }.padding()
+                    
+                    NavigationLink(
+                        destination: GenericaNoticiasDestacadasCoordinator.view(dto: GenericaNoticiasDestacadasCoordinatorDTO.init(name: "Galicia")),
+                        isActive: $isPresentingGalicia
+                    ) {
+                        EmptyView()
+                    }
+                    
+                    Spacer()
+                }
+                .frame(width: geo.size.width * widthPercent + (horizontalPadding * 2))
+                .background(Color.black)
+                .offset(x: isMenuVisible ? 0 : -((geo.size.width * widthPercent + (horizontalPadding * 2))))
+                .animation(.easeInOut(duration: 0.3), value: isMenuVisible)
+            }
+            
+        }
+        
+    }
+    
     var body: some View {
         ZStack {
             VStack{
                 ScrollView(.vertical, showsIndicators: false){
                     portadaDestacado()
-                    portadaView()
                     portadaMadridView()
+                    portadaViewAndalucia()
+                    portadaView()
                 }
                 .refreshable {
-                    await self.viewModel.fetchDataPortadaFutbol()
-                    await self.viewModel.fetchDataPortadaNoticiasNotificacion()
-                    await self.viewModel.fetchDataPortadaNoticiasMadrid()
+                    self.viewModel.fetchDataPortadaFutbol()
+                    self.viewModel.fetchDataPortadaNoticiasNotificacion()
+                    self.viewModel.fetchDataPortadaNoticiasMadrid()
+                    self.viewModel.fetchDataPortadaNoticiasAndalucia()
                 }
             }
             .onAppear{
-                Task {
-                    await self.viewModel.fetchDataPortadaFutbol()
-                    await self.viewModel.fetchDataPortadaNoticiasNotificacion()
-                    await self.viewModel.fetchDataPortadaNoticiasMadrid()
-                }
+                self.viewModel.fetchDataPortadaFutbol()
+                self.viewModel.fetchDataPortadaNoticiasNotificacion()
+                self.viewModel.fetchDataPortadaNoticiasMadrid()
+                self.viewModel.fetchDataPortadaNoticiasAndalucia()
             }
             
-//            if self.viewModel.isLoading {
-//                LoaderView()
-//            }
-        }
-        .navigationTitle("Noticias destacadas")
-        .navigationBarItems(trailing:
-                                HStack {
-            Button(action: {
-                print("Icono presionado")
-            }) {
-                Image(systemName: "bell.fill")
-                    .foregroundColor(.blue)
+            // Menú deslizable
+            if isMenuVisible {
+                Color.black.opacity(0.7) // Fondo semitransparente
+                    .edgesIgnoringSafeArea(.all)
+                    .onTapGesture {
+                        withAnimation {
+                            isMenuVisible.toggle()
+                        }
+                    }
             }
-            Button(action: {
-                print("Otro icono presionado")
-            }) {
-                Image(systemName: "gear")
-                    .foregroundColor(.blue)
-            }
+            
+            opcionesMenu()
+            
         }
+        .navigationBarItems(leading:
+            HStack {
+                Button(action: {
+                    self.isMenuVisible.toggle()
+                }) {
+                    
+                    Image(systemName: self.isMenuVisible ? "chevron.left": "list.triangle")
+                        .foregroundColor(.red)
+                }
+            }
         )
+        
     }
 }
 

@@ -12,6 +12,7 @@ protocol PortadaFutbolProviderInputProtocol: BaseProviderInputProtocol {
     func fecthDataPortadaFutbol()
     func fecthDataPortadaNoticiasNotificacion()
     func fecthDataPortadaNoticiasMadrid()
+    func fecthDataPortadaNoticiasAndalucia()
 }
 
 
@@ -252,12 +253,29 @@ extension PortadaFutbolProvider: PortadaFutbolProviderInputProtocol {
             }
         }
     }
+    
+    func fecthDataPortadaNoticiasAndalucia() {
+        
+        self.networkService.request(RequestModel(service: PortadaFutbolProviderService.portadaNoticiasHomeAndalucia)) { myNoticiasAndaluciaDictionary, error in
+            if let errorUnw = error  {
+                print(errorUnw)
+                self.viewModel?.setPortadaNoticiasAndalucia(completion: .failure(errorUnw))
+            }else {
+                DispatchQueue.main.async {
+                    self.viewModel?.setPortadaNoticiasAndalucia(completion: .success(self.callBackPortadasNoticiasMadrid(dictionary: myNoticiasAndaluciaDictionary?["data"] as? [[String: Any]])))
+                }
+            }
+        }
+        
+        
+    }
 }
 
 enum PortadaFutbolProviderService {
     case portadaFutbol
     case portadaNoticiasHomeNotificacion
     case portadaNoticiasHomeMadrid
+    case portadaNoticiasHomeAndalucia
 }
 
 extension PortadaFutbolProviderService: Service {
@@ -265,8 +283,9 @@ extension PortadaFutbolProviderService: Service {
         switch self {
         case PortadaFutbolProviderService.portadaFutbol:
             return Helpers.customUrl().apiHost
-        case PortadaFutbolProviderService.portadaNoticiasHomeNotificacion, .portadaNoticiasHomeMadrid:
+        case PortadaFutbolProviderService.portadaNoticiasHomeNotificacion, .portadaNoticiasHomeMadrid, .portadaNoticiasHomeAndalucia:
             return Helpers.customUrl().apiHostNoticias
+            
 
         }
         
@@ -280,6 +299,8 @@ extension PortadaFutbolProviderService: Service {
             return Helpers.customUrl().portadaNoticiasHomeNotificacion
         case PortadaFutbolProviderService.portadaNoticiasHomeMadrid:
             return Helpers.customUrl().portadaNoticiasMadrid
+        case PortadaFutbolProviderService.portadaNoticiasHomeAndalucia:
+            return Helpers.customUrl().portadaNoticiasAndalucia
         }
     }
     
@@ -298,7 +319,7 @@ extension PortadaFutbolProviderService: Service {
                 "User-Agent": "AS/\(Helpers.customDevice().systemVersion)(iOS)",
                 "Accept-Language": "es"
             ]
-        case PortadaFutbolProviderService.portadaNoticiasHomeNotificacion, .portadaNoticiasHomeMadrid:
+        case PortadaFutbolProviderService.portadaNoticiasHomeNotificacion, .portadaNoticiasHomeMadrid, .portadaNoticiasHomeAndalucia:
             return [
                 "Host": Helpers.customUrl().hostNoticias,
                 "Accept": "*/*",
