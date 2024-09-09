@@ -105,14 +105,20 @@ extension GenericaNoticiasDestacadasProvider: GenericaNoticiasDestacadasProvider
                     }
                 }
             }
+        case "Mercados":
+            self.networkService.request(RequestModel(service: GenericaNoticiasDestacadasProviderService.portadaMercados)) { myGenericoDictionary, error in
+                if let errorUnw = error  {
+                    print(errorUnw)
+                    self.viewModel?.setPortadaGenerico(completion: .failure(errorUnw))
+                } else {
+                    DispatchQueue.main.async {
+                        self.viewModel?.setPortadaGenerico(completion: .success(self.callBackPortadasGenerico(dictionary: myGenericoDictionary?["data"] as? [[String: Any]])))
+                    }
+                }
+            }
         default:
             break
-        }
-        
-        
-        
-        
-        
+        }   
     }
 }
 
@@ -122,6 +128,7 @@ enum GenericaNoticiasDestacadasProviderService {
     case portadaAragon
     case portadaVasco
     case portadaGalicia
+    case portadaMercados
 }
 
 extension GenericaNoticiasDestacadasProviderService: Service {
@@ -141,6 +148,8 @@ extension GenericaNoticiasDestacadasProviderService: Service {
             return Helpers.customUrl().portadaNoticiasPaisVacsco
         case GenericaNoticiasDestacadasProviderService.portadaGalicia:
             return Helpers.customUrl().portadaNoticiasGalicia
+        case GenericaNoticiasDestacadasProviderService.portadaMercados:
+            return Helpers.customUrl().portadaNoticiasMercados
         }
     }
     

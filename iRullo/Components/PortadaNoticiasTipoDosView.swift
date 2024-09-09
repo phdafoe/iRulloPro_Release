@@ -77,6 +77,7 @@ struct PortadaNoticiasTipoDosView: View {
                 Rectangle()
                     .stroke(lineWidth: 1.5)
                     .foregroundColor(.red)
+                    .opacity(0.7)
                     .cornerRadius(4)
             }
             

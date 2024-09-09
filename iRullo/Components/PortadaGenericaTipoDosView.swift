@@ -75,7 +75,8 @@ struct PortadaGenericaTipoDosView: View {
                 Rectangle()
                     .stroke(lineWidth: 1.5)
                     .foregroundColor(.red)
-                    .cornerRadius(4)
+                    .opacity(0.7)
+                    .cornerRadius(6)
             }
             
             

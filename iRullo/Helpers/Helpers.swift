@@ -38,6 +38,7 @@ struct Helpers {
         let portadaNoticiasAragon = "content/espana/aragon/1/0/20/"
         let portadaNoticiasPaisVacsco = "content/espana/pais-vasco/1/0/20/"
         let portadaNoticiasGalicia = "content/espana/galicia/1/0/20/"
+        let portadaNoticiasMercados = "content/mercados/the-wall-street-journal/1/0/20/"
         
         
         

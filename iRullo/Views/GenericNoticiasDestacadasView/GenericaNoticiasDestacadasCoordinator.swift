@@ -16,7 +16,7 @@ final class GenericaNoticiasDestacadasCoordinator: BaseCoordinator {
     
     static func navigation(dto: GenericaNoticiasDestacadasCoordinatorDTO? = nil) -> NavigationView<ContentView> {
         NavigationView {
-            self.view()
+            self.view(dto: dto)
         }
     }
     
