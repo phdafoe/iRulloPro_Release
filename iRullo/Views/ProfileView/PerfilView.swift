@@ -45,6 +45,7 @@ struct PerfilView: View {
             Text("Te damos las gracias por ser miembro de iRullo")
                 .font(.title2)
                 .fontWeight(.semibold)
+                .multilineTextAlignment(.center)
             Button(action: {
                 self.viewModelSession.desconectarSesion()
             }) {

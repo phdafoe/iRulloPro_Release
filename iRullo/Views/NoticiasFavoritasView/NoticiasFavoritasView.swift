@@ -29,21 +29,19 @@ struct NoticiasFavoritasView: View {
                 PortadaGenericaTipoDosView(contentData: index)
             }
             
-            if let isEmpty = viewModel.portadasGenerico?.isEmpty {
-                if isEmpty {
-                    VStack(spacing: 20) {
-                        Image(systemName: "timelapse")
-                            .font(.largeTitle)
-                            .scaledToFit()
-                            .foregroundColor(.red)
-                        Text("La lista de tus noticias favoritas está vacía, añade las noticias que quierás recordar o compartir")
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                            .kerning(2)
-                        
-                    }
-                    .padding(20)
+            if (viewModel.portadasGenerico ?? []).isEmpty {
+                VStack(spacing: 20) {
+                    Image(systemName: "face.smiling")
+                        .font(.largeTitle)
+                        .scaledToFit()
+                        .foregroundColor(.red)
+                    Text("La lista de tus noticias favoritas está vacía, añade las noticias que quierás recordar o compartir")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .kerning(2)
+                    
                 }
+                .padding(20)
             }
         }
     }
