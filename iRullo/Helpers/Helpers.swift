@@ -15,6 +15,7 @@ struct Helpers {
         let hostNoticias = "api.elconfidencial.com"
         let apiHost = "https://cntapiapp.prisasd.com/app/"
         let apiHostNoticias = "https://api.elconfidencial.com/service/"
+        let apiHostHeroku = "https://icospartan-app.herokuapp.com/"
         
         
         let portada = "pages/as/site/as.com/portada"
@@ -40,13 +41,14 @@ struct Helpers {
         let portadaNoticiasGalicia = "content/espana/galicia/1/0/20/"
         let portadaNoticiasMercados = "content/mercados/the-wall-street-journal/1/0/20/"
         
-        
+        let terminosYCondiciones = "iCoResponseTerminosCondiciones"
         
         
     }
     
     struct customKeys {
         let apiKey = "AIzaSyAnBzpN7FsYTtarghVZlu5K0yLx2pXL9dY"
+        let authHeroku = "Bearer 123456789"
     }
     
     struct customDevice {

@@ -38,9 +38,9 @@ struct HomeView: View {
         case .masdeporte:
             PortadaMasDeporteCoordinator.navigation().environmentObject(PerfilViewPresenter())
         case .favoritos:
-            PortadaMasDeporteCoordinator.navigation().environmentObject(PerfilViewPresenter())
+            NoticiasFavoritasCoordinator.navigation().environmentObject(PerfilViewPresenter())
         case .perfil:
-            PerfilView(tipoAutentication:.sigin).environmentObject(PerfilViewPresenter())
+            PerfilViewCoordinator.view().environmentObject(PerfilViewPresenter())
         }
     }
 }

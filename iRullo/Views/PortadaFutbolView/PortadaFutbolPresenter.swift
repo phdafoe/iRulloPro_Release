@@ -50,6 +50,7 @@ final class PortadaFutbolPresenter: BaseViewModel, ObservableObject {
 extension PortadaFutbolPresenter: PortadaFutbolPresenterProtocol {
     
     func setPortadaFutbol(completion: Result<[PortadaFutbolModel]?, NetworkError>) {
+        self.portadasFutbol?.removeAll()
         isLoading = true
         switch completion{
         case .success(let data):
@@ -79,6 +80,7 @@ extension PortadaFutbolPresenter: PortadaFutbolPresenterProtocol {
     }
     
     func setPortadaNoticiasMadrid(completion: Result<[NoticiasData]?, NetworkError>) {
+        self.portadasNoticiaMadrid?.removeAll()
         isLoading = true
         switch completion{
         case .success(let data):
@@ -90,6 +92,7 @@ extension PortadaFutbolPresenter: PortadaFutbolPresenterProtocol {
     }
     
     func setPortadaNoticiasAndalucia(completion: Result<[NoticiasData]?, NetworkError>) {
+        self.portadasNoticiaAndalucia?.removeAll()
         isLoading = true
         switch completion{
         case .success(let data):

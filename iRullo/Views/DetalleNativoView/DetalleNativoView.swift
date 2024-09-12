@@ -9,8 +9,8 @@ import SwiftUI
 
 struct DetalleNativoView: View {
     
+    @StateObject var viewModel = DetalleNativoPresenter()
     private let imageLoader = ImageLoader()
-    var data: NoticiasData?
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -20,21 +20,21 @@ struct DetalleNativoView: View {
                 
                 VStack(alignment: .leading, spacing: 30){
                     HStack{
-                        Text(data?.typenameNoticia ?? "iRullo")
+                        Text(self.viewModel.noticiasData?.typenameNoticia ?? "iRullo")
                         Text("·")
-                        Text(data?.subtitleNoticia?.uppercased() ?? "")
+                        Text(self.viewModel.noticiasData?.subtitleNoticia?.uppercased() ?? "")
                             .bold()
                     }
                     
-                    Text(data?.titleNoticia ?? "")
+                    Text(self.viewModel.noticiasData?.titleNoticia ?? "")
                         .font(.title2)
                     
                 
                     
-                    Text(data?.leadingNoticia ?? "")
+                    Text(self.viewModel.noticiasData?.leadingNoticia ?? "")
                         .font(.title2)
                     
-                    Text(data?.cleanedText ?? "")
+                    Text(self.viewModel.noticiasData?.cleanedText ?? "")
                         .font(.title2)
                 }
                 .multilineTextAlignment(.leading)
@@ -47,13 +47,14 @@ struct DetalleNativoView: View {
                 .padding(.top, -50)
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
     
     
     func headerView() -> some View {
         ZStack(alignment: .topLeading) {
-            if self.data?.shotsNoticia?.urlPathURL != nil {
-                NewDetailImage(imageURL: self.data?.shotsNoticia?.urlPathURL,
+            if self.self.viewModel.noticiasData?.shotsNoticia?.urlPathURL != nil {
+                NewDetailImage(imageURL: self.self.viewModel.noticiasData?.shotsNoticia?.urlPathURL,
                                imageLoderVM: imageLoader)
                 .listRowInsets(EdgeInsets(top: 0,
                                           leading: 20,
@@ -61,22 +62,44 @@ struct DetalleNativoView: View {
                                           trailing: 20))
             }
             
-//            HStack{
-//                Button(action: {
-//                    dismiss()
-//                }) {
-//                    Image(systemName: "chevron.left")
-//                }
-//                .padding()
-//                .background(Color.white.opacity(0.7))
-//                .clipShape(Circle())
-//                .padding(EdgeInsets(top: 40,
-//                                    leading: 20,
-//                                    bottom: 0,
-//                                    trailing: 0))
-//                
-//            }
-//            .foregroundColor(.red)
+            HStack{
+                Button(action: {
+                    dismiss()
+                }) {
+                    Image(systemName: "chevron.left")
+                }
+                .padding()
+                .background(Color.white.opacity(0.7))
+                .clipShape(Circle())
+                .padding(EdgeInsets(top: 20,
+                                    leading: 20,
+                                    bottom: 0,
+                                    trailing: 0))
+                Spacer()
+                
+                Button(action: {
+                    if self.viewModel.isFavoriteSelected ?? false {
+                        self.viewModel.deletefavorito()
+                    } else {
+                        self.viewModel.saveDataInDDBB()
+                    }
+                    
+                }) {
+                    Image(systemName: self.viewModel.isFavoriteSelected ?? false ? "bookmark.fill" : "bookmark")
+                }
+                .padding()
+                .background(Color.white.opacity(0.7))
+                .clipShape(Circle())
+                .padding(EdgeInsets(top: 20,
+                                    leading: 0,
+                                    bottom: 0,
+                                    trailing: 20))
+                
+            }
+            .onAppear(perform: {
+                self.viewModel.isFavorito()
+            })
+            .foregroundColor(.red)
         }
     }
 }

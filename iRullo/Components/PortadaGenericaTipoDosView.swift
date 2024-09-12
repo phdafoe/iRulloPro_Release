@@ -21,7 +21,7 @@ struct PortadaGenericaTipoDosView: View {
     }
     
     var body: some View {
-        NavigationLink(destination: DetalleNativoView(data: self.contentData)) {
+        NavigationLink(destination: DetalleNativoCoordinator.view(dto: DetalleNativoCoordinatorDTO.init(data: self.contentData))) {
             ZStack{
                 VStack(alignment: .leading){
                     if self.imageLoader.image != nil {

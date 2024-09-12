@@ -14,7 +14,6 @@ struct PortadaFutbolView: View {
     @State private var showOptions = false
     @State private var isPresentingNoticias: Bool = false
     
-    @AppStorage("LOGADO") private var logado: Bool = false
     @EnvironmentObject var viewModelSession: PerfilViewPresenter
     
     @State private var isMenuVisible = false
@@ -247,6 +246,7 @@ struct PortadaFutbolView: View {
             opcionesMenu()
             
         }
+        .navigationTitle("Portadas Destacadas")
         .navigationBarItems(leading:
             HStack {
                 Button(action: {
@@ -258,7 +258,6 @@ struct PortadaFutbolView: View {
                 }
             }
         )
-        
     }
 }
 

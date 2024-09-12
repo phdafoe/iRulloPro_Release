@@ -13,6 +13,7 @@ struct WalkthroughtView: View {
     
     @State private var activePage: Page = .page1
     @AppStorage("currentPage") var currentPage = 1
+    @State private var showLoginView: Bool = false
     
     var body: some View {
         GeometryReader {
@@ -37,6 +38,7 @@ struct WalkthroughtView: View {
                 IndicatorView()
                 
                 ContinueButton()
+                
             }
             .frame(maxWidth: .infinity)
             .overlay(alignment: .top) {
@@ -136,6 +138,10 @@ struct WalkthroughtView: View {
             } else {
                 currentPage = 1
             }
+            
+            if activePage == .page4 {
+                showLoginView.toggle()
+            }
         } label: {
             Text(activePage == .page4 ? "Bienvenidos A iRullo" : "Continuar")
                 .contentTransition(.identity)
@@ -146,6 +152,9 @@ struct WalkthroughtView: View {
         }
         .padding(.bottom, 15)
         .animation(.smooth(duration: 0.5, extraBounce: 0), value: activePage)
+        .fullScreenCover(isPresented: $showLoginView) {
+            PerfilView(tipoAutentication: .signup)
+        }
     }
     
 }

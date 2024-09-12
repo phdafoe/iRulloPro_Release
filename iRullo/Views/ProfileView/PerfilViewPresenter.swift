@@ -9,6 +9,11 @@ import Foundation
 import CryptoKit
 import FirebaseAuth
 
+// Output
+protocol PerfilViewPresenterPresenterProtocol {
+    func setTerminosCondicioens(completion: Result<[PortadaCiclismoModel]?, NetworkError>)
+}
+
 
 enum LoginOption {
     case inicioSesionConApple(idTokenString: String, nonceDes: String)
@@ -45,10 +50,13 @@ final class PerfilViewPresenter: ObservableObject {
     @Published var usuarioAutenticado = false
     @Published var error: NSError?
     @Published var currentNonce:String?
+    @Published var terminosYCondiciones: String = ""
     
     private let authenticationData = Auth.auth()
     
     var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
+    
+    var provider: PerfilViewProviderInputProtocol = PerfilViewProvider()
     
     required init() {
         usuarioLogado = authenticationData.currentUser
@@ -97,6 +105,7 @@ final class PerfilViewPresenter: ObservableObject {
     func desconectarSesion() {
         do {
             try authenticationData.signOut()
+            UserDefaults.standard.set(false, forKey: "LOGADO")
         } catch {
             self.error = NSError(domain: "", code: 9999, userInfo: [NSLocalizedDescriptionKey : "El usuario no ha logrado desconectar la sesion"])
         }
@@ -105,6 +114,7 @@ final class PerfilViewPresenter: ObservableObject {
     // Delete account
     func deleteAccountFirebase(){
         authenticationData.currentUser?.delete()
+        UserDefaults.standard.set(false, forKey: "LOGADO")
     }
     
     // Callback
@@ -112,8 +122,12 @@ final class PerfilViewPresenter: ObservableObject {
         DispatchQueue.main.async {
             if let user = auth?.user {
                 self.usuarioLogado = user
+                // El usuario ha iniciado sesión con éxito
+                print("Inició sesión con éxito")
             } else if let errorDes = error {
                 self.error = errorDes as NSError
+                print("Error al iniciar sesión: \(errorDes.localizedDescription)")
+                return
             }
         }
         
@@ -172,4 +186,13 @@ final class PerfilViewPresenter: ObservableObject {
         return hashString
     }
     
+    func terminos() -> String {
+        self.provider.fecthDataTerminosCondiciones { terminos in
+            if let terminosUnw = terminos {
+                self.terminosYCondiciones = terminosUnw
+            }
+        }
+        return self.terminosYCondiciones
+    }
+
 }

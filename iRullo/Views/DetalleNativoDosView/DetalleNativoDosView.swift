@@ -17,11 +17,30 @@ struct DetalleNativoDosView: View {
     
     var body: some View {
         ScrollView{
+            
+            HStack{
+                Button(action: {
+                    dismiss()
+                }) {
+                    Image(systemName: "chevron.left")
+                }
+                .padding()
+                .background(Color.white.opacity(0.7))
+                .clipShape(Circle())
+                .padding(EdgeInsets(top: 20,
+                                    leading: 20,
+                                    bottom: 0,
+                                    trailing: 0))
+                Spacer()
+            }
+            .foregroundColor(.red)
+            
             Text(getTitle(htmlText: data ?? "AQUI ANDRES")).font(.title).bold()
                 .padding(.bottom)
             Text(getParrafo(htmlText: data ?? "AQUI ANDRES")).font(.title3)
                 .padding(.top)
         }
+        .navigationBarBackButtonHidden(true)
         .padding()
     }
     
@@ -61,7 +80,8 @@ struct DetalleNativoDosView: View {
                 "Última hora Ver más Noticias de Italia El redactor recomienda © TITANIA COMPAÑÍA EDITORIAL, S.L. 2024. España. Todos los derechos reservados Condiciones Política de Privacidad Política de Cookies Configuración de Cookies Auditado por GFK Datos de mercado proporcionados por TradingView Canal Interno de Información": "",
                 "TE PUEDE INTERESAR": "",
                 "Todos los derechos reservados Condiciones Política de privacidad ": "",
-                "GFK Datos de mercado proporcionados por TradingView Canal Interno de Información": ""
+                "GFK Datos de mercado proporcionados por TradingView Canal Interno de Información": "",
+                " Todos los derechos reservados Condiciones Política de Privacidad Política de Cookies Configuración de Cookies Auditado por": ""
             ]
             
             var modifiedText = cleanedHtml
