@@ -35,6 +35,8 @@ struct PerfilView: View {
     @State private var isCustomAlert = false
     @State private var isTerminosCondiciones = false
     
+    @State private var showHomeView = false
+    
     fileprivate func estaLogadoCorrectamente() -> some View {
         return VStack(spacing: 20) {
             Image(systemName: "trophy")
@@ -172,6 +174,9 @@ struct PerfilView: View {
                             dismissButton: .default(Text("OK"))
                         )
                     }
+                    .fullScreenCover(isPresented: self.$showHomeView, content: {
+                        HomeView()
+                    })
                     
                     // Botón para iniciar sesión
                     Button(action: {
@@ -213,6 +218,9 @@ struct PerfilView: View {
                         .signInWithAppleButtonStyle(.black)
                         .frame(height: 50)
                         .padding(.horizontal, 20)
+                        .fullScreenCover(isPresented: self.$showHomeView, content: {
+                            HomeView()
+                        })
                     }
                 }
                 .padding()
@@ -292,7 +300,7 @@ struct PerfilView: View {
             self.viewModelSession.acceso(with: .emailAndPassword(email: self.email.lowercased(), password: self.password))
             isLoginFailed = false
             print("Inicio de sesión exitoso")
-            dismiss()
+            showHomeView.toggle()
         case .signup:
             // Validar que las contraseñas coincidan
             guard password == confirmPassword else {
@@ -304,7 +312,7 @@ struct PerfilView: View {
             print("Usuario registrado con éxito")
             print("Correo Electrónico: \(email)")
             print("Contraseña: \(password)")
-            dismiss()
+            showHomeView.toggle()
         }
     }
     
@@ -334,7 +342,7 @@ struct PerfilView: View {
                 return
             }
             self.viewModelSession.acceso(with: .inicioSesionConApple(idTokenString: idTokenString, nonceDes: nonce))
-            dismiss()
+            showHomeView.toggle()
         }
     }
     

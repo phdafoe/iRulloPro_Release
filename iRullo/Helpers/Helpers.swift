@@ -39,7 +39,13 @@ struct Helpers {
         let portadaNoticiasAragon = "content/espana/aragon/1/0/20/"
         let portadaNoticiasPaisVacsco = "content/espana/pais-vasco/1/0/20/"
         let portadaNoticiasGalicia = "content/espana/galicia/1/0/20/"
+        let portadaNoticiasIslasCanarias = "content/espana/islas-canarias/1/0/20/"
+        let portadaNoticiasCastillaYLeion = "content/espana/castilla-y-leon/1/0/20/"
+        
         let portadaNoticiasMercados = "content/mercados/the-wall-street-journal/1/0/20/"
+        let portadaNoticiasEmpresas = "content/empresas/1/0/20/"
+        let portadaNoticiasEconomia = "content/economia/1/0/20/"
+        let portadaNoticiasVivienda = "content/vivienda/1/0/20/"
         
         let terminosYCondiciones = "iCoResponseTerminosCondiciones"
         

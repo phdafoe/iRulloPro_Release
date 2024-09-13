@@ -25,6 +25,10 @@
 		7816190E2C92FFE1009E35D3 /* PerfilViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7816190D2C92FFE1009E35D3 /* PerfilViewProvider.swift */; };
 		781619102C930006009E35D3 /* PerfilViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7816190F2C930006009E35D3 /* PerfilViewCoordinator.swift */; };
 		781619122C930586009E35D3 /* TerminosCondicionesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781619112C930586009E35D3 /* TerminosCondicionesModel.swift */; };
+		781C6A7C2C946007003C40AF /* PortadaMercadosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781C6A7B2C946007003C40AF /* PortadaMercadosView.swift */; };
+		781C6A7E2C946010003C40AF /* PortadaMercadosPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781C6A7D2C946010003C40AF /* PortadaMercadosPresenter.swift */; };
+		781C6A802C946018003C40AF /* PortadaMercadosProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781C6A7F2C946018003C40AF /* PortadaMercadosProvider.swift */; };
+		781C6A822C946023003C40AF /* PortadaMercadosCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781C6A812C946023003C40AF /* PortadaMercadosCoordinator.swift */; };
 		781DA2B92C6BB95600D7C3A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781DA2B82C6BB95600D7C3A7 /* AppDelegate.swift */; };
 		7867FC6F2C6BBBA300338DAA /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7867FC6E2C6BBBA300338DAA /* FirebaseAnalytics */; };
 		7867FC712C6BBBA300338DAA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7867FC702C6BBBA300338DAA /* FirebaseAuth */; };
@@ -136,6 +140,10 @@
 		7816190D2C92FFE1009E35D3 /* PerfilViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilViewProvider.swift; sourceTree = "<group>"; };
 		7816190F2C930006009E35D3 /* PerfilViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilViewCoordinator.swift; sourceTree = "<group>"; };
 		781619112C930586009E35D3 /* TerminosCondicionesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminosCondicionesModel.swift; sourceTree = "<group>"; };
+		781C6A7B2C946007003C40AF /* PortadaMercadosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaMercadosView.swift; sourceTree = "<group>"; };
+		781C6A7D2C946010003C40AF /* PortadaMercadosPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaMercadosPresenter.swift; sourceTree = "<group>"; };
+		781C6A7F2C946018003C40AF /* PortadaMercadosProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaMercadosProvider.swift; sourceTree = "<group>"; };
+		781C6A812C946023003C40AF /* PortadaMercadosCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaMercadosCoordinator.swift; sourceTree = "<group>"; };
 		781DA2B82C6BB95600D7C3A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7867FC782C6BBC4F00338DAA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7867FC7A2C6BBCB600338DAA /* WalkthroughtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughtView.swift; sourceTree = "<group>"; };
@@ -264,6 +272,17 @@
 				7816190B2C91E17F009E35D3 /* NoticiasFavoritasCoordinator.swift */,
 			);
 			path = NoticiasFavoritasView;
+			sourceTree = "<group>";
+		};
+		781C6A7A2C945D4B003C40AF /* PortadaMercadosView */ = {
+			isa = PBXGroup;
+			children = (
+				781C6A7B2C946007003C40AF /* PortadaMercadosView.swift */,
+				781C6A7D2C946010003C40AF /* PortadaMercadosPresenter.swift */,
+				781C6A7F2C946018003C40AF /* PortadaMercadosProvider.swift */,
+				781C6A812C946023003C40AF /* PortadaMercadosCoordinator.swift */,
+			);
+			path = PortadaMercadosView;
 			sourceTree = "<group>";
 		};
 		7867FC7C2C6BBCBD00338DAA /* WalkthroughtView */ = {
@@ -520,6 +539,7 @@
 		78F815772C496B0900EFF38B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				781C6A7A2C945D4B003C40AF /* PortadaMercadosView */,
 				781619042C91E147009E35D3 /* NoticiasFavoritasView */,
 				781618ED2C8DF66C009E35D3 /* GenericNoticiasDestacadasView */,
 				788C94502C761DE800104B86 /* DetalleNativoDosView */,
@@ -659,6 +679,7 @@
 				78ABA2E52C580ACF00155FC9 /* VideosView.swift in Sources */,
 				781619082C91E16B009E35D3 /* NoticiasFavoritasPresenter.swift in Sources */,
 				78ABA2E72C580AE700155FC9 /* VideosPresenter.swift in Sources */,
+				781C6A822C946023003C40AF /* PortadaMercadosCoordinator.swift in Sources */,
 				78F8157F2C496BBD00EFF38B /* PortadaModel.swift in Sources */,
 				78F8157C2C496B2E00EFF38B /* PortadaPresenter.swift in Sources */,
 				781619032C91DD5D009E35D3 /* DDBB.swift in Sources */,
@@ -673,6 +694,7 @@
 				781618EF2C8DF6CD009E35D3 /* GenericaNoticiasDestacadasView.swift in Sources */,
 				78ABA2E02C5800D500155FC9 /* PortadaCarrousel.swift in Sources */,
 				78ABA2DE2C57FFA600155FC9 /* PortadaVideoGenericoView.swift in Sources */,
+				781C6A802C946018003C40AF /* PortadaMercadosProvider.swift in Sources */,
 				78F8157A2C496B2300EFF38B /* PortadaView.swift in Sources */,
 				787471A62C4A6F7B008ACBBD /* PortadaProvider.swift in Sources */,
 				7816190A2C91E175009E35D3 /* NoticiasFavoritasProvider.swift in Sources */,
@@ -735,6 +757,7 @@
 				7867FC802C6BC07A00338DAA /* MorphingSystView.swift in Sources */,
 				781619062C91E15C009E35D3 /* NoticiasFavoritasView.swift in Sources */,
 				7871937B2C6518CA0085DD10 /* PortadaMasDeporteTipoDos.swift in Sources */,
+				781C6A7C2C946007003C40AF /* PortadaMercadosView.swift in Sources */,
 				78ABA2F62C5BE9CF00155FC9 /* PortadaFutbolModel.swift in Sources */,
 				787193682C64F04F0085DD10 /* PortadaBaloncestoProvider.swift in Sources */,
 				78ABA2EE2C5BE7D500155FC9 /* PortadaFutbolView.swift in Sources */,
@@ -753,6 +776,7 @@
 				7871936C2C6512860085DD10 /* PortadaBaloncestoTipoUno.swift in Sources */,
 				787193772C6516F10085DD10 /* PortadaMasDeporteProvider.swift in Sources */,
 				786866022C71FFBB008051D3 /* NoticiasView.swift in Sources */,
+				781C6A7E2C946010003C40AF /* PortadaMercadosPresenter.swift in Sources */,
 				787471A92C4A7348008ACBBD /* HomePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -105,6 +105,30 @@ extension GenericaNoticiasDestacadasProvider: GenericaNoticiasDestacadasProvider
                     }
                 }
             }
+            
+        case "Canarias":
+            self.networkService.request(RequestModel(service: GenericaNoticiasDestacadasProviderService.portadaCanarias)) { myGenericoDictionary, error in
+                if let errorUnw = error  {
+                    print(errorUnw)
+                    self.viewModel?.setPortadaGenerico(completion: .failure(errorUnw))
+                } else {
+                    DispatchQueue.main.async {
+                        self.viewModel?.setPortadaGenerico(completion: .success(self.callBackPortadasGenerico(dictionary: myGenericoDictionary?["data"] as? [[String: Any]])))
+                    }
+                }
+            }
+            
+        case "CastillaYLeon":
+            self.networkService.request(RequestModel(service: GenericaNoticiasDestacadasProviderService.portadaCastillaYleon)) { myGenericoDictionary, error in
+                if let errorUnw = error  {
+                    print(errorUnw)
+                    self.viewModel?.setPortadaGenerico(completion: .failure(errorUnw))
+                } else {
+                    DispatchQueue.main.async {
+                        self.viewModel?.setPortadaGenerico(completion: .success(self.callBackPortadasGenerico(dictionary: myGenericoDictionary?["data"] as? [[String: Any]])))
+                    }
+                }
+            }
         case "Mercados":
             self.networkService.request(RequestModel(service: GenericaNoticiasDestacadasProviderService.portadaMercados)) { myGenericoDictionary, error in
                 if let errorUnw = error  {
@@ -128,6 +152,8 @@ enum GenericaNoticiasDestacadasProviderService {
     case portadaAragon
     case portadaVasco
     case portadaGalicia
+    case portadaCanarias
+    case portadaCastillaYleon
     case portadaMercados
 }
 
@@ -148,6 +174,10 @@ extension GenericaNoticiasDestacadasProviderService: Service {
             return Helpers.customUrl().portadaNoticiasPaisVacsco
         case GenericaNoticiasDestacadasProviderService.portadaGalicia:
             return Helpers.customUrl().portadaNoticiasGalicia
+        case GenericaNoticiasDestacadasProviderService.portadaCanarias:
+            return Helpers.customUrl().portadaNoticiasIslasCanarias
+        case GenericaNoticiasDestacadasProviderService.portadaCastillaYleon:
+            return Helpers.customUrl().portadaNoticiasCastillaYLeion
         case GenericaNoticiasDestacadasProviderService.portadaMercados:
             return Helpers.customUrl().portadaNoticiasMercados
         }

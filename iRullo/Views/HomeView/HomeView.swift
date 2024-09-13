@@ -34,7 +34,7 @@ struct HomeView: View {
         case .videos:
             VideosCoordinator.navigation().environmentObject(PerfilViewPresenter())
         case .mercados:
-            GenericaNoticiasDestacadasCoordinator.navigation(dto: GenericaNoticiasDestacadasCoordinatorDTO.init(name: "Mercados")).environmentObject(PerfilViewPresenter())
+            PortadaMercadosCoordinator.navigation().environmentObject(PerfilViewPresenter())
         case .masdeporte:
             PortadaMasDeporteCoordinator.navigation().environmentObject(PerfilViewPresenter())
         case .favoritos:

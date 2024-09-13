@@ -24,6 +24,8 @@ struct PortadaFutbolView: View {
     @State private var isPresentingAragon = false
     @State private var isPresentingVasco = false
     @State private var isPresentingGalicia = false
+    @State private var isPresentingCanarias = false
+    @State private var isPresentingCastillaYleon = false
     
     var urlwebView: URL?
     
@@ -193,6 +195,50 @@ struct PortadaFutbolView: View {
                     NavigationLink(
                         destination: GenericaNoticiasDestacadasCoordinator.view(dto: GenericaNoticiasDestacadasCoordinatorDTO.init(name: "Galicia")),
                         isActive: $isPresentingGalicia
+                    ) {
+                        EmptyView()
+                    }
+                    
+                    //Islas Canarias
+                    Button {
+                        isMenuVisible.toggle()
+                        isPresentingCanarias.toggle()
+                    } label: {
+                        HStack{
+                            Text("Destacados Canarias")
+                                .font(.headline)
+                                .bold()
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                        
+                    }.padding()
+                    
+                    NavigationLink(
+                        destination: GenericaNoticiasDestacadasCoordinator.view(dto: GenericaNoticiasDestacadasCoordinatorDTO.init(name: "Canarias")),
+                        isActive: $isPresentingCanarias
+                    ) {
+                        EmptyView()
+                    }
+                    
+                    //Castilla y Leon
+                    Button {
+                        isMenuVisible.toggle()
+                        isPresentingCastillaYleon.toggle()
+                    } label: {
+                        HStack{
+                            Text("Destacados Castilla y León")
+                                .font(.headline)
+                                .bold()
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                        
+                    }.padding()
+                    
+                    NavigationLink(
+                        destination: GenericaNoticiasDestacadasCoordinator.view(dto: GenericaNoticiasDestacadasCoordinatorDTO.init(name: "CastillaYLeon")),
+                        isActive: $isPresentingCastillaYleon
                     ) {
                         EmptyView()
                     }
