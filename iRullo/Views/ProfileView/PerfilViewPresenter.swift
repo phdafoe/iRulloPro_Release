@@ -6,100 +6,27 @@
 //
 
 import Foundation
-import CryptoKit
 import FirebaseAuth
 
-// Output
-protocol PerfilViewPresenterPresenterProtocol {
-    func setTerminosCondicioens(completion: Result<[PortadaCiclismoModel]?, NetworkError>)
-}
-
-
-enum LoginOption {
-    case inicioSesionConApple(idTokenString: String, nonceDes: String)
-    case emailAndPassword(email: String, password: String)
-}
-
-enum TipoAutenticacion: String {
-    case sigin
-    case signup
-    
-    var text: String {
-        switch self {
-        case .sigin : 
-            return "Iniciar Sesión".capitalized
-        case .signup :
-            return "Crear Cuenta".capitalized
-        }
-    }
-    
-    var footerText: String {
-        switch self {
-        case .sigin:
-            return "No eres miembro aún, Registrate"
-        case .signup:
-            return "Listo para ser parte de iRullo?"
-        }
-    }
-}
 
 final class PerfilViewPresenter: ObservableObject {
     
-    @Published var usuarioLogado: User?
-    @Published var cambioPassword: Bool?
-    @Published var usuarioAutenticado = false
-    @Published var error: NSError?
-    @Published var currentNonce:String?
-    @Published var terminosYCondiciones: String = ""
-    
     private let authenticationData = Auth.auth()
-    
-    var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
     
     var provider: PerfilViewProviderInputProtocol = PerfilViewProvider()
     
-    required init() {
-        usuarioLogado = authenticationData.currentUser
-        authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener(estadoDeAutenticacionModificado)
-    }
-    
-    private func estadoDeAutenticacionModificado(with auth: Auth, user: User?) {
-        guard user != self.usuarioLogado else { return }
-        self.usuarioLogado = user
-    }
-    
-    // Login
-    func acceso(with loginOption: LoginOption) {
-        self.usuarioAutenticado = true
-        self.error = nil
-        switch loginOption {
-        case let .inicioSesionConApple(idTokenString, nonceDes):
-            let credential = OAuthProvider.credential(providerID: AuthProviderID(rawValue: "apple.com") ?? AuthProviderID.apple,
-                                                      idToken: idTokenString,
-                                                      rawNonce: nonceDes)
-            UserDefaults.standard.set(true, forKey: "LOGADO")
-            authenticationData.signIn(with: credential, completion: manejadorFoinalizacionDelResultadoDeAutenticacion)
-        case let .emailAndPassword(email, password):
-            UserDefaults.standard.set(true, forKey: "LOGADO")
-            authenticationData.signIn(withEmail: email,
-                                      password: password,
-                                      completion: manejadorFoinalizacionDelResultadoDeAutenticacion)
+    @Published var terminosYCondiciones: String = ""
+    @Published var error: NSError?
+
+    func terminos() -> String {
+        self.provider.fecthDataTerminosCondiciones { terminos in
+            if let terminosUnw = terminos {
+                self.terminosYCondiciones = terminosUnw
+            }
         }
+        return self.terminosYCondiciones
     }
     
-    // Registro
-    func registro(email: String, password: String, passwordConfirmation: String) {
-        guard password == passwordConfirmation else {
-            self.error = NSError(domain: "", code: 9210, userInfo: [NSLocalizedDescriptionKey : "La password y la confirmacion no son iguales"])
-            return
-        }
-        self.usuarioAutenticado = true
-        self.error = nil
-        UserDefaults.standard.set(true, forKey: "LOGADO")
-        authenticationData.createUser(withEmail: email,
-                                      password: password,
-                                      completion: manejadorFoinalizacionDelResultadoDeAutenticacion)
-    }
     
     // Logout
     func desconectarSesion() {
@@ -109,90 +36,6 @@ final class PerfilViewPresenter: ObservableObject {
         } catch {
             self.error = NSError(domain: "", code: 9999, userInfo: [NSLocalizedDescriptionKey : "El usuario no ha logrado desconectar la sesion"])
         }
-    }
-    
-    // Delete account
-    func deleteAccountFirebase(){
-        authenticationData.currentUser?.delete()
-        UserDefaults.standard.set(false, forKey: "LOGADO")
-    }
-    
-    // Callback
-    private func manejadorFoinalizacionDelResultadoDeAutenticacion(with auth: AuthDataResult?, and error: Error?) {
-        DispatchQueue.main.async {
-            if let user = auth?.user {
-                self.usuarioLogado = user
-                // El usuario ha iniciado sesión con éxito
-                print("Inició sesión con éxito")
-            } else if let errorDes = error {
-                self.error = errorDes as NSError
-                print("Error al iniciar sesión: \(errorDes.localizedDescription)")
-                return
-            }
-        }
-        
-        if let handle = authStateDidChangeListenerHandle {
-            Auth.auth().removeStateDidChangeListener(handle)
-        }
-    }
-    
-    func localUsuarioLogado() -> Bool {
-        if UserDefaults.standard.bool(forKey: "LOGADO") {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func randomNonceString(length: Int = 32) -> String {
-        precondition(length > 0)
-        let charset: Array<Character> =
-        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-        var result = ""
-        var remainingLength = length
-        
-        while remainingLength > 0 {
-            let randoms: [UInt8] = (0 ..< 16).map { _ in
-                var random: UInt8 = 0
-                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
-                if errorCode != errSecSuccess {
-                    fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
-                }
-                return random
-            }
-            
-            randoms.forEach { random in
-                if remainingLength == 0 {
-                    return
-                }
-                
-                if random < charset.count {
-                    result.append(charset[Int(random)])
-                    remainingLength -= 1
-                }
-            }
-        }
-        
-        return result
-    }
-    
-    func sha256(_ input: String) -> String {
-        let inputData = Data(input.utf8)
-        let hashedData = SHA256.hash(data: inputData)
-        let hashString = hashedData.compactMap {
-            return String(format: "%02x", $0)
-        }.joined()
-        
-        return hashString
-    }
-    
-    func terminos() -> String {
-        self.provider.fecthDataTerminosCondiciones { terminos in
-            if let terminosUnw = terminos {
-                self.terminosYCondiciones = terminosUnw
-            }
-        }
-        return self.terminosYCondiciones
     }
 
 }

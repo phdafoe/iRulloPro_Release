@@ -11,11 +11,14 @@ struct MainView: View {
     
     @AppStorage("currentPage") var currentPage = 1
     @AppStorage("LOGADO") private var logado: Bool = false
+    @EnvironmentObject var session: LoginRegistroPresenter
     
     var body: some View {
         
         if currentPage > totalPages && logado {
-            HomeView()
+            if self.session.usuarioLogado != nil {
+                HomeView()
+            }
         } else {
             WalkthroughtView()
                 .environment(\.colorScheme, .dark)

@@ -153,7 +153,8 @@ struct WalkthroughtView: View {
         .padding(.bottom, 15)
         .animation(.smooth(duration: 0.5, extraBounce: 0), value: activePage)
         .fullScreenCover(isPresented: $showLoginView) {
-            PerfilView(tipoAutentication: .signup)
+            LoginRegistroView(tipoAutentication: .signup)
+                .environmentObject(LoginRegistroPresenter())
         }
     }
     

@@ -14,7 +14,7 @@ struct iRulloApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView().environmentObject(PerfilViewPresenter())
+            MainView().environmentObject(LoginRegistroPresenter())
         }
     }
 }

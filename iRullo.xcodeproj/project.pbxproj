@@ -29,6 +29,8 @@
 		781C6A7E2C946010003C40AF /* PortadaMercadosPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781C6A7D2C946010003C40AF /* PortadaMercadosPresenter.swift */; };
 		781C6A802C946018003C40AF /* PortadaMercadosProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781C6A7F2C946018003C40AF /* PortadaMercadosProvider.swift */; };
 		781C6A822C946023003C40AF /* PortadaMercadosCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781C6A812C946023003C40AF /* PortadaMercadosCoordinator.swift */; };
+		781C6A852C94959B003C40AF /* LoginRegistroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781C6A842C94959B003C40AF /* LoginRegistroView.swift */; };
+		781C6A872C9495A8003C40AF /* LoginRegistroPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781C6A862C9495A8003C40AF /* LoginRegistroPresenter.swift */; };
 		781DA2B92C6BB95600D7C3A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781DA2B82C6BB95600D7C3A7 /* AppDelegate.swift */; };
 		7867FC6F2C6BBBA300338DAA /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7867FC6E2C6BBBA300338DAA /* FirebaseAnalytics */; };
 		7867FC712C6BBBA300338DAA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7867FC702C6BBBA300338DAA /* FirebaseAuth */; };
@@ -144,6 +146,8 @@
 		781C6A7D2C946010003C40AF /* PortadaMercadosPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaMercadosPresenter.swift; sourceTree = "<group>"; };
 		781C6A7F2C946018003C40AF /* PortadaMercadosProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaMercadosProvider.swift; sourceTree = "<group>"; };
 		781C6A812C946023003C40AF /* PortadaMercadosCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaMercadosCoordinator.swift; sourceTree = "<group>"; };
+		781C6A842C94959B003C40AF /* LoginRegistroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegistroView.swift; sourceTree = "<group>"; };
+		781C6A862C9495A8003C40AF /* LoginRegistroPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegistroPresenter.swift; sourceTree = "<group>"; };
 		781DA2B82C6BB95600D7C3A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7867FC782C6BBC4F00338DAA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7867FC7A2C6BBCB600338DAA /* WalkthroughtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughtView.swift; sourceTree = "<group>"; };
@@ -283,6 +287,15 @@
 				781C6A812C946023003C40AF /* PortadaMercadosCoordinator.swift */,
 			);
 			path = PortadaMercadosView;
+			sourceTree = "<group>";
+		};
+		781C6A832C94958B003C40AF /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				781C6A842C94959B003C40AF /* LoginRegistroView.swift */,
+				781C6A862C9495A8003C40AF /* LoginRegistroPresenter.swift */,
+			);
+			path = LoginView;
 			sourceTree = "<group>";
 		};
 		7867FC7C2C6BBCBD00338DAA /* WalkthroughtView */ = {
@@ -539,6 +552,7 @@
 		78F815772C496B0900EFF38B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				781C6A832C94958B003C40AF /* LoginView */,
 				781C6A7A2C945D4B003C40AF /* PortadaMercadosView */,
 				781619042C91E147009E35D3 /* NoticiasFavoritasView */,
 				781618ED2C8DF66C009E35D3 /* GenericNoticiasDestacadasView */,
@@ -708,6 +722,7 @@
 				787471A42C4A6F18008ACBBD /* PortadaCoordinator.swift in Sources */,
 				787471B22C4AD551008ACBBD /* ImageLoader.swift in Sources */,
 				787193922C66217D0085DD10 /* PortadaTenisModel.swift in Sources */,
+				781C6A872C9495A8003C40AF /* LoginRegistroPresenter.swift in Sources */,
 				787193982C6639020085DD10 /* PortadaCiclismoPresenter.swift in Sources */,
 				7868660A2C72008F008051D3 /* NoticiasModel.swift in Sources */,
 				7816190E2C92FFE1009E35D3 /* PerfilViewProvider.swift in Sources */,
@@ -752,6 +767,7 @@
 				7871938E2C65F83C0085DD10 /* PortadaTenisProvider.swift in Sources */,
 				7871935F2C64A24D0085DD10 /* LoaderModifier.swift in Sources */,
 				781619122C930586009E35D3 /* TerminosCondicionesModel.swift in Sources */,
+				781C6A852C94959B003C40AF /* LoginRegistroView.swift in Sources */,
 				7874719D2C4A6C13008ACBBD /* NetworkError.swift in Sources */,
 				7871936E2C6516410085DD10 /* PortadaMotorModel.swift in Sources */,
 				7867FC802C6BC07A00338DAA /* MorphingSystView.swift in Sources */,
@@ -910,7 +926,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = iRullo/iRullo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"iRullo/Preview Content\"";
 				DEVELOPMENT_TEAM = 2C7W4RF846;
 				ENABLE_PREVIEWS = YES;
@@ -946,7 +962,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = iRullo/iRullo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"iRullo/Preview Content\"";
 				DEVELOPMENT_TEAM = 2C7W4RF846;
 				ENABLE_PREVIEWS = YES;
