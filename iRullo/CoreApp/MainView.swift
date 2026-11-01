@@ -8,17 +8,14 @@
 import SwiftUI
 
 struct MainView: View {
-    
-    @AppStorage("currentPage") var currentPage = 1
-    @AppStorage("LOGADO") private var logado: Bool = false
-    @EnvironmentObject var session: LoginRegistroPresenter
+    @AppStorage("currentPage") private var currentPage = 1
+    @EnvironmentObject private var session: LoginRegistroPresenter
     
     var body: some View {
-        
-        if currentPage > totalPages && logado {
-            if self.session.usuarioLogado != nil {
-                HomeView()
-            }
+        if session.usuarioAutenticado {
+            HomeView()
+        } else if currentPage > totalPages {
+            LoginRegistroView(tipoAutentication: .signup, dismissOnSuccess: false)
         } else {
             WalkthroughtView()
                 .environment(\.colorScheme, .dark)

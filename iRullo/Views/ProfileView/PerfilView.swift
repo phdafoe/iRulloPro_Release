@@ -11,11 +11,13 @@ import SwiftUI
 
 struct PerfilView: View {
     
-    @StateObject var viewModel = PerfilViewPresenter()
-    @EnvironmentObject var viewModelSession: LoginRegistroPresenter
-    @Environment(\.dismiss) var dismiss
-    @State var tipoAutentication: TipoAutenticacion
-    @AppStorage("LOGADO") private var logado: Bool = false
+    @StateObject private var viewModel = PerfilViewPresenter()
+    @EnvironmentObject private var viewModelSession: LoginRegistroPresenter
+    @State private var tipoAutentication: TipoAutenticacion
+    
+    init(tipoAutentication: TipoAutenticacion) {
+        _tipoAutentication = State(initialValue: tipoAutentication)
+    }
     @State private var isCustomAlert = false
     @State private var isTerminosCondiciones = false
     
@@ -33,36 +35,19 @@ struct PerfilView: View {
                 .font(.title2)
                 .fontWeight(.semibold)
                 .multilineTextAlignment(.center)
-            /*
-            Button(action: {
-                self.viewModelSession.desconectarSesion()
-            }) {
-                Text("Logout")
-                    .contentTransition(.identity)
-                    .foregroundStyle(.black)
-                    .padding(.vertical, 15)
-                    .frame(maxWidth: .infinity)
-                    .background(.white, in: .capsule)
-                    .padding(.horizontal, 20)
+            Button("Cerrar sesión") {
+                viewModelSession.desconectarSesion()
             }
-            .font(.title3)
+            .profileButtonStyle()
+            
+            Button("Eliminar cuenta") {
+                isCustomAlert = true
+            }
+            .profileButtonStyle()
             
             Button(action: {
-                self.isCustomAlert.toggle()
-            }) {
-                Text("Delete Account")
-                    .contentTransition(.identity)
-                    .foregroundStyle(.black)
-                    .padding(.vertical, 15)
-                    .frame(maxWidth: .infinity)
-                    .background(.white, in: .capsule)
-                    .padding(.horizontal, 20)
-            }
-            .font(.title3)
-             */
-            
-            Button(action: {
-                self.isTerminosCondiciones.toggle()
+                viewModel.cargarTerminos()
+                isTerminosCondiciones = true
             }) {
                 Text("Términos y condiciones")
                     .contentTransition(.identity)
@@ -80,11 +65,14 @@ struct PerfilView: View {
     }
     
     var body: some View {
-        ZStack{
+        ZStack {
+            if viewModelSession.usuarioAutenticado {
+                estaLogadoCorrectamente()
+            } else {
+                LoginRegistroView(tipoAutentication: tipoAutentication, dismissOnSuccess: false)
+            }
             
-            estaLogadoCorrectamente()
-            
-            if isCustomAlert {
+            if viewModelSession.usuarioAutenticado && isCustomAlert {
                 CustomAlertView(title: "Estas seguro?",
                                 message: "Si quieres eliminar tu cuenta en iRullo, no es un problema, recuerda que puedes cuando tú quieras",
                                 imageURL: nil,
@@ -95,9 +83,9 @@ struct PerfilView: View {
                 })
             }
             
-            if isTerminosCondiciones {
+            if viewModelSession.usuarioAutenticado && isTerminosCondiciones {
                 CustomAlertView(title: "Términos y Condiciones Generales",
-                                message: self.viewModel.terminos(),
+                                message: viewModel.terminosYCondiciones.isEmpty ? "Cargando…" : viewModel.terminosYCondiciones,
                                 imageURL: nil,
                                 hideAlert: self.$isTerminosCondiciones, hide: { value in
                     if value{
@@ -111,3 +99,13 @@ struct PerfilView: View {
     }
 }
 
+private extension View {
+    func profileButtonStyle() -> some View {
+        foregroundStyle(.black)
+            .padding(.vertical, 15)
+            .frame(maxWidth: .infinity)
+            .background(.white, in: .capsule)
+            .padding(.horizontal, 20)
+            .font(.title3)
+    }
+}

@@ -12,8 +12,7 @@ var totalPages = 4
 struct WalkthroughtView: View {
     
     @State private var activePage: Page = .page1
-    @AppStorage("currentPage") var currentPage = 1
-    @State private var showLoginView: Bool = false
+    @AppStorage("currentPage") private var currentPage = 1
     
     var body: some View {
         GeometryReader {
@@ -132,15 +131,11 @@ struct WalkthroughtView: View {
     @ViewBuilder
     func ContinueButton() -> some View {
         Button{
-            activePage = activePage.nextPage
-            if currentPage <= totalPages {
-                currentPage += 1
-            } else {
-                currentPage = 1
-            }
-            
             if activePage == .page4 {
-                showLoginView.toggle()
+                currentPage = totalPages + 1
+            } else {
+                activePage = activePage.nextPage
+                currentPage = min(currentPage + 1, totalPages)
             }
         } label: {
             Text(activePage == .page4 ? "Bienvenidos A iRullo" : "Continuar")
@@ -152,10 +147,6 @@ struct WalkthroughtView: View {
         }
         .padding(.bottom, 15)
         .animation(.smooth(duration: 0.5, extraBounce: 0), value: activePage)
-        .fullScreenCover(isPresented: $showLoginView) {
-            LoginRegistroView(tipoAutentication: .signup)
-                .environmentObject(LoginRegistroPresenter())
-        }
     }
     
 }

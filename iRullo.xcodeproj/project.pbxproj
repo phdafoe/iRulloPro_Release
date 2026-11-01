@@ -122,6 +122,7 @@
 		78F8157A2C496B2300EFF38B /* PortadaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F815792C496B2300EFF38B /* PortadaView.swift */; };
 		78F8157C2C496B2E00EFF38B /* PortadaPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F8157B2C496B2E00EFF38B /* PortadaPresenter.swift */; };
 		78F8157F2C496BBD00EFF38B /* PortadaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F8157E2C496BBD00EFF38B /* PortadaModel.swift */; };
+		DC4926F230976D0700D93E19 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC4926F130976D0700D93E19 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -236,6 +237,7 @@
 		78F815792C496B2300EFF38B /* PortadaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaView.swift; sourceTree = "<group>"; };
 		78F8157B2C496B2E00EFF38B /* PortadaPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaPresenter.swift; sourceTree = "<group>"; };
 		78F8157E2C496BBD00EFF38B /* PortadaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortadaModel.swift; sourceTree = "<group>"; };
+		DC4926F130976D0700D93E19 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -495,6 +497,7 @@
 			children = (
 				7867FC852C6E289400338DAA /* Info.plist */,
 				7867FC782C6BBC4F00338DAA /* GoogleService-Info.plist */,
+				DC4926F130976D0700D93E19 /* GoogleService-Info.plist */,
 				787193AB2C690CF60085DD10 /* iRullo.entitlements */,
 				7871935D2C64A23E0085DD10 /* Modifiers */,
 				787471AE2C4AD2A3008ACBBD /* Components */,
@@ -677,6 +680,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78D46DCB2B51C62100A450AD /* Preview Assets.xcassets in Resources */,
+				DC4926F230976D0700D93E19 /* GoogleService-Info.plist in Resources */,
 				78D46DC82B51C62100A450AD /* Assets.xcassets in Resources */,
 				7867FC792C6BBC4F00338DAA /* GoogleService-Info.plist in Resources */,
 			);
@@ -937,7 +941,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -973,7 +977,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

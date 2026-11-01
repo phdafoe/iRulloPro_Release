@@ -51,30 +51,43 @@ final class LoginRegistroPresenter: ObservableObject {
     
     required init() {
         usuarioLogado = authenticationData.currentUser
-        authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener(estadoDeAutenticacionModificado)
+        usuarioAutenticado = usuarioLogado != nil
+        UserDefaults.standard.set(usuarioAutenticado, forKey: "LOGADO")
+        authStateDidChangeListenerHandle = authenticationData.addStateDidChangeListener(estadoDeAutenticacionModificado)
+    }
+    
+    deinit {
+        if let authStateDidChangeListenerHandle {
+            authenticationData.removeStateDidChangeListener(authStateDidChangeListenerHandle)
+        }
     }
     
     private func estadoDeAutenticacionModificado(with auth: Auth, user: User?) {
-        guard user != self.usuarioLogado else { return }
-        self.usuarioLogado = user
+        usuarioLogado = user
+        usuarioAutenticado = user != nil
+        UserDefaults.standard.set(usuarioAutenticado, forKey: "LOGADO")
     }
     
     // Login
     func acceso(with loginOption: LoginOption) {
-        self.usuarioAutenticado = true
-        self.error = nil
+        error = nil
         switch loginOption {
         case let .inicioSesionConApple(idTokenString, nonceDes):
-            let credential = OAuthProvider.credential(providerID: AuthProviderID(rawValue: "apple.com") ?? AuthProviderID.apple,
-                                                      idToken: idTokenString,
-                                                      rawNonce: nonceDes)
-            UserDefaults.standard.set(true, forKey: "LOGADO")
-            authenticationData.signIn(with: credential, completion: manejadorFoinalizacionDelResultadoDeAutenticacion)
+            let credential = OAuthProvider.credential(
+                providerID: AuthProviderID(rawValue: "apple.com") ?? AuthProviderID.apple,
+                idToken: idTokenString,
+                rawNonce: nonceDes
+            )
+            authenticationData.signIn(
+                with: credential,
+                completion: manejadorFoinalizacionDelResultadoDeAutenticacion
+            )
         case let .emailAndPassword(email, password):
-            authenticationData.signIn(withEmail: email,
-                                      password: password,
-                                      completion: manejadorFoinalizacionDelResultadoDeAutenticacion)
-            UserDefaults.standard.set(true, forKey: "LOGADO")
+            authenticationData.signIn(
+                withEmail: email,
+                password: password,
+                completion: manejadorFoinalizacionDelResultadoDeAutenticacion
+            )
         }
     }
     
@@ -84,18 +97,20 @@ final class LoginRegistroPresenter: ObservableObject {
             self.error = NSError(domain: "", code: 9210, userInfo: [NSLocalizedDescriptionKey : "La password y la confirmacion no son iguales"])
             return
         }
-        self.usuarioAutenticado = true
-        self.error = nil
-        UserDefaults.standard.set(true, forKey: "LOGADO")
-        authenticationData.createUser(withEmail: email,
-                                      password: password,
-                                      completion: manejadorFoinalizacionDelResultadoDeAutenticacion)
+        error = nil
+        authenticationData.createUser(
+            withEmail: email,
+            password: password,
+            completion: manejadorFoinalizacionDelResultadoDeAutenticacion
+        )
     }
     
     // Logout
     func desconectarSesion() {
         do {
             try authenticationData.signOut()
+            usuarioLogado = nil
+            usuarioAutenticado = false
             UserDefaults.standard.set(false, forKey: "LOGADO")
         } catch {
             self.error = NSError(domain: "", code: 9999, userInfo: [NSLocalizedDescriptionKey : "El usuario no ha logrado desconectar la sesion"])
@@ -103,9 +118,18 @@ final class LoginRegistroPresenter: ObservableObject {
     }
     
     // Delete account
-    func deleteAccountFirebase(){
-        authenticationData.currentUser?.delete()
-        UserDefaults.standard.set(false, forKey: "LOGADO")
+    func deleteAccountFirebase() {
+        authenticationData.currentUser?.delete { [weak self] error in
+            DispatchQueue.main.async {
+                if let error {
+                    self?.error = error as NSError
+                } else {
+                    self?.usuarioLogado = nil
+                    self?.usuarioAutenticado = false
+                    UserDefaults.standard.set(false, forKey: "LOGADO")
+                }
+            }
+        }
     }
     
     // Callback
@@ -113,19 +137,14 @@ final class LoginRegistroPresenter: ObservableObject {
         DispatchQueue.main.async {
             if let user = auth?.user {
                 self.usuarioLogado = user
-                // El usuario ha iniciado sesión con éxito
-                print("Inició sesión con éxito")
+                self.usuarioAutenticado = true
+                self.error = nil
                 UserDefaults.standard.set(true, forKey: "LOGADO")
-            } else if let errorDes = error {
-                self.error = errorDes as NSError
-                print("Error al iniciar sesión: \(errorDes.localizedDescription)")
+            } else if let error {
+                self.usuarioAutenticado = false
+                self.error = error as NSError
                 UserDefaults.standard.set(false, forKey: "LOGADO")
-                return
             }
-        }
-        
-        if let handle = authStateDidChangeListenerHandle {
-            Auth.auth().removeStateDidChangeListener(handle)
         }
     }
     

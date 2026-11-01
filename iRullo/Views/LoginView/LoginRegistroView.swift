@@ -1,300 +1,215 @@
-//
-//  LoginRegistroView.swift
-//  iRullo
-//
-//  Created by Andres Felipe Ocampo Eljaiek on 13/9/24.
-//
-
-import SwiftUI
 import AuthenticationServices
+import SwiftUI
 
 struct LoginRegistroView: View {
-    
-    @StateObject var viewModel = LoginRegistroPresenter()
-    @EnvironmentObject var viewModelSession: LoginRegistroPresenter
-    
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var isLoginFailed: Bool = false
-    
-    @State private var fullName: String = ""
-    @State private var confirmPassword: String = ""
-    @State private var showPasswordMismatchAlert: Bool = false
-    
-    @State private var isSignedInWithApple = false
-    @State private var login: Bool = false
-    @State private var userIDApple: String = ""
-    
-    @State var tipoAutentication: TipoAutenticacion
-    @State private var showHomeView: Bool = false
-    
+    private enum Field: Hashable {
+        case email
+        case password
+        case confirmPassword
+    }
+
+    @EnvironmentObject private var viewModelSession: LoginRegistroPresenter
+    @Environment(\.dismiss) private var dismiss
+    @FocusState private var focusedField: Field?
+    @AccessibilityFocusState private var isValidationMessageFocused: Bool
+    @ScaledMetric(relativeTo: .body) private var formSpacing: CGFloat = 20
+    @ScaledMetric(relativeTo: .body) private var fieldPadding: CGFloat = 16
+    @ScaledMetric(relativeTo: .headline) private var appleButtonHeight: CGFloat = 50
+    private let dismissOnSuccess: Bool
+    @State private var email = ""
+    @State private var password = ""
+    @State private var confirmPassword = ""
+    @State private var tipoAutentication: TipoAutenticacion
+    @State private var validationMessage: String?
+
+    init(tipoAutentication: TipoAutenticacion, dismissOnSuccess: Bool = true) {
+        self.dismissOnSuccess = dismissOnSuccess
+        _tipoAutentication = State(initialValue: tipoAutentication)
+    }
+
     var body: some View {
-        ZStack{
-            if !viewModelSession.usuarioAutenticado && !login {
-                VStack(spacing: 20) {
-                    Text(tipoAutentication == .signup ? tipoAutentication.text : tipoAutentication.text)
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .padding(.bottom, 40)
-                    
-                    // Campo de texto para el correo electrónico
-                    TextField("Correo Electrónico", text: $email)
-                        .keyboardType(.emailAddress)
-                        .autocapitalization(.none)
-                        .padding()
-                        .background(Color(.systemGray3))
-                        .cornerRadius(8)
-                        .textInputAutocapitalization(.never)
-                        .padding(.horizontal, 20)
-                        .foregroundColor(Color.white)
-                    
-                    // Campo de texto para la contraseña
-                    SecureField("Contraseña", text: $password)
-                        .padding()
-                        .background(Color(.systemGray3))
-                        .cornerRadius(8)
-                        .padding(.horizontal, 20)
-                    
-                    if tipoAutentication == .signup {
-                        // Campo de texto para confirmar la contraseña
-                        SecureField("Confirmar Contraseña", text: $confirmPassword)
-                            .padding()
-                            .background(Color(.systemGray3))
-                            .cornerRadius(8)
-                            .padding(.horizontal, 20)
-                    }
-                    
-                    
-                    // Botón para registrarse
-                    Button(action: {
-                        autenticationEmailPulsado()
-                    }) {
-                        Text(tipoAutentication == .signup ? tipoAutentication.text : tipoAutentication.text)
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.blue)
-                            .cornerRadius(8)
-                            .padding(.horizontal, 20)
-                    }
-                    .alert(isPresented: $showPasswordMismatchAlert) {
-                        Alert(
-                            title: Text("Error"),
-                            message: Text("Las contraseñas no coinciden"),
-                            dismissButton: .default(Text("OK"))
-                        )
-                    }
-                    .fullScreenCover(isPresented: self.$showHomeView, content: {
-                        HomeView()
-                    })
-                    
-                    // Botón para iniciar sesión
-                    Button(action: {
-                        login.toggle()
-                        tipoAutentication = .sigin
-                    }) {
-                        Text("Iniciar Sesión")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.blue)
-                            .cornerRadius(8)
-                            .padding(.horizontal, 20)
-                    }
-                    
-                    VStack {
-                        Text("Regístrate con Apple")
-                            .font(.title)
-                            .padding(.bottom, 20)
-                        
-                        SignInWithAppleButton(
-                            .signIn,
-                            onRequest: { request in
-                                let nonce = self.viewModelSession.randomNonceString()
-                                self.viewModelSession.currentNonce = nonce
-                                request.requestedScopes = [.fullName, .email]
-                                request.nonce = self.viewModelSession.sha256(nonce)
-                            },
-                            onCompletion: { result in
-                                switch result {
-                                case .success(let authResults):
-                                    handleAuthorization(authResults: authResults)
-                                case .failure(let error):
-                                    print("Autenticación fallida: \(error.localizedDescription)")
-                                }
-                            }
-                        )
-                        .signInWithAppleButtonStyle(.black)
-                        .frame(height: 50)
-                        .padding(.horizontal, 20)
-                        .fullScreenCover(isPresented: self.$showHomeView, content: {
-                            HomeView()
-                        })
-                    }
-                }
-                .padding()
-            } else {
-                VStack(spacing: 20) {
-                    Text(login ? tipoAutentication.text : tipoAutentication.text)
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                    
-                    // Campo de texto para el email
-                    TextField("Correo Electrónico", text: $email)
-                        .keyboardType(.emailAddress)
-                        .autocapitalization(.none)
-                        .padding()
-                        .background(Color(.systemGray3))
-                        .cornerRadius(8)
-                        .textInputAutocapitalization(.never)
-                        .padding(.horizontal, 20)
-                    
-                    // Campo de texto para la contraseña
-                    SecureField("Contraseña", text: $password)
-                        .padding()
-                        .background(Color(.systemGray3))
-                        .cornerRadius(8)
-                        .padding(.horizontal, 20)
-                    
-                    // Botón para iniciar sesión
-                    Button(action: {
-                        autenticationEmailPulsado()
-                    }) {
-                        Text(tipoAutentication.text)
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.blue)
-                            .cornerRadius(8)
-                            .padding(.horizontal, 20)
-                    }
-                    .fullScreenCover(isPresented: self.$showHomeView, content: {
-                        if viewModelSession.usuarioAutenticado && login {
-                            HomeView()
+        ScrollView {
+            VStack(spacing: formSpacing) {
+                Text(tipoAutentication.text)
+                    .font(.largeTitle.bold())
+                    .multilineTextAlignment(.center)
+                    .accessibilityHeading(.h1)
+
+                TextField("Correo Electrónico", text: $email)
+                    .keyboardType(.emailAddress)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                    .textContentType(.emailAddress)
+                    .submitLabel(.next)
+                    .focused($focusedField, equals: .email)
+                    .onSubmit { focusedField = .password }
+                    .accessibilityLabel("Correo electrónico")
+                    .accessibilityHint("Introduce el correo asociado a tu cuenta")
+                    .loginFieldStyle(padding: fieldPadding)
+
+                SecureField("Contraseña", text: $password)
+                    .textContentType(tipoAutentication == .signup ? .newPassword : .password)
+                    .submitLabel(tipoAutentication == .signup ? .next : .go)
+                    .focused($focusedField, equals: .password)
+                    .onSubmit {
+                        if tipoAutentication == .signup {
+                            focusedField = .confirmPassword
+                        } else {
+                            authenticateWithEmail()
                         }
-                    })
-                    
-                    // Botón para iniciar sesión
-                    Button(action: {
-                        login.toggle()
-                        tipoAutentication = .signup
-                    }) {
-                        Text("Registrate")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.blue)
-                            .cornerRadius(8)
-                            .padding(.horizontal, 20)
                     }
-                    .fullScreenCover(isPresented: self.$showHomeView, content: {
-                        if viewModelSession.usuarioAutenticado && login {
-                            HomeView()
-                        }
-                    })
-                    
-                    // Mensaje de error en caso de fallo
-                    if isLoginFailed {
-                        Text("Email o contraseña incorrectos")
-                            .foregroundColor(.red)
-                            .padding(.top, 10)
-                    }
+                    .accessibilityLabel("Contraseña")
+                    .accessibilityHint(tipoAutentication == .signup
+                                       ? "Crea una contraseña para tu cuenta"
+                                       : "Introduce la contraseña de tu cuenta")
+                    .loginFieldStyle(padding: fieldPadding)
+
+                if tipoAutentication == .signup {
+                    SecureField("Confirmar Contraseña", text: $confirmPassword)
+                        .textContentType(.newPassword)
+                        .submitLabel(.go)
+                        .focused($focusedField, equals: .confirmPassword)
+                        .onSubmit { authenticateWithEmail() }
+                        .accessibilityLabel("Confirmar contraseña")
+                        .accessibilityHint("Vuelve a escribir la contraseña para verificarla")
+                        .loginFieldStyle(padding: fieldPadding)
                 }
-                .padding()
+
+                if let errorMessage {
+                    Label(errorMessage, systemImage: "exclamationmark.triangle.fill")
+                        .font(.body.weight(.semibold))
+                        .foregroundStyle(Color(.systemRed))
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityLabel("Error: \(errorMessage)")
+                        .accessibilityFocused($isValidationMessageFocused)
+                }
+
+                Button(tipoAutentication.text, action: authenticateWithEmail)
+                    .buttonStyle(LoginPrimaryButtonStyle())
+                    .accessibilityHint(tipoAutentication == .signup
+                                       ? "Crea la cuenta con los datos introducidos"
+                                       : "Inicia sesión con los datos introducidos")
+
+                Button(tipoAutentication == .signup ? "Ya tengo una cuenta" : "Crear cuenta") {
+                    validationMessage = nil
+                    viewModelSession.error = nil
+                    tipoAutentication = tipoAutentication == .signup ? .sigin : .signup
+                    confirmPassword = ""
+                }
+                .buttonStyle(LoginPrimaryButtonStyle())
+                .accessibilityHint(tipoAutentication == .signup
+                                   ? "Cambia al formulario para iniciar sesión"
+                                   : "Cambia al formulario para crear una cuenta")
+
+                Text("Continúa con Apple")
+                    .font(.title2)
+                    .padding(.top, 8)
+                    .accessibilityAddTraits(.isHeader)
+
+                SignInWithAppleButton(.signIn, onRequest: configureAppleRequest, onCompletion: handleAppleCompletion)
+                    .signInWithAppleButtonStyle(.whiteOutline)
+                    .frame(minHeight: appleButtonHeight)
+                    .padding(.horizontal, 20)
+                    .accessibilityLabel("Iniciar sesión con Apple")
+                    .accessibilityHint("Usa tu cuenta de Apple para continuar")
             }
+            .padding()
         }
         .accentColor(.red)
         .environment(\.colorScheme, .dark)
-        .onAppear {
-            checkAppleSignInStatus()
+        .onChange(of: viewModelSession.usuarioAutenticado) { _, isAuthenticated in
+            if isAuthenticated && dismissOnSuccess { dismiss() }
+        }
+        .onChange(of: errorMessage) { _, message in
+            if message != nil {
+                isValidationMessageFocused = true
+            }
         }
     }
-    
-    private func autenticationEmailPulsado() {
+
+    private var errorMessage: String? {
+        validationMessage ?? viewModelSession.error?.localizedDescription
+    }
+
+    private func authenticateWithEmail() {
+        validationMessage = nil
+        viewModelSession.error = nil
+        guard !email.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, !password.isEmpty else {
+            validationMessage = "Introduce tu correo electrónico y contraseña."
+            focusedField = email.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? .email : .password
+            return
+        }
+
+        let normalizedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         switch tipoAutentication {
         case .sigin:
-            if !self.email.isEmpty && !self.password.isEmpty {
-                self.viewModelSession.acceso(with: .emailAndPassword(email: self.email.lowercased(),
-                                                                     password: self.password))
-                isLoginFailed = false
-                print("Inicio de sesión exitoso")
-                showHomeView.toggle()
-            }
+            viewModelSession.acceso(with: .emailAndPassword(email: normalizedEmail, password: password))
         case .signup:
-            // Validar que las contraseñas coincidan
-            if !self.email.isEmpty && !self.password.isEmpty {
-                guard password == confirmPassword else {
-                    showPasswordMismatchAlert = true
-                    return
-                }
-                self.viewModelSession.registro(email: self.email.lowercased(), 
-                                               password: self.password, passwordConfirmation: self.confirmPassword)
-                // Aquí puedes agregar la lógica para registrar el usuario, como enviar los datos a un servidor.
-                print("Usuario registrado con éxito")
-                print("Correo Electrónico: \(email)")
-                print("Contraseña: \(password)")
-                showHomeView.toggle()
-            }
-        }
-    }
-    
-    func handleAuthorization(authResults: ASAuthorization) {
-        // Manejar los resultados de la autorización
-        if let appleIDCredential = authResults.credential as? ASAuthorizationAppleIDCredential {
-            let userID = appleIDCredential.user
-            let email = appleIDCredential.email
-            let fullName = appleIDCredential.fullName
-            
-            self.userIDApple = userID
-            
-            
-            // Puedes almacenar el userID para futuras autenticaciones
-            print("ID de usuario: \(userID)")
-            print("Email: \(email ?? "No disponible")")
-            print("Nombre completo: \(fullName?.givenName ?? "No disponible") \(fullName?.familyName ?? "")")
-            
-            guard let nonce = self.viewModelSession.currentNonce else {
-                fatalError("Invalid state: A login callback was received, but no login request was sent.")
-            }
-            guard let appleIDToken = appleIDCredential.identityToken else {
-                fatalError("Invalid state: A login callback was received, but no login request was sent.")
-            }
-            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
-                print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
+            guard password == confirmPassword else {
+                validationMessage = "Las contraseñas no coinciden."
+                focusedField = .confirmPassword
                 return
             }
-            self.viewModelSession.acceso(with: .inicioSesionConApple(idTokenString: idTokenString, nonceDes: nonce))
-            showHomeView.toggle()
+            viewModelSession.registro(email: normalizedEmail, password: password, passwordConfirmation: confirmPassword)
         }
     }
-    
-    func checkAppleSignInStatus() {
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        appleIDProvider.getCredentialState(forUserID: self.userIDApple) { (credentialState, error) in
-            switch credentialState {
-            case .authorized:
-                // El usuario tiene una sesión válida
-                DispatchQueue.main.async {
-                    self.isSignedInWithApple = true
-                    UserDefaults.standard.set(true, forKey: "LOGADO")
-                }
-            case .revoked, .notFound:
-                // El usuario no ha iniciado sesión o la sesión ha sido revocada
-                DispatchQueue.main.async {
-                    self.isSignedInWithApple = false
-                    UserDefaults.standard.set(false, forKey: "LOGADO")
-                }
-            default:
-                break
-            }
+
+    private func configureAppleRequest(_ request: ASAuthorizationAppleIDRequest) {
+        let nonce = viewModelSession.randomNonceString()
+        viewModelSession.currentNonce = nonce
+        request.requestedScopes = [.fullName, .email]
+        request.nonce = viewModelSession.sha256(nonce)
+    }
+
+    private func handleAppleCompletion(_ result: Result<ASAuthorization, Error>) {
+        switch result {
+        case .success(let authorization): handleAuthorization(authorization)
+        case .failure(let error): validationMessage = error.localizedDescription
         }
+    }
+
+    private func handleAuthorization(_ authorization: ASAuthorization) {
+        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
+              let nonce = viewModelSession.currentNonce,
+              let identityToken = credential.identityToken,
+              let token = String(data: identityToken, encoding: .utf8) else {
+            validationMessage = "No se pudo completar el inicio de sesión con Apple."
+            return
+        }
+        viewModelSession.acceso(with: .inicioSesionConApple(idTokenString: token, nonceDes: nonce))
+    }
+}
+
+private extension View {
+    func loginFieldStyle(padding: CGFloat) -> some View {
+        self.padding(padding)
+            .foregroundStyle(.primary)
+            .background(Color(.secondarySystemBackground))
+            .overlay {
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color(.systemGray), lineWidth: 1)
+            }
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .padding(.horizontal, 20)
+    }
+}
+
+private struct LoginPrimaryButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.headline)
+            .foregroundStyle(.white)
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(configuration.isPressed ? Color(.systemBlue).opacity(0.8) : Color(.systemBlue))
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .padding(.horizontal, 20)
     }
 }
 
 #Preview {
     LoginRegistroView(tipoAutentication: .signup)
+        .environmentObject(LoginRegistroPresenter())
 }

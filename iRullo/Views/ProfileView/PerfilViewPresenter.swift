@@ -18,13 +18,12 @@ final class PerfilViewPresenter: ObservableObject {
     @Published var terminosYCondiciones: String = ""
     @Published var error: NSError?
 
-    func terminos() -> String {
-        self.provider.fecthDataTerminosCondiciones { terminos in
-            if let terminosUnw = terminos {
-                self.terminosYCondiciones = terminosUnw
+    func cargarTerminos() {
+        provider.fecthDataTerminosCondiciones { [weak self] terminos in
+            DispatchQueue.main.async {
+                self?.terminosYCondiciones = terminos ?? "No se pudieron cargar los términos y condiciones."
             }
         }
-        return self.terminosYCondiciones
     }
     
     
