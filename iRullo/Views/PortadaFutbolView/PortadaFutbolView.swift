@@ -302,6 +302,7 @@ struct PortadaFutbolView: View {
                     Image(systemName: self.isMenuVisible ? "chevron.left": "list.triangle")
                         .foregroundColor(.red)
                 }
+                .accessibilityLabel(self.isMenuVisible ? "Cerrar menú" : "Abrir menú")
             }
         )
     }

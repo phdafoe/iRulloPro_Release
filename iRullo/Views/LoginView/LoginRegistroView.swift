@@ -116,6 +116,8 @@ struct LoginRegistroView: View {
                     .accessibilityHint("Usa tu cuenta de Apple para continuar")
             }
             .padding()
+            .frame(maxWidth: 560)
+            .frame(maxWidth: .infinity)
         }
         .accentColor(.red)
         .environment(\.colorScheme, .dark)

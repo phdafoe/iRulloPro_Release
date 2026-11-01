@@ -21,32 +21,30 @@ struct DataDestacado {
     }
     
     func transformData(completionHandler: @escaping (String?) -> ()) {
-        // URL de la página que quieres extraer
-        if let url = URL(string: urlDestacado ?? "") {
-
-            // Realiza la solicitud
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
-                
-                // Manejo de errores
-                if let error = error {
-                    print("Error: \(error.localizedDescription)")
-                    return
-                }
-                
-                // Verifica que se haya recibido la data
-                if let data = data, let htmlContent = String(data: data, encoding: .utf8) {
-                    // Aquí tienes el HTML como String
-                    print(htmlContent)
-                    DispatchQueue.main.async {
-                        completionHandler(htmlContent)
-                    }
-                } else {
-                    print("Error al convertir la data en un String")
-                }
+        guard let url = URL(string: urlDestacado ?? "") else {
+            DispatchQueue.main.async {
+                completionHandler(nil)
             }
-            // Inicia la tarea
-            task.resume()
+            return
         }
+
+        DispatchQueue.main.async {
+            NetworkActivityController.shared.beginRequest()
+        }
+
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            let htmlContent = data.flatMap { String(data: $0, encoding: .utf8) }
+
+            if let error {
+                appLog(tag: .error, "Unable to load notification content: \(error.localizedDescription)")
+            }
+
+            DispatchQueue.main.async {
+                NetworkActivityController.shared.endRequest()
+                completionHandler(htmlContent)
+            }
+        }
+        .resume()
     }
     
     

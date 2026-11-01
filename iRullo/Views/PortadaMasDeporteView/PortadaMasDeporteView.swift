@@ -51,12 +51,13 @@ struct PortadaMasDeporteView: View {
                         }
                     }) {
                         Image(systemName: "figure.outdoor.cycle")
-                            .font(.system(size: 20))
+                            .font(.title3)
                             .foregroundColor(.white)
                             .padding()
                             .background(Color.red)
                             .clipShape(Circle())
                     }
+                    .accessibilityLabel("Abrir ciclismo")
                     .padding()
                     
                     
@@ -75,12 +76,13 @@ struct PortadaMasDeporteView: View {
                         isPresentingTennis.toggle()
                     }) {
                         Image(systemName: "figure.tennis")
-                            .font(.system(size: 20))
+                            .font(.title3)
                             .foregroundColor(.white)
                             .padding()
                             .background(Color.red)
                             .clipShape(Circle())
                     }
+                    .accessibilityLabel("Abrir tenis")
                     .padding()
                     
                     
@@ -98,12 +100,13 @@ struct PortadaMasDeporteView: View {
                         isPresentingBaloncesto.toggle()
                     }) {
                         Image(systemName: "basketball")
-                            .font(.system(size: 20))
+                            .font(.title3)
                             .foregroundColor(.white)
                             .padding()
                             .background(Color.red)
                             .clipShape(Circle())
                     }
+                    .accessibilityLabel("Abrir baloncesto")
                     .padding()
                     
                     
@@ -123,12 +126,13 @@ struct PortadaMasDeporteView: View {
                         }
                     }) {
                         Image(systemName: "car")
-                            .font(.system(size: 20))
+                            .font(.title3)
                             .foregroundColor(.white)
                             .padding()
                             .background(Color.red)
                             .clipShape(Circle())
                     }
+                    .accessibilityLabel("Abrir motor")
                     .padding()
                     
                     
@@ -147,7 +151,7 @@ struct PortadaMasDeporteView: View {
                     }
                 }) {
                     Image(systemName: "plus")
-                        .font(.system(size: 24))
+                        .font(.title2)
                         .foregroundColor(.white)
                         .padding()
                         .background(Color.red)
@@ -155,6 +159,8 @@ struct PortadaMasDeporteView: View {
                         .rotationEffect(.degrees(showOptions ? 45 : 0))
                         .shadow(radius: 10)
                 }
+                .accessibilityLabel(showOptions ? "Cerrar menú de deportes" : "Abrir menú de deportes")
+                .accessibilityHint("Muestra accesos directos a otras categorías deportivas")
                 .padding()
             }
         }

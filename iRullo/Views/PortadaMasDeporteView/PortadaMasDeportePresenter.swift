@@ -32,7 +32,7 @@ final class PortadaMasDeportePresenter: BaseViewModel, ObservableObject {
 extension PortadaMasDeportePresenter: PortadaMasDeportePresenterProtocol {
     
     func setPortadaMasDeporte(completion: Result<[PortadaMasDeporteModel]?, NetworkError>) {
-        isLoading = true
+        isLoading = false
         switch completion{
         case .success(let data):
             portadasMasDeporte = data

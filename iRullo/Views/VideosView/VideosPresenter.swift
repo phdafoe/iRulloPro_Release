@@ -29,7 +29,7 @@ final class VideosPresenter: BaseViewModel, ObservableObject {
 
 extension VideosPresenter: VideosPresenterProtocol {
     func setVideosHome(completion: Result<[ContentVideosModel]?, NetworkError>) {
-        isLoading = true
+        isLoading = false
         switch completion{
         case .success(let data):
             videosPortadas = data

@@ -51,7 +51,7 @@ extension PortadaFutbolPresenter: PortadaFutbolPresenterProtocol {
     
     func setPortadaFutbol(completion: Result<[PortadaFutbolModel]?, NetworkError>) {
         self.portadasFutbol?.removeAll()
-        isLoading = true
+        isLoading = false
         switch completion{
         case .success(let data):
             DispatchQueue.main.async {
@@ -64,7 +64,7 @@ extension PortadaFutbolPresenter: PortadaFutbolPresenterProtocol {
     }
     
     func setPortadaNoticiasNotificacion(completion: Result<NoticiasNotificacionModel?, NetworkError>) {
-        isLoading = true
+        isLoading = false
         switch completion{
         case .success(let data):
             portadasNoticiaDestacada = data
@@ -81,7 +81,7 @@ extension PortadaFutbolPresenter: PortadaFutbolPresenterProtocol {
     
     func setPortadaNoticiasMadrid(completion: Result<[NoticiasData]?, NetworkError>) {
         self.portadasNoticiaMadrid?.removeAll()
-        isLoading = true
+        isLoading = false
         switch completion{
         case .success(let data):
             portadasNoticiaMadrid = data
@@ -93,7 +93,7 @@ extension PortadaFutbolPresenter: PortadaFutbolPresenterProtocol {
     
     func setPortadaNoticiasAndalucia(completion: Result<[NoticiasData]?, NetworkError>) {
         self.portadasNoticiaAndalucia?.removeAll()
-        isLoading = true
+        isLoading = false
         switch completion{
         case .success(let data):
             portadasNoticiaAndalucia = data

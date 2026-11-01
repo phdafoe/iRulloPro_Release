@@ -24,6 +24,7 @@ struct DetalleNativoDosView: View {
                 }) {
                     Image(systemName: "chevron.left")
                 }
+                .accessibilityLabel("Volver")
                 .padding()
                 .background(Color.white.opacity(0.7))
                 .clipShape(Circle())

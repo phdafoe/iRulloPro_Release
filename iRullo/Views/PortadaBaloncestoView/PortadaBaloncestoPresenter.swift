@@ -31,7 +31,7 @@ final class PortadaBaloncestoPresenter: BaseViewModel, ObservableObject {
 extension PortadaBaloncestoPresenter: PortadaBaloncestoPresenterProtocol {
     
     func setPortadaBaloncesto(completion: Result<[PortadaBaloncestoModel]?, NetworkError>) {
-        isLoading = true
+        isLoading = false
         switch completion{
         case .success(let data):
             portadasBaloncesto = data

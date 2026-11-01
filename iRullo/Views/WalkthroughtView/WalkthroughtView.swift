@@ -23,8 +23,9 @@ struct WalkthroughtView: View {
                         
                 Spacer(minLength: 0)
                 
-                MorphingSystView(symbol: activePage.rawValue, config: .init(font: .system(size: 150, weight: .bold),
-                                                                            frame: .init(width: 250, height: 200),
+                MorphingSystView(symbol: activePage.rawValue, config: .init(font: .system(size: min(size.width * 0.35, 150), weight: .bold),
+                                                                            frame: .init(width: min(size.width * 0.7, 250),
+                                                                                         height: min(size.height * 0.25, 200)),
                                                                             radius: 30,
                                                                             foregroundColor: .white))
                 
@@ -111,6 +112,7 @@ struct WalkthroughtView: View {
                     .fontWeight(.semibold)
                     .contentShape(.rect)
             }
+            .accessibilityLabel("Página anterior")
             .opacity(activePage != .page1 ? 1 : 0)
             
             Spacer(minLength: 0)

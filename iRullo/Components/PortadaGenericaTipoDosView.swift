@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PortadaGenericaTipoDosView: View {
-    
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @ObservedObject var imageLoader = ImageLoader()
     var contentData: NoticiasData?
     
@@ -31,6 +31,7 @@ struct PortadaGenericaTipoDosView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .cornerRadius(8)
                                 .loader(state: .ok)
+                                .accessibilityHidden(true)
                         }
                     } else {
                         ZStack{
@@ -60,7 +61,7 @@ struct PortadaGenericaTipoDosView: View {
                         .font(.subheadline)
                         .foregroundStyle(.gray)
                         .padding(.horizontal)
-                        .lineLimit(1)
+                        .lineLimit(dynamicTypeSize.isAccessibilitySize ? nil : 1)
                     
                     Text(self.contentData?.cleanedText ?? "Actualmente tenemos algún problema con esta noticia, disculpa las molestias!!")
                         .font(.caption)

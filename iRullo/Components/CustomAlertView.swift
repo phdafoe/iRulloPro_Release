@@ -51,6 +51,8 @@ struct CustomAlertView: View {
                         Image(systemName: "xmark")
                             .font(.title3)
                     }
+                    .accessibilityLabel("Cerrar")
+                    .accessibilityHint("Cierra este aviso")
                 }
                 Divider()
                 if title == "Estas seguro?" {
@@ -91,14 +93,13 @@ struct CustomAlertView: View {
                 }
             }
             .padding()
-            .frame(width: UIScreen.main.bounds.width * 0.90)
+            .frame(maxWidth: 560)
             .background(Color.white)
             .foregroundColor(.black)
             .cornerRadius(10)
             .shadow(radius: 10)
+            .padding(.horizontal, 20)
    
         }
     }
 }
-
-

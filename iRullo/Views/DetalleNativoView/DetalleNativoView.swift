@@ -68,6 +68,7 @@ struct DetalleNativoView: View {
                 }) {
                     Image(systemName: "chevron.left")
                 }
+                .accessibilityLabel("Volver")
                 .padding()
                 .background(Color.white.opacity(0.7))
                 .clipShape(Circle())
@@ -87,6 +88,7 @@ struct DetalleNativoView: View {
                 }) {
                     Image(systemName: self.viewModel.isFavoriteSelected ?? false ? "bookmark.fill" : "bookmark")
                 }
+                .accessibilityLabel(self.viewModel.isFavoriteSelected ?? false ? "Eliminar de favoritos" : "Añadir a favoritos")
                 .padding()
                 .background(Color.white.opacity(0.7))
                 .clipShape(Circle())

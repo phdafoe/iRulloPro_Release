@@ -41,6 +41,8 @@ struct MainHeaderView: View {
                             .font(.title2)
                             .fontWeight(.light)
                     }
+                    .accessibilityLabel("Cerrar")
+                    .accessibilityHint("Cierra la pantalla actual")
                 } else {
                     Button(action: {
                         showProfileView.toggle()
@@ -50,6 +52,8 @@ struct MainHeaderView: View {
                             .font(.title2)
                             .fontWeight(.light)
                     }
+                    .accessibilityLabel("Perfil")
+                    .accessibilityHint("Abre el perfil y los ajustes de accesibilidad")
                     .sheet(isPresented: $showProfileView) {
                         PerfilView(tipoAutentication: .signup)
                     }
@@ -60,4 +64,3 @@ struct MainHeaderView: View {
         .background(.red)
     }
 }
-

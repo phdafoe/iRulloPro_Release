@@ -32,7 +32,7 @@ final class PortadaMotorPresenter: BaseViewModel, ObservableObject {
 extension PortadaMotorPresenter: PortadaMotorPresenterProtocol {
     
     func setPortadaMotor(completion: Result<[PortadaMotorModel]?, NetworkError>) {
-        isLoading = true
+        isLoading = false
         switch completion{
         case .success(let data):
             portadasMotor = data

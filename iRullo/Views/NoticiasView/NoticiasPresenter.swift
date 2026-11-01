@@ -30,7 +30,7 @@ final class NoticiasPresenter: BaseViewModel, ObservableObject {
 
 extension NoticiasPresenter: NoticiasPresenterProtocol {
     func setNoticias(completion: Result<[NoticiasData]?, NetworkError>) {
-        isLoading = true
+        isLoading = false
         switch completion{
         case .success(let data):
             portadasNoticias = data
