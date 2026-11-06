@@ -122,10 +122,16 @@ struct LoginRegistroView: View {
         .accentColor(.red)
         .environment(\.colorScheme, .dark)
         .onChange(of: viewModelSession.usuarioAutenticado) { _, isAuthenticated in
-            if isAuthenticated && dismissOnSuccess { dismiss() }
+            guard isAuthenticated, dismissOnSuccess else { return }
+            Task { @MainActor in
+                await Task.yield()
+                dismiss()
+            }
         }
         .onChange(of: errorMessage) { _, message in
-            if message != nil {
+            guard message != nil else { return }
+            Task { @MainActor in
+                await Task.yield()
                 isValidationMessageFocused = true
             }
         }

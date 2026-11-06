@@ -14,8 +14,8 @@ final class PortadaMercadosCoordinator: BaseCoordinator {
     typealias ViewModel = PortadaMercadosPresenter
     typealias Provider = PortadaMercadosProvider
     
-    static func navigation(dto: PortadaMercadosCoordinatorDTO? = nil) -> NavigationView<ContentView> {
-        NavigationView {
+    static func navigation(dto: PortadaMercadosCoordinatorDTO? = nil) -> some View {
+        NavigationStack {
             self.view()
         }
     }

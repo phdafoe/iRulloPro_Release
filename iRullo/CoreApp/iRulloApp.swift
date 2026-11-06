@@ -11,14 +11,15 @@ import SwiftUI
 struct iRulloApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @ObservedObject private var networkActivity = NetworkActivityController.shared
+    @StateObject private var networkActivity = NetworkActivityController.shared
+    @StateObject private var session = LoginRegistroPresenter()
     
     var body: some Scene {
         WindowGroup {
             ZStack {
                 AccessibilityPreferencesView {
                     MainView()
-                        .environmentObject(LoginRegistroPresenter())
+                        .environmentObject(session)
                 }
                 .accessibilityHidden(networkActivity.isLoading)
 

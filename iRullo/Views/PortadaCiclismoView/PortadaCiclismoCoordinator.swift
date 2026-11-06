@@ -14,8 +14,8 @@ final class PortadaCiclismoCoordinator: BaseCoordinator {
     typealias ViewModel = PortadaCiclismoPresenter
     typealias Provider = PortadaCiclismoProvider
     
-    static func navigation() -> NavigationView<ContentView> {
-        NavigationView {
+    static func navigation() -> some View {
+        NavigationStack {
             self.view()
         }
     }

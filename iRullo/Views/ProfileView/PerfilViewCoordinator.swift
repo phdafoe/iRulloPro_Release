@@ -14,8 +14,8 @@ final class PerfilViewCoordinator {
     typealias ViewModel = PerfilViewPresenter
     typealias Provider = PerfilViewProvider
     
-    static func navigation() -> NavigationView<ContentView> {
-        NavigationView {
+    static func navigation() -> some View {
+        NavigationStack {
             self.view()
         }
     }

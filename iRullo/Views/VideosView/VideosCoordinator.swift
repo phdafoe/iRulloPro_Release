@@ -14,8 +14,8 @@ final class VideosCoordinator: BaseCoordinator {
     typealias ViewModel = VideosPresenter
     typealias Provider = VideosProvider
     
-    static func navigation() -> NavigationView<ContentView> {
-        NavigationView {
+    static func navigation() -> some View {
+        NavigationStack {
             self.view()
         }
     }

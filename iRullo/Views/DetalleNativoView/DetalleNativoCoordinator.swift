@@ -14,8 +14,8 @@ final class DetalleNativoCoordinator: BaseCoordinator {
     typealias ViewModel = DetalleNativoPresenter
     typealias Provider = DetalleNativoProvider
     
-    static func navigation(dto: DetalleNativoCoordinatorDTO? = nil) -> NavigationView<ContentView> {
-        NavigationView {
+    static func navigation(dto: DetalleNativoCoordinatorDTO? = nil) -> some View {
+        NavigationStack {
             self.view()
         }
     }

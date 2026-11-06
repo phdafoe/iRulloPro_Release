@@ -22,7 +22,7 @@ struct PortadaView: View {
     }
     
     var body: some View {
-        NavigationView{
+        NavigationStack {
             ScrollView(.vertical, showsIndicators: false){
                 MainHeaderView(showProfileView: $showProfileView, tituloVista: "Portadas", isFullScreen: .constant(false))
                 portadaView()

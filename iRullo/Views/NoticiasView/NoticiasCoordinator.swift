@@ -14,8 +14,8 @@ final class NoticiasCoordinator: BaseCoordinator {
     typealias ViewModel = NoticiasPresenter
     typealias Provider = NoticiasProvider
     
-    static func navigation() -> NavigationView<ContentView> {
-        NavigationView {
+    static func navigation() -> some View {
+        NavigationStack {
             self.view()
         }
     }
@@ -26,4 +26,3 @@ final class NoticiasCoordinator: BaseCoordinator {
         return view
     }
 }
-

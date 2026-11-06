@@ -14,8 +14,8 @@ final class GenericaNoticiasDestacadasCoordinator: BaseCoordinator {
     typealias ViewModel = GenericaNoticiasDestacadasPresenter
     typealias Provider = GenericaNoticiasDestacadasProvider
     
-    static func navigation(dto: GenericaNoticiasDestacadasCoordinatorDTO? = nil) -> NavigationView<ContentView> {
-        NavigationView {
+    static func navigation(dto: GenericaNoticiasDestacadasCoordinatorDTO? = nil) -> some View {
+        NavigationStack {
             self.view(dto: dto)
         }
     }

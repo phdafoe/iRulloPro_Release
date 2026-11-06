@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     @StateObject private var viewModel = HomePresenter()
+    @EnvironmentObject private var session: LoginRegistroPresenter
     
     var body: some View {
         TabView(selection: $viewModel.selectedTabItem){
@@ -30,21 +31,22 @@ struct HomeView: View {
     func tabView(for tabItemType: TabItemViewModel.TabItemType) -> some View {
         switch tabItemType{
         case .homePage:
-            PortadaFutbolCoordinator.navigation().environmentObject(LoginRegistroPresenter())
+            PortadaFutbolCoordinator.navigation().environmentObject(session)
         case .videos:
-            VideosCoordinator.navigation().environmentObject(LoginRegistroPresenter())
+            VideosCoordinator.navigation().environmentObject(session)
         case .mercados:
-            PortadaMercadosCoordinator.navigation().environmentObject(LoginRegistroPresenter())
+            PortadaMercadosCoordinator.navigation().environmentObject(session)
         case .masdeporte:
-            PortadaMasDeporteCoordinator.navigation().environmentObject(LoginRegistroPresenter())
+            PortadaMasDeporteCoordinator.navigation().environmentObject(session)
         case .favoritos:
-            NoticiasFavoritasCoordinator.navigation().environmentObject(LoginRegistroPresenter())
+            NoticiasFavoritasCoordinator.navigation().environmentObject(session)
         case .perfil:
-            PerfilViewCoordinator.view().environmentObject(LoginRegistroPresenter())
+            PerfilViewCoordinator.view().environmentObject(session)
         }
     }
 }
 
 #Preview {
     HomeView()
+        .environmentObject(LoginRegistroPresenter())
 }
